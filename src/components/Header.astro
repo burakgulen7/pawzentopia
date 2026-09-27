@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import LangSwitcher from './LangSwitcher.astro';
+import mark from '../assets/brand/logo-mark.png';
+import { getLanguage, pagePath, url, type Lang, type PageKey } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+}
+const { lang, page } = Astro.props;
+const t = getLanguage(lang).dict;
+const home = page === 'home' ? '' : url(pagePath('home', lang));
+---
+<header class="site-header">
+  <nav class="wrap nav" aria-label="PawZenTopia">
+    <a class="brand" href={url(pagePath('home', lang))} aria-label={t.ui.home}>
+      <Image src={mark} alt="" width={44} height={50} densities={[1, 2]} class="brand-mark" loading="eager" />
+      <span class="brand-name" aria-hidden="true">PawZen <span>Topia</span></span>
+    </a>
+    <ul class="links">
+      <li><a href={`${home}#services`}>{t.nav.services}</a></li>
+      <li><a href={`${home}#tarifs`}>{t.nav.prices}</a></li>
+      <li><a href={`${home}#approche`}>{t.nav.approach}</a></li>
+      <li><a href={`${home}#urgence`}>{t.nav.availability}</a></li>
+    </ul>
+    <div class="actions">
+      <LangSwitcher lang={lang} page={page} />
+      <a class="pill contact" href={`${home}#contact`}>
+        <span>{t.nav.contact}</span><span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    background: var(--mint);
+    position: relative;
+    z-index: 20;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 92px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .brand-mark {
+    width: 44px;
+    height: auto;
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 31px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .brand-name span {
+    color: var(--terra);
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .links a {
+    display: inline-block;
+    padding: 12px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.18s ease;
+  }
+  .links a:hover {
+    border-color: currentColor;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .contact {
+    min-width: 146px;
+    font-size: 13px;
+  }
+  @media (max-width: 1180px) {
+    .links {
+      gap: 22px;
+    }
+    .brand-mark {
+      display: none;
+    }
+  }
+  @media (max-width: 1020px) {
+    .links {
+      display: none;
+    }
+  }
+  @media (max-width: 800px) {
+    .nav {
+      min-height: 75px;
+      gap: 6px;
+    }
+    .brand-name {
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+    .actions {
+      gap: 2px;
+    }
+    .contact {
+      min-width: 0;
+      padding: 12px 13px;
+      font-size: 11.5px;
+      white-space: nowrap;
+    }
+    .contact .arrow {
+      display: none;
+    }
+  }
+  /* Very narrow phones: logo mark instead of the written name, so Contact stays on one line. */
+  @media (max-width: 360px) {
+    .brand-name {
+      display: none;
+    }
+    .brand-mark {
+      display: block;
+      width: 36px;
+    }
+  }
+</style>

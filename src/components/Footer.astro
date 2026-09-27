@@ -1,0 +1,181 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import logo from '../assets/brand/logo-full.png';
+import { contact, socials } from '../config/site';
+import { getLanguage, languages, pagePath, url, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getLanguage(lang).dict;
+const phone = lang === 'fr' ? contact.phoneLocal : contact.phoneIntl;
+---
+<footer class="site-footer">
+  <div class="wrap inner">
+    <div class="id">
+      <Image src={logo} alt="" width={92} densities={[1, 2]} class="logo" />
+      <div>
+        <p class="brand">PawZenTopia</p>
+        <p class="muted">{t.footer.tagline}</p>
+        <p class="muted">{t.footer.location}</p>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href={`tel:${contact.phoneE164}`}><Icon name="phone" size={18} />{phone}</a>
+      <a href={`mailto:${contact.email}`}><Icon name="mail" size={18} />{contact.email}</a>
+      <ul class="social">
+        {
+          socials.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener" aria-label={`${s.name} ${s.handle} ${t.ui.newTab}`}>
+                <Icon name={s.icon} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="meta">
+      <ul class="langs" aria-label={t.ui.language}>
+        {
+          languages.map((l) => (
+            <li>
+              <a href={url(pagePath('home', l.code))} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? 'true' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="muted">
+        <a class="legal" href={url(pagePath('legal', lang))}>{t.footer.legal}</a>
+        <span aria-hidden="true"> · </span>© {new Date().getFullYear()} PawZenTopia
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 34px 0 40px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .id {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .logo {
+    width: 92px;
+    height: auto;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .muted {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .links > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 40px;
+    font-weight: 700;
+  }
+  .links > a:hover,
+  .legal:hover,
+  .langs a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .social {
+    display: flex;
+    gap: 2px;
+    margin: 0 0 0 -10px;
+    padding: 0;
+    list-style: none;
+  }
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+  .meta {
+    justify-self: end;
+    text-align: right;
+  }
+  .langs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0 4px;
+    margin: 0 0 6px;
+    padding: 0;
+    list-style: none;
+  }
+  .langs a {
+    display: inline-block;
+    padding: 10px 6px;
+    color: var(--muted);
+  }
+  .langs a[aria-current='true'] {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .legal {
+    display: inline-block;
+    padding: 10px 0;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  @media (max-width: 1020px) {
+    .inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .meta {
+      grid-column: 1 / -1;
+      justify-self: start;
+      text-align: left;
+    }
+    .langs {
+      justify-content: flex-start;
+      margin-left: -6px;
+    }
+  }
+  @media (max-width: 800px) {
+    .site-footer {
+      padding: 32px 0 36px;
+    }
+    .inner {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .logo {
+      width: 72px;
+    }
+  }
+</style>

@@ -1,0 +1,161 @@
+---
+import { Picture } from 'astro:assets';
+import Br from './Br.astro';
+import { getPhoto, type Slot } from '../config/photos';
+import { getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getLanguage(lang).dict;
+const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const satisfies readonly Slot[];
+---
+<section class="wrap services" id="services" aria-labelledby="services-title">
+  <div class="head">
+    <p class="eyebrow">{t.services.eyebrow}</p>
+    <h2 id="services-title"><Br text={t.services.heading} /></h2>
+    <p class="intro">{t.services.body}</p>
+  </div>
+  <div class="cards">
+    {
+      order.map((slot) => {
+        const photo = getPhoto(slot);
+        const item = t.services.items[slot];
+        return (
+          <article class="card">
+            <Picture
+              src={photo.src}
+              alt={photo.alt[lang]}
+              formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      quality={78}
+              widths={[240, 360, 480, 640]}
+              sizes="(max-width: 800px) 46vw, (max-width: 1440px) 23vw, 330px"
+              style={`object-position:${photo.position}`}
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="card-copy">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .services {
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+  .head {
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    padding-left: 3px;
+  }
+  h2 {
+    margin: 22px 0 22px;
+    font-size: 54px;
+    line-height: 1.12;
+  }
+  .intro {
+    max-width: 860px;
+    margin-left: 1px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: #fff;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .card :global(img) {
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+    object-fit: cover;
+  }
+  .card-copy {
+    padding: 26px 17px 32px;
+  }
+  h3 {
+    margin-bottom: 14px;
+    font-size: 23px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .card p {
+    max-width: 230px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 20px;
+  }
+  @media (max-width: 1020px) {
+    h2 {
+      font-size: 46px;
+    }
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 800px) {
+    .services {
+      padding-top: 46px;
+      padding-bottom: 32px;
+    }
+    .head {
+      margin-bottom: 30px;
+    }
+    h2 {
+      margin: 12px 0 14px;
+      font-size: 36px;
+      line-height: 42px;
+    }
+    .intro {
+      max-width: 300px;
+      font-size: 14px;
+      line-height: 21px;
+      margin-left: 2px;
+    }
+    .cards {
+      gap: 20px 8px;
+    }
+    .card-copy {
+      padding: 16px 11px 30px;
+    }
+    h3 {
+      margin-bottom: 11px;
+      font-size: 15.5px;
+      letter-spacing: -0.01em;
+    }
+    .card p {
+      font-size: 10.5px;
+      line-height: 16px;
+    }
+  }
+  /* Tablets in portrait: same 2×2 grid, slightly larger text. */
+  @media (min-width: 601px) and (max-width: 800px) {
+    h3 {
+      font-size: 20px;
+    }
+    .card p {
+      font-size: 13px;
+      line-height: 20px;
+    }
+    .card-copy {
+      padding: 20px 16px 28px;
+    }
+  }
+</style>

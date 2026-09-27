@@ -1,0 +1,215 @@
+/* Self-hosted fonts: DejaVu Serif / Sans are the faces the approved PNG references were rendered with.
+   They cover Latin, Turkish (ç ğ ı İ ö ş ü) and Cyrillic. Licence: src/assets/fonts/LICENSE-DejaVu.txt */
+@font-face {
+  font-family: 'PZT Serif';
+  src: url('../assets/fonts/dejavu-serif.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PZT Sans';
+  src: url('../assets/fonts/dejavu-sans.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PZT Sans';
+  src: url('../assets/fonts/dejavu-sans-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --mint: #e8f3ed;
+  --mint-soft: #d3e8dc;
+  --ink: #25443c;
+  --cta: #31584d;
+  --cream: #fcfaf4;
+  --muted: #5a6e66;
+  --terra: #c98568;
+  --approach: #f1f6ef;
+  --eyebrow: #557267;
+  --line: #e2e4da;
+  --serif: 'PZT Serif', Georgia, 'Times New Roman', serif;
+  --sans: 'PZT Sans', Arial, Helvetica, sans-serif;
+  --pad: 64px;
+  --radius-card: 22px;
+  --shadow-card: 0 16px 34px rgba(41, 77, 61, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.036em;
+}
+
+:focus-visible {
+  outline: 3px solid #a9654a;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.eyebrow {
+  display: block;
+  color: var(--eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 22px;
+  background: var(--ink);
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.pill:hover {
+  background: var(--cta);
+}
+.pill--light {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--ink);
+}
+.pill--light:hover {
+  background: #fff;
+}
+.pill--outline {
+  background: transparent;
+  color: var(--ink);
+}
+.pill--outline:hover {
+  background: rgba(37, 68, 60, 0.06);
+}
+
+.textlink {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: 1px solid currentColor;
+  padding-block: 16px 5px;
+}
+.textlink:hover {
+  color: var(--cta);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.skip:focus {
+  top: 12px;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --pad: 20px;
+    --radius-card: 16px;
+  }
+  .eyebrow {
+    font-size: 10px;
+  }
+}
+
+/* Phone-only line break inside headings (marked with "|" in the text files). */
+.m-br {
+  display: none;
+}
+@media (max-width: 800px) {
+  .m-br {
+    display: inline;
+  }
+}

@@ -1,0 +1,201 @@
+---
+import { Picture } from 'astro:assets';
+import { getPhoto } from '../config/photos';
+import { getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getLanguage(lang).dict;
+const photo = getPhoto('hero');
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-media" style={`--pos:${photo.position};--pos-m:${photo.positionMobile ?? photo.position}`}>
+    <Picture
+      src={photo.src}
+      alt={photo.alt[lang]}
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      quality={78}
+      widths={[640, 960, 1280, 1600, 2000]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">{t.hero.eyebrow}</p>
+      <h1 id="hero-title">
+        {t.hero.headline.map((line, i) => <span>{line}{i < t.hero.headline.length - 1 ? ' ' : ''}</span>)}
+      </h1>
+      <p class="lead">{t.hero.body}</p>
+      <div class="hero-actions">
+        <a class="pill" href="#services">{t.hero.primary}<span aria-hidden="true">↗</span></a>
+        <a class="textlink" href="#approche">{t.hero.secondary}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--mint);
+    min-height: 608px;
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--pos);
+  }
+  /* Pale-mint wash: solid on the left, fading smoothly into the photograph on the right. */
+  .hero-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      var(--mint) 0%,
+      rgba(232, 243, 237, 0.99) 33%,
+      rgba(232, 243, 237, 0.9) 40%,
+      rgba(232, 243, 237, 0.62) 46%,
+      rgba(232, 243, 237, 0.34) 53%,
+      rgba(232, 243, 237, 0.12) 61%,
+      rgba(232, 243, 237, 0.03) 70%,
+      rgba(232, 243, 237, 0) 80%
+    );
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    min-height: 608px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-copy {
+    width: min(44%, 560px);
+    padding: 74px 0 52px;
+  }
+  .eyebrow {
+    padding-left: 4px;
+  }
+  h1 {
+    margin: 4px 0 30px;
+    font-size: 52px;
+    line-height: 75px;
+    letter-spacing: -0.038em;
+  }
+  h1 span {
+    display: block;
+  }
+  .lead {
+    max-width: 420px;
+    margin-left: 4px;
+    color: #566c62;
+    font-size: 17px;
+    line-height: 27px;
+    margin-bottom: 26px;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 26px;
+    margin-left: 4px;
+  }
+  .hero-actions .pill {
+    padding-inline: 20px 24px;
+  }
+
+  /* Wider screens: keep copy aligned with the content grid. */
+  @media (min-width: 1600px) {
+    .hero,
+    .hero-inner {
+      min-height: 660px;
+    }
+  }
+
+  @media (max-width: 1020px) {
+    .hero-copy {
+      width: 52%;
+    }
+    .hero-media::after {
+      background: linear-gradient(
+        90deg,
+        var(--mint) 0%,
+        rgba(232, 243, 237, 0.98) 42%,
+        rgba(232, 243, 237, 0.7) 54%,
+        rgba(232, 243, 237, 0.3) 64%,
+        rgba(232, 243, 237, 0.05) 78%,
+        rgba(232, 243, 237, 0) 88%
+      );
+    }
+  }
+
+  /* Mobile: copy on mint, photo edge-to-edge underneath, fading vertically into the mint area. */
+  @media (max-width: 800px) {
+    .hero {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-inner {
+      order: 1;
+      min-height: 0;
+      display: block;
+    }
+    .hero-copy {
+      width: 100%;
+      padding: 22px 0 0;
+    }
+    .eyebrow {
+      padding-left: 2px;
+    }
+    h1 {
+      margin: 12px 0 20px;
+      font-size: min(38px, 10.8vw);
+      line-height: 1.37;
+    }
+    .lead {
+      max-width: 340px;
+      margin-left: 2px;
+      font-size: 15.5px;
+      line-height: 24px;
+      margin-bottom: 22px;
+    }
+    .hero-actions {
+      margin-left: 0;
+    }
+    .hero-media {
+      order: 2;
+      position: relative;
+      inset: auto;
+      height: clamp(250px, 72vw, 420px);
+      margin-top: -20px;
+    }
+    .hero-media :global(img) {
+      object-position: var(--pos-m);
+    }
+    .hero-media::after {
+      background: linear-gradient(
+        180deg,
+        var(--mint) 0%,
+        rgba(232, 243, 237, 0.85) 8%,
+        rgba(232, 243, 237, 0.45) 17%,
+        rgba(232, 243, 237, 0.12) 27%,
+        rgba(232, 243, 237, 0) 36%
+      );
+    }
+  }
+</style>

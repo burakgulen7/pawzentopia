@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import { contact, formspreeId, host, legal } from '../../config/site';
+import { defaultLang, fill, getLanguage, languages, pagePath, url, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return languages.map((l) => ({
+    params: { lang: l.code === defaultLang ? undefined : l.code, legal: l.dict.legalPage.slug },
+    props: { lang: l.code },
+  }));
+}
+
+const { lang } = Astro.props as { lang: Lang };
+const t = getLanguage(lang).dict;
+const p = t.legalPage;
+const phone = lang === 'fr' ? contact.phoneLocal : contact.phoneIntl;
+---
+<Base lang={lang} page="legal" title={p.title}>
+  <article class="wrap legal">
+    <h1>{p.title}</h1>
+
+    <section>
+      <h2>{p.publisherTitle}</h2>
+      <p>{fill(p.publisher, { owner: `${contact.ownerName} (PawZenTopia)` })}</p>
+      {/* TODO(legal): legal status, SIREN/SIRET and address — fill src/config/site.ts `legal` once confirmed. */}
+      {legal.legalStatus && <p>{legal.legalStatus}</p>}
+      {legal.siret && <p>SIRET : {legal.siret}</p>}
+      {legal.address && <p>{legal.address}</p>}
+      <p>{p.phone} : <a href={`tel:${contact.phoneE164}`}>{phone}</a></p>
+      <p>{p.email} : <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+    </section>
+
+    <section>
+      <h2>{p.hostTitle}</h2>
+      <p>{host.name}<br />{host.address}<br /><a href={host.url}>{host.url.replace('https://', '')}</a></p>
+    </section>
+
+    <section>
+      <h2>{p.privacyTitle}</h2>
+      <p>{fill(p.privacy, { email: contact.email })}</p>
+      {formspreeId && <p>{p.formNote}</p>}
+    </section>
+
+    <section>
+      <h2>{p.cookiesTitle}</h2>
+      <p>{p.cookies}</p>
+    </section>
+
+    <p><a class="textlink" href={url(pagePath('home', lang))}>{p.back}</a></p>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    max-width: 880px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.12;
+    margin-bottom: 40px;
+  }
+  section {
+    margin-bottom: 36px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  p + p {
+    margin-top: 6px;
+  }
+  section a {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

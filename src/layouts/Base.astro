@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getPhoto } from '../config/photos';
+import { contact, socials } from '../config/site';
+import { defaultLang, getLanguage, languages, pagePath, url, type Lang, type PageKey } from '../i18n';
+import serifFont from '../assets/fonts/dejavu-serif.woff2?url';
+import sansFont from '../assets/fonts/dejavu-sans.woff2?url';
+import sansBoldFont from '../assets/fonts/dejavu-sans-bold.woff2?url';
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { lang, page, title, description, noindex = false } = Astro.props;
+const t = getLanguage(lang).dict;
+const pageTitle = title ? `${title} — PawZenTopia` : t.meta.title;
+const pageDescription = description ?? t.meta.description;
+const abs = (path: string) => new URL(url(path), Astro.site).href;
+const canonical = abs(pagePath(page, lang));
+const og = await getImage({ src: getPhoto('hero').src, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+const ogImage = new URL(og.src, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'PawZenTopia',
+  description: t.meta.description,
+  url: abs(pagePath('home', lang)),
+  image: ogImage,
+  telephone: contact.phoneE164,
+  email: contact.email,
+  areaServed: 'Toulouse, Saint-Jean',
+  knowsLanguage: ['fr', 'en', 'ru', 'tr'],
+  sameAs: socials.map((s) => s.url),
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    {languages.map((l) => <link rel="alternate" hreflang={l.code} href={abs(pagePath(page, l.code))} />)}
+    <link rel="alternate" hreflang="x-default" href={abs(pagePath(page, defaultLang))} />
+    <meta name="theme-color" content="#e8f3ed" />
+    <link rel="icon" href={url('favicon.ico')} sizes="48x48" />
+    <link rel="icon" href={url('favicon.png')} type="image/png" />
+    <link rel="apple-touch-icon" href={url('apple-touch-icon.png')} />
+    <link rel="preload" href={serifFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sansFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sansBoldFont} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PawZenTopia" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={t.meta.ogLocale} />
+    {languages.filter((l) => l.code !== lang).map((l) => <meta property="og:locale:alternate" content={l.dict.meta.ogLocale} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+    {page === 'home' && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">{t.ui.skip}</a>
+    <Header lang={lang} page={page} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

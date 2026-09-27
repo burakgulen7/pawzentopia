@@ -1,0 +1,8 @@
+---
+/** Renders a text where "|" marks a line break used on phones only (desktop keeps one line). */
+interface Props {
+  text: string;
+}
+const parts = Astro.props.text.split('|');
+---
+{parts.map((part, i) => (i === 0 ? part : <><br class="m-br" />{part}</>))}
