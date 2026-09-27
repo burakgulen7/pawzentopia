@@ -39,7 +39,7 @@ const fr = {
     // TODO(content): confirm scope/limits of each service with the owner (see CONTENT_FR.md "CONFIRM").
     items: {
       familyCare: { title: 'Garde familiale', text: 'Le confort d’un foyer et une attention adaptée à ses habitudes.' },
-      // TODO(content): training approach, format and credentials still open — no claims, no price.
+      // Training: approved short copy kept until the owner provides details — no claims, no price.
       training: { title: 'Éducation canine', text: 'Un accompagnement patient, fondé sur l’écoute et la confiance.' },
       urgentCare: { title: 'Garde d’urgence', text: 'Une solution de garde pour les imprévus, à organiser ensemble.' },
       transport: { title: 'Transport 24/7', text: 'Un accompagnement lors des trajets, selon vos besoins.' },
@@ -73,7 +73,6 @@ const fr = {
     eyebrow: 'Un imprévu ?',
     heading: 'Besoin d’une solution pour votre chien ?',
     body: 'Contactez-nous pour discuter de la garde d’urgence ou d’un transport, à toute heure.',
-    // TODO(content): second line awaiting owner approval (CONTENT_FR.md).
     detail:
       'Hospitalisation, accident, départ imprévu : nous pouvons venir chercher votre chien, le garder chez vous ou, selon les disponibilités, chez nous.',
     cta: 'Prendre contact',
@@ -94,7 +93,6 @@ const fr = {
       message: 'Votre message',
       send: 'Envoyer',
       success: 'Merci ! Votre message a bien été envoyé.',
-      // TODO(content): error text not in CONTENT_FR.md — to be approved.
       error: 'L’envoi n’a pas abouti. Vous pouvez nous écrire directement à {email}.',
     },
     social: 'Suivez-nous',

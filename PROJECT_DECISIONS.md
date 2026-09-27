@@ -64,3 +64,10 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
 1. Approval of the EN, RU (by Marianna) and TR copy.
 2. Any additional social networks (Facebook, YouTube, Google Business Profile…).
 3. Details of the dog-training service (approach, format, credentials) — until then keep the approved short copy without claims and without a price.
+
+## Resolved on 27 September 2026 (user answers to "Still open")
+
+1. **Copy approved:** the user approved the design and the EN, RU and TR copy as implemented,
+   including the urgent-panel second line ("Hospitalisation, accident, départ imprévu…").
+2. **Social networks:** Instagram and TikTok only. No other networks for now.
+3. **Dog training:** keep the approved short copy, without claims or price, until the owner provides details.
