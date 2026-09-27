@@ -1,5 +1,7 @@
 # Questions Claude must resolve with the user
 
+> **Most of these have been answered in `PROJECT_DECISIONS.md`.** Ask only the items listed there under "Still open".
+
 Ask these in one concise, grouped message in Turkish after inspecting the project. Record the answers in the repository (for example `PROJECT_DECISIONS.md`) so they are not asked repeatedly.
 
 ## Business and service facts

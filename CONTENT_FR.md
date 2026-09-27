@@ -1,10 +1,13 @@
 # Approved draft French content
 
+Confirmed facts are in `PROJECT_DECISIONS.md`. Translations are in `CONTENT_EN.md`, `CONTENT_RU.md` and `CONTENT_TR.md`; keep all four files structurally identical.
+
 Use this copy as the default draft. Do not embellish claims. Items marked **CONFIRM** must be resolved with the user before production publication.
 
 ## Navigation
 
 - Nos services
+- Tarifs
 - Notre approche
 - Disponibilité 24/7
 - Nous contacter
@@ -25,7 +28,7 @@ Secondary CTA: `Rencontrer PawZenTopia`
 
 - Un accueil à taille humaine
 - Le rythme de chaque chien respecté
-- À Toulouse et ses environs — **CONFIRM exact service radius**
+- Toulouse, Saint-Jean et 20 km alentour — *confirmed*
 
 ## Services introduction
 
@@ -59,6 +62,37 @@ Body: `Du quotidien aux imprévus, un accompagnement attentif pensé pour votre 
 
 **CONFIRM:** true 24/7 meaning, area/radius, pricing basis, vehicle/secure-crate practices and whether transport is available only with another service.
 
+## Pricing section (new — placed between the services and the approach section)
+
+Eyebrow: `Tarifs`
+
+Heading: `Des prix clairs, selon le gabarit.`
+
+Body: `Tarifs de base par jour. Pour tout besoin particulier, parlons-en ensemble.`
+
+### Garde 24 h (nuit comprise)
+
+| Gabarit | Poids | Prix / jour / chien |
+| --- | --- | --- |
+| S | jusqu’à 5 kg | 18 € |
+| M | 5–10 kg | 20 € |
+| L | 10–25 kg | 25 € |
+| XL | plus de 25 kg | 35 € |
+
+Note: `−5 % sur le total pour toute garde de plus de 10 jours.`
+
+### Crèche de jour
+
+`À partir de 15 € / jour`
+
+`Avec abonnement annuel : à partir de 12 € / jour`
+
+### Suppléments
+
+`Suppléments sur devis : soins particuliers ou administration de médicaments, toilettage (brossage, bain…), demandes urgentes ou de nuit, transport, distance.`
+
+CTA: `Demander un devis` (→ contact section)
+
 ## Approach
 
 Eyebrow: `Leur bien-être, notre point de départ`
@@ -79,7 +113,35 @@ Body: `Contactez-nous pour discuter de la garde d’urgence ou d’un transport,
 
 CTA: `Prendre contact`
 
-**CONFIRM** the statement “à toute heure” before publication.
+*Confirmed:* “à toute heure” refers to the owner's last-minute and emergency situations (hospitalisation, accident, urgent departure), not veterinary emergencies.
+
+Second line (new, awaiting owner approval):
+
+`Hospitalisation, accident, départ imprévu : nous pouvons venir chercher votre chien, le garder chez vous ou, selon les disponibilités, chez nous.`
+
+## Contact section (new — placed between the urgent panel and the footer)
+
+Eyebrow: `Nous contacter`
+
+Heading: `Parlons de votre chien.`
+
+Body: `Marianna vous répond pour organiser une garde, un transport ou une solution d’urgence.`
+
+Languages: `Nous parlons français, anglais, russe et turc.`
+
+Pricing note: `Suppléments sur devis, selon la situation, la distance et le gabarit de votre chien.`
+
+Area: `Toulouse, Saint-Jean et 20 km alentour`
+
+Buttons: `Écrire sur WhatsApp` · `Appeler le 06 98 48 26 18` · e-mail link `pawzentopia@gmail.com`
+
+WhatsApp pre-filled message: `Bonjour, je vous contacte depuis le site PawZenTopia.`
+
+Form (sends to pawzentopia@gmail.com): `Nom` · `Téléphone ou e-mail` · `Votre message` · button `Envoyer`
+
+Form confirmation: `Merci ! Votre message a bien été envoyé.`
+
+Social: `Suivez-nous` — Instagram @pawzentopia · TikTok @pawzentopia
 
 ## Footer
 
@@ -87,7 +149,9 @@ CTA: `Prendre contact`
 
 Location: `Toulouse, France`
 
-Add only confirmed contact, social and legal data.
+Languages: `Français · English · Русский · Türkçe`
+
+Links: phone, e-mail, Instagram, TikTok, `Mentions légales`. Add only confirmed contact, social and legal data.
 
 ## Forbidden invented content
 

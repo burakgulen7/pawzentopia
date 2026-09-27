@@ -89,6 +89,17 @@ Source: `assets/brand/pawzentopia-logo-original.jpeg` (2048×2048 JPEG).
 - For the compact header, use a clean mark-only derivative plus the PawZenTopia name if the full vertical logo becomes illegible. Use the full logo in the footer or an identity/about area and the mark for the favicon.
 - Maintain clear space around the logo. Do not recolor it terracotta, distort it or place it on busy photo detail.
 
+## Additions after approval of the reference (languages, pricing, social, contact)
+
+These are additions to the approved design. Build them with the existing tokens, type scale, radii and spacing so they look native to the approved composition. Do not alter the approved sections.
+
+- **Language switcher (4 languages):** compact text control in the header showing the current code (`FR ▾`) that opens a small list `Français · English · Русский · Türkçe`. Desktop: between the nav links and the Contact pill. Mobile: next to the Contact pill; keep both tappable (min. 44×44 px). Keyboard accessible. No flags. If the desktop nav gets crowded with the extra `Tarifs` link and switcher, reduce gaps slightly rather than wrapping.
+- **Pricing section:** between the services and the approach section, cream background, same section header pattern as the services (eyebrow, Georgia heading, short body). Two white rounded cards (radius and shadow as the service cards): "Garde 24 h" with a clean 4-row size table (size badge in soft mint, weight in muted text, price in deep green Georgia), the −5 % note underneath; and "Crèche de jour" with the two "from" prices. Below both, a one-line extras note and a text-link CTA to the contact section. Mobile: cards stack, table stays readable at 320 px without horizontal scroll. Terracotta may be used sparingly for the discount note only.
+- **Contact section:** new section between the urgent panel and the footer. Pale mint (`#E8F3ED`) rounded panel or cream background, heading in Georgia, two pill buttons (WhatsApp primary in deep green, phone secondary outlined), service area and pricing note in muted body text, and the form (only once the e-mail is confirmed) with clear labels and visible focus. Mobile: everything stacks, buttons full width.
+- **Social icons:** Instagram and TikTok as simple monochrome line icons (deep green on light backgrounds, cream on dark), 20–24 px, with accessible labels, in the contact section and the footer. No brand-colored icon blocks. Open in a new tab with `rel="noopener"`.
+- **Footer:** keep it restrained; add phone, social icons and the legal-notice link.
+- **Legal-notice page:** simple text page reusing header/footer and the cream background.
+
 ## Interaction
 
 - Smooth but restrained anchor scrolling.

@@ -16,7 +16,9 @@ Claude Code should then follow `CLAUDE.md` automatically. If it starts proposing
 
 - `CLAUDE.md`: binding build and deployment workflow.
 - `DESIGN_SPEC.md`: precise layout, color and responsive rules.
+- `PROJECT_DECISIONS.md`: confirmed owner answers (contact, area, 24/7, prices, 4 languages, photos, hosting, legal).
 - `CONTENT_FR.md`: approved draft French copy and content caveats.
+- `CONTENT_EN.md`, `CONTENT_RU.md`, `CONTENT_TR.md`: translated draft copy (awaiting review).
 - `QUESTIONS_AND_DEPLOYMENT.md`: questions Claude must ask before launch.
 - `assets/brand/`: original company logo.
 - `assets/photos/`: approved generated photographs.
@@ -27,4 +29,4 @@ Claude Code should then follow `CLAUDE.md` automatically. If it starts proposing
 
 ## Important
 
-The approved photographs are synthetic marketing visuals derived from supplied references. The business owner should confirm that her likeness and each dog’s appearance are acceptable before publication.
+The approved photographs are synthetic marketing visuals derived from supplied references. Feedback says they look AI-generated; they are temporary and will be replaced with real photos, so the site must make photo replacement easy (see `PROJECT_DECISIONS.md`).
