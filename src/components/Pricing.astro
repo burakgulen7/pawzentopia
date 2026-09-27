@@ -90,10 +90,17 @@ const weight = (row: (typeof boarding)[number]) => {
     align-items: stretch;
   }
   .price-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     background: #fff;
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     padding: 34px 36px 32px;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 40px rgba(41, 77, 61, 0.1);
+    }
   }
   h3 {
     font-size: 26px;

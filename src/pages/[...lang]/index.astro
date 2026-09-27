@@ -5,6 +5,7 @@ import Trust from '../../components/Trust.astro';
 import Services from '../../components/Services.astro';
 import Pricing from '../../components/Pricing.astro';
 import Approach from '../../components/Approach.astro';
+import Social from '../../components/Social.astro';
 import Urgent from '../../components/Urgent.astro';
 import Contact from '../../components/Contact.astro';
 import { defaultLang, languages, type Lang } from '../../i18n';
@@ -24,6 +25,7 @@ const { lang } = Astro.props as { lang: Lang };
   <Services lang={lang} />
   <Pricing lang={lang} />
   <Approach lang={lang} />
+  <Social lang={lang} />
   <Urgent lang={lang} />
   <Contact lang={lang} />
 </Base>

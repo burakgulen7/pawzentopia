@@ -1,0 +1,157 @@
+---
+/**
+ * Logo intro ("line reveal" that morphs into the header mark).
+ * - Shapes come from the automatic trace of the original logo (scripts/trace_logo.py).
+ * - The overlay is created by JavaScript only: without JS, for search engines and with
+ *   prefers-reduced-motion, nothing is shown and the page is fully usable.
+ * - Plays once per browser session; any click, tap, scroll or key skips it.
+ */
+import intro from '../assets/brand/logo-intro.json';
+const mvb = intro.markViewBox.join(' ');
+const tvb = intro.textViewBox.join(' ');
+---
+<template id="pzt-intro">
+  <div class="pzt-intro" aria-hidden="true">
+    <div class="pzt-intro__stage">
+      <svg class="pzt-intro__mark" viewBox={mvb}>
+        <path class="pzt-intro__fill" d={intro.markFill} fill-rule="evenodd"></path>
+        <g class="pzt-intro__strokes">
+          {intro.strokes.map((d, i) => <path d={d} pathLength="1" style={`--i:${i}`} />)}
+        </g>
+      </svg>
+      <svg class="pzt-intro__text" viewBox={tvb}>
+        <path d={intro.textFill} fill-rule="evenodd"></path>
+      </svg>
+    </div>
+  </div>
+</template>
+
+<script is:inline>
+  (function () {
+    var KEY = 'pzt-intro-seen';
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (sessionStorage.getItem(KEY)) return;
+      sessionStorage.setItem(KEY, '1');
+    } catch (e) {
+      return;
+    }
+    var tpl = document.getElementById('pzt-intro');
+    if (!tpl || !('content' in tpl)) return;
+    var root = document.documentElement;
+    var overlay = tpl.content.firstElementChild.cloneNode(true);
+    document.body.appendChild(overlay);
+    root.classList.add('intro-playing');
+
+    var timers = [];
+    var done = false;
+    var events = ['pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'];
+    function finish() {
+      if (done) return;
+      done = true;
+      timers.forEach(clearTimeout);
+      events.forEach(function (ev) {
+        window.removeEventListener(ev, finish, true);
+      });
+      overlay.remove();
+      root.classList.remove('intro-playing');
+    }
+    events.forEach(function (ev) {
+      window.addEventListener(ev, finish, { capture: true, passive: true });
+    });
+
+    // 1) line reveal ~1.15 s  2) fill + wordmark ~0.4 s  3) morph into the header ~0.6 s
+    timers.push(
+      setTimeout(function () {
+        overlay.classList.add('is-filled');
+      }, 1150),
+    );
+    timers.push(
+      setTimeout(function () {
+        var mark = overlay.querySelector('.pzt-intro__mark');
+        var target = document.querySelector('[data-header-mark]');
+        var r = target && target.getBoundingClientRect();
+        if (mark && r && r.width) {
+          var m = mark.getBoundingClientRect();
+          var s = r.height / m.height;
+          var dx = r.left + r.width / 2 - (m.left + m.width / 2);
+          var dy = r.top + r.height / 2 - (m.top + m.height / 2);
+          mark.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')';
+        }
+        overlay.classList.add('is-leaving');
+      }, 1550),
+    );
+    timers.push(setTimeout(finish, 2200));
+  })();
+</script>
+
+<style is:global>
+  .pzt-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    background: #e8f3ed;
+    transition: background-color 0.6s ease;
+  }
+  .pzt-intro__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+  }
+  .pzt-intro__mark {
+    width: auto;
+    height: min(34vh, 240px);
+    overflow: visible;
+    transform-origin: center;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .pzt-intro__strokes path {
+    fill: none;
+    stroke: #01504f;
+    stroke-width: 8;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: pzt-draw 0.55s ease-in-out forwards;
+    animation-delay: calc(var(--i) * 32ms);
+    transition: opacity 0.4s ease;
+  }
+  .pzt-intro__fill {
+    fill: #01504f;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .pzt-intro__text {
+    width: min(62vw, 330px);
+    height: auto;
+    fill: #01504f;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .pzt-intro.is-filled .pzt-intro__fill,
+  .pzt-intro.is-filled .pzt-intro__text {
+    opacity: 1;
+  }
+  .pzt-intro.is-filled .pzt-intro__strokes path {
+    opacity: 0;
+  }
+  .pzt-intro.is-leaving {
+    background-color: rgba(232, 243, 237, 0);
+  }
+  .pzt-intro.is-leaving .pzt-intro__text {
+    opacity: 0;
+    transition-duration: 0.25s;
+  }
+  @keyframes pzt-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  /* The header mark is revealed when the animated mark lands on it. */
+  html.intro-playing [data-header-mark] {
+    visibility: hidden;
+  }
+</style>

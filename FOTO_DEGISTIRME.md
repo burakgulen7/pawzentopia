@@ -10,6 +10,7 @@ Sitedeki bütün fotoğraflar tek bir klasörde durur: **`src/photos/`**
 | `urgence` | Hizmet kartı 3 — Acil bakım |
 | `transport` | Hizmet kartı 4 — 7/24 ulaşım |
 | `approche` | "Yaklaşımımız" bölümündeki yuvarlak köşeli fotoğraf |
+| `social-1` … `social-4` | "Bizi takip edin" (Instagram & TikTok) bölümündeki 4 fotoğraf, soldan sağa |
 
 ## Adım adım (GitHub web sitesi üzerinden)
 
@@ -31,6 +32,8 @@ Sitedeki bütün fotoğraflar tek bir klasörde durur: **`src/photos/`**
 - **Yüzlerin kesilmemesi için:** Büyük üst fotoğraf yatay (en az 1800 piksel genişlik) olmalı;
   kişi ve köpekler fotoğrafın **sağ yarısında** dursun, çünkü sol taraf yazının arkasında açık yeşil bir
   perdeyle yumuşatılır. Hizmet kartları kare olarak gösterilir.
+- Hizmet kartları ve sosyal medya fotoğrafları telefonda **kare** gösterilir; dikey (portre) fotoğraflar da
+  olur, yeter ki yüzler fotoğrafın ortasına yakın olsun.
 - **Kırpma ayarı (isteğe bağlı):** Bir fotoğrafta önemli kısım kesiliyorsa `src/config/photos.ts`
   dosyasındaki `position` değerini değiştirin. İlk sayı yatay, ikinci sayı dikey odak noktasıdır:
   `'50% 50%'` = orta, `'50% 20%'` = üst kısmı göster, `'80% 50%'` = sağ tarafı göster.

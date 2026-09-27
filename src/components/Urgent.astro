@@ -1,9 +1,12 @@
 ---
+import Icon from './Icon.astro';
+import { whatsappUrl } from '../config/site';
 import { getLanguage, type Lang } from '../i18n';
 interface Props {
   lang: Lang;
 }
-const t = getLanguage(Astro.props.lang).dict.urgent;
+const d = getLanguage(Astro.props.lang).dict;
+const t = d.urgent;
 ---
 <section class="wrap urgent" id="urgence" aria-labelledby="urgent-title">
   <div class="box">
@@ -13,7 +16,9 @@ const t = getLanguage(Astro.props.lang).dict.urgent;
       <p class="body">{t.body}</p>
       <p class="detail">{t.detail}</p>
     </div>
-    <a class="pill pill--light" href="#contact">{t.cta}<span aria-hidden="true">↗</span></a>
+    <a class="pill pill--light" href={whatsappUrl(d.contact.whatsappMessage)} target="_blank" rel="noopener">
+      <Icon name="whatsapp" size={20} />{t.cta}<span class="visually-hidden"> {d.ui.newTab}</span>
+    </a>
   </div>
 </section>
 

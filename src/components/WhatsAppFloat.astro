@@ -1,0 +1,55 @@
+---
+/** Small floating WhatsApp button, phones only. Hidden while the logo intro plays. */
+import Icon from './Icon.astro';
+import { whatsappUrl } from '../config/site';
+import { getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = getLanguage(Astro.props.lang).dict;
+---
+<a
+  class="wa-float"
+  href={whatsappUrl(t.contact.whatsappMessage)}
+  target="_blank"
+  rel="noopener"
+  aria-label={`${t.contact.whatsapp} ${t.ui.newTab}`}
+>
+  <Icon name="whatsapp" size={28} />
+</a>
+
+<style>
+  .wa-float {
+    display: none;
+  }
+  @media (max-width: 800px) {
+    .wa-float {
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      z-index: 40;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--cream);
+      box-shadow: 0 10px 24px rgba(37, 68, 60, 0.28);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .wa-float:active {
+      transform: scale(0.96);
+    }
+    :global(html.intro-playing) .wa-float {
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* Keep footer links clear of the floating button. */
+    :global(body) {
+      padding-bottom: 84px;
+    }
+  }
+</style>

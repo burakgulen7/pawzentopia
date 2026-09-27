@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { contact, formspreeId, socials } from '../config/site';
+import { contact, formspreeId, socials, whatsappUrl } from '../config/site';
 import { fill, getLanguage, type Lang } from '../i18n';
 
 interface Props {
@@ -9,8 +9,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = getLanguage(lang).dict;
 const c = t.contact;
-const wa = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(c.whatsappMessage)}`;
-const callLabel = fill(c.call, { phoneLocal: contact.phoneLocal, phoneIntl: contact.phoneIntl });
+const wa = whatsappUrl(c.whatsappMessage);
+const phone = lang === 'fr' ? contact.phoneLocal : contact.phoneIntl;
 ---
 <section class="wrap contact" id="contact" aria-labelledby="contact-title">
   <div class="panel">
@@ -23,10 +23,11 @@ const callLabel = fill(c.call, { phoneLocal: contact.phoneLocal, phoneIntl: cont
         <a class="pill" href={wa} target="_blank" rel="noopener">
           <Icon name="whatsapp" size={20} />{c.whatsapp}<span class="visually-hidden"> {t.ui.newTab}</span>
         </a>
-        <a class="pill pill--outline" href={`tel:${contact.phoneE164}`}>
-          <Icon name="phone" size={20} />{callLabel}
+        <a class="pill pill--outline" href={`tel:${contact.phoneE164}`} aria-label={`${c.call} ${phone}`}>
+          <Icon name="phone" size={20} />{c.call}
         </a>
       </div>
+      <p class="note">{c.note}</p>
       <a class="mail" href={`mailto:${contact.email}`}><Icon name="mail" size={20} />{contact.email}</a>
     </div>
 
@@ -148,6 +149,13 @@ const callLabel = fill(c.call, { phoneLocal: contact.phoneLocal, phoneIntl: cont
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 30px;
+  }
+  .note {
+    max-width: 520px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
   }
   .mail {
     display: inline-flex;

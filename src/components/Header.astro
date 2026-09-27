@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
 import LangSwitcher from './LangSwitcher.astro';
 import mark from '../assets/brand/logo-mark.png';
+import { socials, whatsappUrl } from '../config/site';
 import { getLanguage, pagePath, url, type Lang, type PageKey } from '../i18n';
 
 interface Props {
@@ -11,27 +13,94 @@ interface Props {
 const { lang, page } = Astro.props;
 const t = getLanguage(lang).dict;
 const home = page === 'home' ? '' : url(pagePath('home', lang));
+const wa = whatsappUrl(t.contact.whatsappMessage);
+const links = [
+  { href: `${home}#services`, label: t.nav.services },
+  { href: `${home}#tarifs`, label: t.nav.prices },
+  { href: `${home}#approche`, label: t.nav.approach },
+  { href: `${home}#urgence`, label: t.nav.availability },
+];
 ---
 <header class="site-header">
   <nav class="wrap nav" aria-label="PawZenTopia">
     <a class="brand" href={url(pagePath('home', lang))} aria-label={t.ui.home}>
-      <Image src={mark} alt="" width={44} height={50} densities={[1, 2]} class="brand-mark" loading="eager" />
+      <Image
+        src={mark}
+        alt=""
+        width={48}
+        densities={[1, 2]}
+        class="brand-mark"
+        loading="eager"
+        data-header-mark
+      />
       <span class="brand-name" aria-hidden="true">PawZen <span>Topia</span></span>
     </a>
+
     <ul class="links">
-      <li><a href={`${home}#services`}>{t.nav.services}</a></li>
-      <li><a href={`${home}#tarifs`}>{t.nav.prices}</a></li>
-      <li><a href={`${home}#approche`}>{t.nav.approach}</a></li>
-      <li><a href={`${home}#urgence`}>{t.nav.availability}</a></li>
+      {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
     </ul>
+
     <div class="actions">
+      <ul class="social">
+        {
+          socials.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener" aria-label={`${s.name} ${s.handle} ${t.ui.newTab}`}>
+                <Icon name={s.icon} size={20} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
       <LangSwitcher lang={lang} page={page} />
-      <a class="pill contact" href={`${home}#contact`}>
-        <span>{t.nav.contact}</span><span class="arrow" aria-hidden="true">↗</span>
+      <a class="pill contact" href={wa} target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={18} /><span>{t.nav.contact}</span><span class="visually-hidden"> {t.ui.newTab}</span>
       </a>
+      <details class="menu" data-menu>
+        <summary aria-label={t.ui.menu}>
+          <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </summary>
+        <div class="menu-panel">
+          <ul>
+            {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+          <a class="pill menu-cta" href={wa} target="_blank" rel="noopener">
+            <Icon name="whatsapp" size={20} />{t.contact.whatsapp}<span class="visually-hidden"> {t.ui.newTab}</span>
+          </a>
+          <ul class="menu-social">
+            {
+              socials.map((s) => (
+                <li>
+                  <a href={s.url} target="_blank" rel="noopener">
+                    <Icon name={s.icon} size={20} />
+                    <span>{s.handle}</span>
+                    <span class="visually-hidden"> {s.name} {t.ui.newTab}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </details>
     </div>
   </nav>
 </header>
+
+<script>
+  // Close the mobile menu after choosing a link, on outside click or with Escape.
+  document.querySelectorAll<HTMLDetailsElement>('[data-menu]').forEach((menu) => {
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => (menu.open = false)));
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    menu.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
+  });
+</script>
 
 <style>
   .site-header {
@@ -49,13 +118,13 @@ const home = page === 'home' ? '' : url(pagePath('home', lang));
   .brand {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
     gap: 12px;
+    min-height: 44px;
     flex-shrink: 0;
   }
   .brand-mark {
-    width: 44px;
-    height: auto;
+    width: auto;
+    height: 48px;
   }
   .brand-name {
     font-family: var(--serif);
@@ -70,7 +139,7 @@ const home = page === 'home' ? '' : url(pagePath('home', lang));
   .links {
     display: flex;
     align-items: center;
-    gap: 34px;
+    gap: 30px;
     margin: 0 0 0 auto;
     padding: 0;
     list-style: none;
@@ -90,23 +159,131 @@ const home = page === 'home' ? '' : url(pagePath('home', lang));
   .actions {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 6px;
+  }
+  .social {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    transition: background-color 0.18s ease;
+  }
+  .social a:hover {
+    background: rgba(37, 68, 60, 0.07);
   }
   .contact {
-    min-width: 146px;
+    margin-left: 8px;
     font-size: 13px;
+    padding-inline: 18px 22px;
+    white-space: nowrap;
   }
-  @media (max-width: 1180px) {
+
+  /* Menu button (shown when the nav links no longer fit). */
+  .menu {
+    display: none;
+    position: static;
+  }
+  .menu summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .menu summary:hover {
+    background: rgba(37, 68, 60, 0.07);
+  }
+  .bars {
+    display: grid;
+    gap: 5px;
+    width: 20px;
+  }
+  .bars span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+  .menu[open] .bars span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu[open] .bars span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu[open] .bars span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .menu-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 12px var(--pad) 26px;
+    background: var(--mint);
+    border-top: 1px solid rgba(37, 68, 60, 0.1);
+    box-shadow: 0 18px 30px rgba(41, 77, 61, 0.12);
+  }
+  .menu-panel ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .menu-panel > ul:first-child a {
+    display: block;
+    padding: 13px 0;
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid rgba(37, 68, 60, 0.1);
+  }
+  .menu-cta {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .menu-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    margin-top: 12px !important;
+  }
+  .menu-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1280px) {
     .links {
-      gap: 22px;
+      gap: 20px;
     }
-    .brand-mark {
+    .brand-name {
+      font-size: 27px;
+    }
+  }
+  @media (max-width: 1140px) {
+    .links {
       display: none;
     }
-  }
-  @media (max-width: 1020px) {
-    .links {
-      display: none;
+    .menu {
+      display: block;
     }
   }
   @media (max-width: 800px) {
@@ -114,31 +291,31 @@ const home = page === 'home' ? '' : url(pagePath('home', lang));
       min-height: 75px;
       gap: 6px;
     }
+    .brand {
+      gap: 8px;
+    }
+    .brand-mark {
+      height: 40px;
+    }
     .brand-name {
       font-size: 22px;
       letter-spacing: -0.02em;
     }
     .actions {
-      gap: 2px;
+      gap: 0;
     }
+    /* On phones the contact action is the floating WhatsApp button and the menu. */
+    .social,
     .contact {
-      min-width: 0;
-      padding: 12px 13px;
-      font-size: 11.5px;
-      white-space: nowrap;
-    }
-    .contact .arrow {
       display: none;
     }
   }
-  /* Very narrow phones: logo mark instead of the written name, so Contact stays on one line. */
-  @media (max-width: 360px) {
+  @media (max-width: 370px) {
     .brand-name {
-      display: none;
+      font-size: 19px;
     }
     .brand-mark {
-      display: block;
-      width: 36px;
+      height: 36px;
     }
   }
 </style>

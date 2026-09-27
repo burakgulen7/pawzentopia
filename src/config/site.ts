@@ -45,3 +45,7 @@ export const host = {
   address: '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA',
   url: 'https://github.com',
 };
+
+/** WhatsApp link with a pre-filled message (in the visitor's language). */
+export const whatsappUrl = (message: string) =>
+  `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;

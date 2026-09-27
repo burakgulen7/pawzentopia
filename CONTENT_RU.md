@@ -144,3 +144,31 @@ Links: phone, e-mail, Instagram, TikTok, `Правовая информация`
 ## Language switcher
 
 Accessible labels: `Français`, `English`, `Русский`, `Türkçe`.
+
+
+## Дополнения — запрос на изменения 02
+
+### Social section (between the approach section and the urgent panel)
+
+Eyebrow: `Instagram и TikTok`
+
+Heading: `Следите за их днями.`
+
+Body: `Прогулки, игры и счастливые моменты: собаки, за которыми мы ухаживаем, — в фото и видео.`
+
+Buttons: `@pawzentopia в Instagram` · `@pawzentopia в TikTok`
+
+### Service card detail panels (hover / tap)
+
+- 1: `Передержка 24 часа с ночёвкой — у вас дома или, при наличии возможности, у нас. От {price} в день.` — `{price}` comes from the price data file.
+- 2: `Обучение с учётом характера и ритма вашей собаки. Стоимость по запросу.`
+- 3: `Госпитализация, авария, внезапный отъезд: мы заберём вашу собаку или вы привезёте её к нам — в любое время.`
+- 4: `Поездки по Тулузе, Сен-Жану и в радиусе 20 км — в любое время. Стоимость по запросу.`
+
+Link: `Связаться →`
+
+### Contact priority
+
+Phone button: `Позвонить`
+
+Note: `Первое обращение? Напишите нам в WhatsApp — так мы ответим быстрее. Клиенты и срочные случаи: звоните напрямую.`

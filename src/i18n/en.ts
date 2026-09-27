@@ -13,6 +13,8 @@ const en: Dictionary = {
     language: 'Language',
     newTab: '(opens in a new tab)',
     home: 'PawZenTopia home',
+    menu: 'Menu',
+    closeMenu: 'Close menu',
   },
   nav: {
     services: 'Our services',
@@ -34,11 +36,28 @@ const en: Dictionary = {
     heading: 'The right care,| at the right time.',
     body: 'From everyday routines to the unexpected, attentive support designed for your dog and your peace of mind.',
     items: {
-      familyCare: { title: 'Family care', text: 'The comfort of a home and attention adapted to their habits.' },
-      training: { title: 'Dog training', text: 'Patient guidance built on listening and trust.' },
-      urgentCare: { title: 'Emergency care', text: 'A care solution for the unexpected, arranged together.' },
-      transport: { title: '24/7 transport', text: 'Support during journeys, according to your needs.' },
+      familyCare: {
+        title: 'Family care',
+        text: 'The comfort of a home and attention adapted to their habits.',
+        detail: '24-hour care, overnight included, at your home or ours depending on availability. From {price} / day.',
+      },
+      training: {
+        title: 'Dog training',
+        text: 'Patient guidance built on listening and trust.',
+        detail: 'Guidance adapted to your dog’s personality and pace. Price on request.',
+      },
+      urgentCare: {
+        title: 'Emergency care',
+        text: 'A care solution for the unexpected, arranged together.',
+        detail: 'Hospital stay, accident, sudden departure: we pick up your dog or you drop them off, at any time.',
+      },
+      transport: {
+        title: '24/7 transport',
+        text: 'Support during journeys, according to your needs.',
+        detail: 'Journeys in Toulouse, Saint-Jean and 20 km around, at any time. Price on request.',
+      },
     },
+    more: 'Contact us →',
   },
   pricing: {
     eyebrow: 'Prices',
@@ -64,6 +83,13 @@ const en: Dictionary = {
     body: 'At PawZenTopia, every dog is welcomed as an individual. We take the time to understand their personality, their rhythm and what reassures them.',
     cta: 'Let’s talk about your dog',
   },
+  social: {
+    eyebrow: 'Instagram & TikTok',
+    heading: 'Follow their days with us.',
+    body: 'Walks, play and happy moments: see the dogs in our care in photos and videos.',
+    instagram: 'Follow @pawzentopia on Instagram',
+    tiktok: 'Follow @pawzentopia on TikTok',
+  },
   urgent: {
     eyebrow: 'Something unexpected?',
     heading: 'Need a solution for your dog?',
@@ -80,7 +106,8 @@ const en: Dictionary = {
     pricingNote: 'Extras on quote, depending on the situation, the distance and your dog’s size.',
     area: 'Toulouse, Saint-Jean and 20 km around',
     whatsapp: 'Message on WhatsApp',
-    call: 'Call {phoneIntl}',
+    call: 'Call',
+    note: 'First enquiry? Message us on WhatsApp for a quick reply. Existing clients and emergencies: call us directly.',
     whatsappMessage: 'Hello, I’m contacting you from the PawZenTopia website.',
     form: {
       name: 'Name',

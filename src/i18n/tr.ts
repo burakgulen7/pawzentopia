@@ -13,6 +13,8 @@ const tr: Dictionary = {
     language: 'Dil',
     newTab: '(yeni sekmede açılır)',
     home: 'PawZenTopia ana sayfa',
+    menu: 'Menü',
+    closeMenu: 'Menüyü kapat',
   },
   nav: {
     services: 'Hizmetlerimiz',
@@ -34,11 +36,28 @@ const tr: Dictionary = {
     heading: 'Doğru bakım,| doğru zamanda.',
     body: 'Günlük rutinden beklenmedik durumlara kadar, köpeğiniz ve sizin gönül rahatlığınız için düşünülmüş özenli bir destek.',
     items: {
-      familyCare: { title: 'Aile ortamında bakım', text: 'Bir yuvanın konforu ve alışkanlıklarına uygun bir ilgi.' },
-      training: { title: 'Köpek eğitimi', text: 'Dinlemeye ve güvene dayanan sabırlı bir rehberlik.' },
-      urgentCare: { title: 'Acil bakım', text: 'Beklenmedik durumlar için birlikte planlanan bir bakım çözümü.' },
-      transport: { title: '7/24 ulaşım', text: 'İhtiyacınıza göre yolculuklarda refakat.' },
+      familyCare: {
+        title: 'Aile ortamında bakım',
+        text: 'Bir yuvanın konforu ve alışkanlıklarına uygun bir ilgi.',
+        detail: '24 saat bakım, gece dahil; sizin evinizde ya da müsaitliğe göre bizim evimizde. Günlüğü {price}’dan başlayan fiyatlarla.',
+      },
+      training: {
+        title: 'Köpek eğitimi',
+        text: 'Dinlemeye ve güvene dayanan sabırlı bir rehberlik.',
+        detail: 'Köpeğinizin karakterine ve ritmine uygun bir eğitim. Fiyat teklif üzerine.',
+      },
+      urgentCare: {
+        title: 'Acil bakım',
+        text: 'Beklenmedik durumlar için birlikte planlanan bir bakım çözümü.',
+        detail: 'Hastaneye yatış, kaza, ani yolculuk: köpeğinizi gelip alırız ya da siz bize bırakırsınız, günün her saatinde.',
+      },
+      transport: {
+        title: '7/24 ulaşım',
+        text: 'İhtiyacınıza göre yolculuklarda refakat.',
+        detail: 'Toulouse, Saint-Jean ve 20 km çevresinde, günün her saatinde ulaşım. Fiyat teklif üzerine.',
+      },
     },
+    more: 'Bize ulaşın →',
   },
   pricing: {
     eyebrow: 'Fiyatlar',
@@ -64,6 +83,13 @@ const tr: Dictionary = {
     body: 'PawZenTopia’da her köpek bir birey olarak karşılanır. Karakterini, ritmini ve onu neyin rahatlattığını anlamak için zaman ayırırız.',
     cta: 'Köpeğiniz hakkında konuşalım',
   },
+  social: {
+    eyebrow: 'Instagram ve TikTok',
+    heading: 'Günlerini takip edin.',
+    body: 'Yürüyüşler, oyunlar ve mutlu anlar: bakımımızdaki köpekleri fotoğraf ve videolarla izleyin.',
+    instagram: 'Instagram’da @pawzentopia',
+    tiktok: 'TikTok’ta @pawzentopia',
+  },
   urgent: {
     eyebrow: 'Beklenmedik bir durum mu?',
     heading: 'Köpeğiniz için bir çözüme mi ihtiyacınız var?',
@@ -80,7 +106,8 @@ const tr: Dictionary = {
     pricingNote: 'Ek hizmetler; duruma, mesafeye ve köpeğinizin boyutuna göre teklif üzerine.',
     area: 'Toulouse, Saint-Jean ve 20 km çevresi',
     whatsapp: 'WhatsApp’tan yazın',
-    call: 'Arayın: {phoneIntl}',
+    call: 'Arayın',
+    note: 'İlk kez mi ulaşıyorsunuz? Hızlı yanıt için WhatsApp’tan yazın. Mevcut müşterilerimiz ve acil durumlar için doğrudan arayabilirsiniz.',
     whatsappMessage: 'Merhaba, PawZenTopia web sitesi üzerinden ulaşıyorum.',
     form: {
       name: 'Adınız',

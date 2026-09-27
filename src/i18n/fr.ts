@@ -15,6 +15,8 @@ const fr = {
     language: 'Langue',
     newTab: '(nouvel onglet)',
     home: 'Accueil PawZenTopia',
+    menu: 'Menu',
+    closeMenu: 'Fermer le menu',
   },
   nav: {
     services: 'Nos services',
@@ -38,12 +40,29 @@ const fr = {
     body: 'Du quotidien aux imprévus, un accompagnement attentif pensé pour votre chien et votre tranquillité d’esprit.',
     // TODO(content): confirm scope/limits of each service with the owner (see CONTENT_FR.md "CONFIRM").
     items: {
-      familyCare: { title: 'Garde familiale', text: 'Le confort d’un foyer et une attention adaptée à ses habitudes.' },
+      familyCare: {
+        title: 'Garde familiale',
+        text: 'Le confort d’un foyer et une attention adaptée à ses habitudes.',
+        detail: 'Garde 24 h, nuit comprise, chez vous ou chez nous selon les disponibilités. À partir de {price} / jour.',
+      },
       // Training: approved short copy kept until the owner provides details — no claims, no price.
-      training: { title: 'Éducation canine', text: 'Un accompagnement patient, fondé sur l’écoute et la confiance.' },
-      urgentCare: { title: 'Garde d’urgence', text: 'Une solution de garde pour les imprévus, à organiser ensemble.' },
-      transport: { title: 'Transport 24/7', text: 'Un accompagnement lors des trajets, selon vos besoins.' },
+      training: {
+        title: 'Éducation canine',
+        text: 'Un accompagnement patient, fondé sur l’écoute et la confiance.',
+        detail: 'Un accompagnement adapté au caractère et au rythme de votre chien. Tarif sur devis.',
+      },
+      urgentCare: {
+        title: 'Garde d’urgence',
+        text: 'Une solution de garde pour les imprévus, à organiser ensemble.',
+        detail: 'Hospitalisation, accident, départ imprévu : nous venons chercher votre chien ou vous nous le déposez, à toute heure.',
+      },
+      transport: {
+        title: 'Transport 24/7',
+        text: 'Un accompagnement lors des trajets, selon vos besoins.',
+        detail: 'Trajets à Toulouse, Saint-Jean et 20 km alentour, à toute heure. Tarif sur devis.',
+      },
     },
+    more: 'Nous contacter →',
   },
   pricing: {
     eyebrow: 'Tarifs',
@@ -69,6 +88,13 @@ const fr = {
     body: 'Chez PawZenTopia, chaque chien est accueilli comme un individu. On prend le temps de comprendre son caractère, son rythme et ce qui le rassure.',
     cta: 'Parlons de votre chien',
   },
+  social: {
+    eyebrow: 'Instagram & TikTok',
+    heading: 'Suivez leur quotidien.',
+    body: 'Balades, jeux et moments de complicité : retrouvez les chiens que nous gardons en photos et en vidéos.',
+    instagram: '@pawzentopia sur Instagram',
+    tiktok: '@pawzentopia sur TikTok',
+  },
   urgent: {
     eyebrow: 'Un imprévu ?',
     heading: 'Besoin d’une solution pour votre chien ?',
@@ -85,7 +111,8 @@ const fr = {
     pricingNote: 'Suppléments sur devis, selon la situation, la distance et le gabarit de votre chien.',
     area: 'Toulouse, Saint-Jean et 20 km alentour',
     whatsapp: 'Écrire sur WhatsApp',
-    call: 'Appeler le {phoneLocal}',
+    call: 'Appeler',
+    note: 'Première demande ? Écrivez-nous sur WhatsApp pour une réponse rapide. Clients et urgences : appelez directement.',
     whatsappMessage: 'Bonjour, je vous contacte depuis le site PawZenTopia.',
     form: {
       name: 'Nom',

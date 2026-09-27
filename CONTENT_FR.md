@@ -156,3 +156,31 @@ Links: phone, e-mail, Instagram, TikTok, `Mentions légales`. Add only confirmed
 ## Forbidden invented content
 
 Do not add fake customer names/testimonials, ratings, number of dogs served, years of experience, awards, certifications, prices, veterinary partnerships, exact address, phone, email or SIRET/SIREN.
+
+
+## Ajouts — demande de modification 02
+
+### Social section (between the approach section and the urgent panel)
+
+Eyebrow: `Instagram & TikTok`
+
+Heading: `Suivez leur quotidien.`
+
+Body: `Balades, jeux et moments de complicité : retrouvez les chiens que nous gardons en photos et en vidéos.`
+
+Buttons: `@pawzentopia sur Instagram` · `@pawzentopia sur TikTok`
+
+### Service card detail panels (hover / tap)
+
+- 1: `Garde 24 h, nuit comprise, chez vous ou chez nous selon les disponibilités. À partir de {price} / jour.` — `{price}` comes from the price data file.
+- 2: `Un accompagnement adapté au caractère et au rythme de votre chien. Tarif sur devis.`
+- 3: `Hospitalisation, accident, départ imprévu : nous venons chercher votre chien ou vous nous le déposez, à toute heure.`
+- 4: `Trajets à Toulouse, Saint-Jean et 20 km alentour, à toute heure. Tarif sur devis.`
+
+Link: `Nous contacter →`
+
+### Contact priority
+
+Phone button: `Appeler`
+
+Note: `Première demande ? Écrivez-nous sur WhatsApp pour une réponse rapide. Clients et urgences : appelez directement.`

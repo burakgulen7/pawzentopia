@@ -71,3 +71,20 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
    including the urgent-panel second line ("Hospitalisation, accident, départ imprévu…").
 2. **Social networks:** Instagram and TikTok only. No other networks for now.
 3. **Dog training:** keep the approved short copy, without claims or price, until the owner provides details.
+
+## Change request 02 (27 September 2026) — see `CHANGE_REQUEST_02.md`
+
+- **Real photos** replace the AI photos for: family care card, urgent care card, approach section, and a new
+  4-photo social mosaic (`social-1` … `social-4`). Hero, training and transport photos stay for now; the hero
+  may become a video later.
+- **Social media** gets its own section ("Suivez-nous") and header icons. No third-party embeds.
+- **Logo:** mark shown in the header at every size; larger full logo in the footer. An SVG made by automatic
+  tracing of the original (`scripts/trace_logo.py`) is used only for the intro animation; the original JPEG
+  is untouched.
+- **Motion:** the one-time logo intro and hover panels are allowed (override "no excessive motion"), but both
+  are skipped/reduced with `prefers-reduced-motion`, and the intro plays once per session and can be skipped.
+- **Contact:** WhatsApp is the primary action everywhere (spam calls). The phone stays available for existing
+  clients and emergencies — never present it as emergency-only. Floating WhatsApp button on phones.
+- **Mobile header:** logo mark + name, language switcher and a menu button; on phones the contact action is the
+  floating WhatsApp button and the WhatsApp button inside the menu.
+- **Blog + CMS (Pages CMS):** planned as the second step, after approval of the items above.

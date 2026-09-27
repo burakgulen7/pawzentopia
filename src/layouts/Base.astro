@@ -3,6 +3,8 @@ import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Intro from '../components/Intro.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import { getPhoto } from '../config/photos';
 import { contact, socials } from '../config/site';
 import { defaultLang, getLanguage, languages, pagePath, url, type Lang, type PageKey } from '../i18n';
@@ -72,11 +74,13 @@ const jsonLd = {
     {page === 'home' && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
+    <Intro />
     <a class="skip" href="#main">{t.ui.skip}</a>
     <Header lang={lang} page={page} />
     <main id="main">
       <slot />
     </main>
     <Footer lang={lang} />
+    <WhatsAppFloat lang={lang} />
   </body>
 </html>

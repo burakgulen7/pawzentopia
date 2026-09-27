@@ -2,7 +2,8 @@
 import { Picture } from 'astro:assets';
 import Br from './Br.astro';
 import { getPhoto, type Slot } from '../config/photos';
-import { getLanguage, type Lang } from '../i18n';
+import { boarding } from '../config/prices';
+import { fill, getLanguage, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -10,6 +11,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = getLanguage(lang).dict;
 const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const satisfies readonly Slot[];
+// "From" price comes from src/config/prices.ts (smallest size).
+const fromPrice = fill(t.pricing.price, { n: Math.min(...boarding.map((b) => b.price)) });
 ---
 <section class="wrap services" id="services" aria-labelledby="services-title">
   <div class="head">
@@ -23,19 +26,25 @@ const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const sat
         const photo = getPhoto(slot);
         const item = t.services.items[slot];
         return (
-          <article class="card">
-            <Picture
-              src={photo.src}
-              alt={photo.alt[lang]}
-              formats={['avif', 'webp']}
-      fallbackFormat="jpg"
-      quality={78}
-              widths={[240, 360, 480, 640]}
-              sizes="(max-width: 800px) 46vw, (max-width: 1440px) 23vw, 330px"
-              style={`object-position:${photo.position}`}
-              loading="lazy"
-              decoding="async"
-            />
+          <article class="card hover-card" data-tap-reveal>
+            <div class="media">
+              <Picture
+                src={photo.src}
+                alt={photo.alt[lang]}
+                formats={['avif', 'webp']}
+                fallbackFormat="jpg"
+                quality={78}
+                widths={[240, 360, 480, 640]}
+                sizes="(max-width: 800px) 46vw, (max-width: 1440px) 23vw, 330px"
+                style={`object-position:${photo.position}`}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="overlay">
+                <p>{fill(item.detail, { price: fromPrice })}</p>
+                <a href="#contact">{t.services.more}</a>
+              </div>
+            </div>
             <div class="card-copy">
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -46,6 +55,23 @@ const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const sat
     }
   </div>
 </section>
+
+<script>
+  // Touch screens have no hover: the first tap on a card shows its detail panel,
+  // the panel's link then leads to the contact section.
+  if (window.matchMedia('(hover: none)').matches) {
+    const cards = document.querySelectorAll<HTMLElement>('[data-tap-reveal]');
+    cards.forEach((card) =>
+      card.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('a') && card.classList.contains('is-open')) return;
+        e.preventDefault();
+        const open = !card.classList.contains('is-open');
+        cards.forEach((c) => c.classList.remove('is-open'));
+        card.classList.toggle('is-open', open);
+      }),
+    );
+  }
+</script>
 
 <style>
   .services {
@@ -81,11 +107,18 @@ const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const sat
     overflow: hidden;
     box-shadow: var(--shadow-card);
   }
-  .card :global(img) {
+  .media {
+    position: relative;
+  }
+  .media :global(img) {
     width: 100%;
     aspect-ratio: 1;
     height: auto;
     object-fit: cover;
+  }
+  .overlay p {
+    font-size: 14px;
+    line-height: 1.5;
   }
   .card-copy {
     padding: 26px 17px 32px;
@@ -96,7 +129,7 @@ const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const sat
     line-height: 1.15;
     letter-spacing: -0.015em;
   }
-  .card p {
+  .card-copy p {
     max-width: 230px;
     color: var(--muted);
     font-size: 12px;
@@ -140,22 +173,28 @@ const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const sat
       font-size: 15.5px;
       letter-spacing: -0.01em;
     }
-    .card p {
+    .card-copy p {
       font-size: 10.5px;
       line-height: 16px;
     }
+    .overlay p {
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
   }
-  /* Tablets in portrait: same 2×2 grid, slightly larger text. */
   @media (min-width: 601px) and (max-width: 800px) {
     h3 {
       font-size: 20px;
     }
-    .card p {
+    .card-copy p {
       font-size: 13px;
       line-height: 20px;
     }
     .card-copy {
       padding: 20px 16px 28px;
+    }
+    .overlay p {
+      font-size: 14px;
     }
   }
 </style>

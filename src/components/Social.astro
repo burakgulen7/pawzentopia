@@ -1,0 +1,178 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import { getPhoto } from '../config/photos';
+import { socials } from '../config/site';
+import { getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = getLanguage(lang).dict;
+const t = d.social;
+const instagram = socials.find((s) => s.icon === 'instagram');
+const tiktok = socials.find((s) => s.icon === 'tiktok');
+const tiles = (['social1', 'social2', 'social3', 'social4'] as const).map(getPhoto);
+---
+<section class="wrap social" id="suivez-nous" aria-labelledby="social-title">
+  <div class="head">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2 id="social-title">{t.heading}</h2>
+    <p class="intro">{t.body}</p>
+  </div>
+
+  {
+    instagram && (
+      <a class="mosaic" href={instagram.url} target="_blank" rel="noopener" aria-label={`${t.instagram} ${d.ui.newTab}`}>
+        {tiles.map((photo) => (
+          <span class="tile hover-card">
+            <Picture
+              src={photo.src}
+              alt={photo.alt[lang]}
+              formats={['avif', 'webp']}
+              fallbackFormat="jpg"
+              quality={78}
+              widths={[240, 360, 480, 640]}
+              sizes="(max-width: 800px) 46vw, (max-width: 1440px) 23vw, 330px"
+              style={`object-position:${photo.position}`}
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="overlay" aria-hidden="true">
+              <span class="handle">
+                <Icon name="instagram" size={26} />
+                {instagram.handle}
+              </span>
+            </span>
+          </span>
+        ))}
+      </a>
+    )
+  }
+
+  <div class="buttons">
+    {
+      instagram && (
+        <a class="pill" href={instagram.url} target="_blank" rel="noopener">
+          <Icon name="instagram" size={20} />{t.instagram}<span class="visually-hidden"> {d.ui.newTab}</span>
+        </a>
+      )
+    }
+    {
+      tiktok && (
+        <a class="pill pill--outline" href={tiktok.url} target="_blank" rel="noopener">
+          <Icon name="tiktok" size={20} />{t.tiktok}<span class="visually-hidden"> {d.ui.newTab}</span>
+        </a>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .social {
+    padding-top: 96px;
+    padding-bottom: 20px;
+  }
+  .head {
+    margin-bottom: 42px;
+  }
+  .eyebrow {
+    padding-left: 3px;
+  }
+  h2 {
+    margin: 22px 0 22px;
+    font-size: 54px;
+    line-height: 1.12;
+  }
+  .intro {
+    max-width: 720px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    border-radius: 22px;
+  }
+  .tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--mint);
+  }
+  .tile :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    object-fit: cover;
+  }
+  .tile .overlay {
+    justify-content: center;
+    align-items: center;
+  }
+  .handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .buttons .pill {
+    min-height: 54px;
+    padding-inline: 24px 28px;
+    font-size: 15px;
+  }
+  @media (max-width: 1020px) {
+    h2 {
+      font-size: 46px;
+    }
+  }
+  @media (max-width: 800px) {
+    .social {
+      padding-top: 64px;
+      padding-bottom: 10px;
+    }
+    .head {
+      margin-bottom: 26px;
+    }
+    h2 {
+      margin: 12px 0 14px;
+      font-size: 36px;
+      line-height: 42px;
+    }
+    .intro {
+      font-size: 14px;
+      line-height: 21px;
+    }
+    .mosaic {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .tile {
+      border-radius: 16px;
+    }
+    .tile :global(img) {
+      aspect-ratio: 1;
+    }
+    .handle {
+      font-size: 13px;
+    }
+    .buttons {
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    .buttons .pill {
+      width: 100%;
+    }
+  }
+</style>

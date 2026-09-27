@@ -56,7 +56,7 @@ html {
   *,
   *::before,
   *::after {
-    transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -211,5 +211,81 @@ h3 {
 @media (max-width: 800px) {
   .m-br {
     display: inline;
+  }
+}
+
+/* Hover panels (service cards, social mosaic, blog cards):
+   dark-green tint + detail text sliding up over the photo; card lifts slightly. */
+.hover-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-card .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 22px 20px;
+  background: rgba(37, 68, 60, 0.72);
+  color: var(--cream);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.hover-card .overlay > * {
+  transform: translateY(14px);
+  transition: transform 0.22s ease;
+}
+.hover-card .overlay a {
+  align-self: flex-start;
+  padding: 8px 0 4px;
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: 1px solid currentColor;
+}
+.hover-card:focus-within,
+.hover-card.is-open {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 40px rgba(41, 77, 61, 0.12);
+}
+.hover-card:focus-within .overlay,
+.hover-card.is-open .overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+.hover-card:focus-within .overlay > *,
+.hover-card.is-open .overlay > * {
+  transform: none;
+}
+@media (hover: hover) {
+  .hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px rgba(41, 77, 61, 0.12);
+  }
+  .hover-card:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .hover-card:hover .overlay > * {
+    transform: none;
+  }
+}
+@media (max-width: 800px) {
+  .hover-card .overlay {
+    gap: 6px;
+    padding: 12px 11px;
+  }
+  .hover-card .overlay a {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-card,
+  .hover-card:hover,
+  .hover-card:focus-within,
+  .hover-card.is-open,
+  .hover-card .overlay > * {
+    transform: none !important;
   }
 }

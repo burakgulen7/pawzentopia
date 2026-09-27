@@ -144,3 +144,31 @@ Links: phone, e-mail, Instagram, TikTok, `Legal notice`.
 ## Language switcher
 
 Accessible labels: `Français`, `English`, `Русский`, `Türkçe`.
+
+
+## Additions — change request 02
+
+### Social section (between the approach section and the urgent panel)
+
+Eyebrow: `Instagram & TikTok`
+
+Heading: `Follow their days with us.`
+
+Body: `Walks, play and happy moments: see the dogs in our care in photos and videos.`
+
+Buttons: `Follow @pawzentopia on Instagram` · `Follow @pawzentopia on TikTok`
+
+### Service card detail panels (hover / tap)
+
+- 1: `24-hour care, overnight included, at your home or ours depending on availability. From {price} / day.` — `{price}` comes from the price data file.
+- 2: `Guidance adapted to your dog’s personality and pace. Price on request.`
+- 3: `Hospital stay, accident, sudden departure: we pick up your dog or you drop them off, at any time.`
+- 4: `Journeys in Toulouse, Saint-Jean and 20 km around, at any time. Price on request.`
+
+Link: `Contact us →`
+
+### Contact priority
+
+Phone button: `Call`
+
+Note: `First enquiry? Message us on WhatsApp for a quick reply. Existing clients and emergencies: call us directly.`

@@ -144,3 +144,31 @@ Links: phone, e-mail, Instagram, TikTok, `Yasal bilgiler`.
 ## Language switcher
 
 Accessible labels: `Français`, `English`, `Русский`, `Türkçe`.
+
+
+## Eklemeler — değişiklik talebi 02
+
+### Social section (between the approach section and the urgent panel)
+
+Eyebrow: `Instagram ve TikTok`
+
+Heading: `Günlerini takip edin.`
+
+Body: `Yürüyüşler, oyunlar ve mutlu anlar: bakımımızdaki köpekleri fotoğraf ve videolarla izleyin.`
+
+Buttons: `Instagram’da @pawzentopia` · `TikTok’ta @pawzentopia`
+
+### Service card detail panels (hover / tap)
+
+- 1: `24 saat bakım, gece dahil; sizin evinizde ya da müsaitliğe göre bizim evimizde. Günlüğü {price}’dan başlayan fiyatlarla.` — `{price}` comes from the price data file.
+- 2: `Köpeğinizin karakterine ve ritmine uygun bir eğitim. Fiyat teklif üzerine.`
+- 3: `Hastaneye yatış, kaza, ani yolculuk: köpeğinizi gelip alırız ya da siz bize bırakırsınız, günün her saatinde.`
+- 4: `Toulouse, Saint-Jean ve 20 km çevresinde, günün her saatinde ulaşım. Fiyat teklif üzerine.`
+
+Link: `Bize ulaşın →`
+
+### Contact priority
+
+Phone button: `Arayın`
+
+Note: `İlk kez mi ulaşıyorsunuz? Hızlı yanıt için WhatsApp’tan yazın. Mevcut müşterilerimiz ve acil durumlar için doğrudan arayabilirsiniz.`
