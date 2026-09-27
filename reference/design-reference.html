@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PawZenTopia — Direction visuelle</title>
+  <style>
+    :root { --mint:#e8f3ed; --mint2:#d3e8dc; --ink:#25443c; --muted:#63776f; --cream:#fcfaf4; --terra:#c98568; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--cream); color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { max-width:1380px; margin:auto; padding:0 62px; }
+    header { background:var(--mint); }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:26px; min-height:94px; }
+    .brand { font-family:Georgia,serif; font-size:30px; letter-spacing:-1.4px; white-space:nowrap; }
+    .brand span { color:var(--terra); }
+    .links { display:flex; gap:32px; font-size:13px; font-weight:700; }
+    .pill { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:15px 22px; background:var(--ink); color:white; border-radius:99px; font-size:13px; font-weight:700; white-space:nowrap; }
+    .hero { position:relative; min-height:660px; overflow:hidden; background:var(--mint); }
+    .hero:after { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg,var(--mint) 0%,rgba(232,243,237,.99) 31%,rgba(232,243,237,.92) 40%,rgba(232,243,237,.46) 53%,rgba(232,243,237,.06) 70%,transparent 82%); }
+    .hero-grid { position:relative; z-index:2; min-height:660px; }
+    .hero-copy { position:relative; z-index:2; width:45%; padding:90px 30px 78px 0; }
+    .eyebrow { color:#648478; text-transform:uppercase; letter-spacing:3px; font-weight:700; font-size:11px; }
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { font-family:Georgia,'Times New Roman',serif; font-weight:400; }
+    h1 { font-size:clamp(45px,4.3vw,62px); line-height:1.07; letter-spacing:-2.1px; margin:26px 0 26px; }
+    .hero-copy p { font-size:18px; line-height:1.75; max-width:465px; color:#536e63; margin-bottom:33px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:22px; align-items:center; }
+    .textlink { font-weight:700; font-size:13px; border-bottom:1px solid var(--ink); padding-bottom:5px; }
+    .hero-image { position:absolute; z-index:0; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%); overflow:hidden; }
+    .hero-image:after { content:''; position:absolute; inset:auto 0 0; height:90px; background:linear-gradient(0deg,rgba(232,243,237,.22),transparent); }
+    .hero-image img { width:100%; height:100%; object-fit:cover; object-position:72% center; display:block; }
+    .trust { border-bottom:1px solid #e8e9df; }
+    .trust-inner { display:flex; justify-content:space-between; gap:30px; padding-top:34px; padding-bottom:34px; color:#526c60; font-size:13px; font-weight:700; letter-spacing:.2px; }
+    .trust-inner div:before { content:'✳'; color:var(--terra); font-size:18px; vertical-align:-2px; margin-right:11px; }
+    .section { padding-top:112px; padding-bottom:110px; }
+    .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom:42px; }
+    h2 { font-size:clamp(42px,4.2vw,62px); line-height:1.12; letter-spacing:-1.8px; margin:16px 0 0; }
+    .section-head p { max-width:375px; font-size:16px; line-height:1.65; color:var(--muted); margin-bottom:5px; }
+    .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:19px; }
+    .card { background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 16px 34px #294d3d0a; }
+    .card img { display:block; width:100%; aspect-ratio:1; object-fit:cover; }
+    .card-copy { padding:23px 20px 26px; }
+    .card h3 { font-size:23px; line-height:1.12; margin-bottom:10px; letter-spacing:-.5px; }
+    .card p { color:var(--muted); font-size:13px; line-height:1.55; margin:0; }
+    .story { background:#f1f6ef; }
+    .story-inner { display:grid; grid-template-columns:1fr 1fr; gap:90px; align-items:center; padding-top:98px; padding-bottom:98px; }
+    .story h2 { max-width:510px; }
+    .story p { max-width:520px; color:#597268; line-height:1.8; font-size:17px; }
+    .story .small-note { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#81968b; margin-bottom:20px; }
+    .story .portrait { height:475px; border-radius:180px 18px 18px 18px; overflow:hidden; }
+    .story .portrait img { width:100%; height:100%; object-fit:cover; object-position:80% center; }
+    .emergency { padding-top:90px; padding-bottom:100px; }
+    .emergency-box { padding:68px 76px; border-radius:28px; background:#31584d; color:white; display:flex; justify-content:space-between; align-items:center; gap:50px; }
+    .emergency h2 { max-width:750px; margin:14px 0 14px; }
+    .emergency p { color:#d2e4d8; line-height:1.6; margin-bottom:0; }
+    .emergency .eyebrow { color:#bad5c4; }
+    .emergency .pill { background:#e9f5ea; color:var(--ink); }
+    footer { background:var(--mint); padding:52px 0; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:25px; }
+    footer p { margin:9px 0 0; color:var(--muted); font-size:13px; }
+    @media(max-width:800px) {
+      .wrap { padding-left:22px; padding-right:22px; }
+      .nav { min-height:75px; }
+      .brand { font-size:26px; }
+      .links { display:none; }
+      .nav .pill { padding:11px 14px; font-size:11px; }
+      .hero { min-height:665px; }
+      .hero:after { background:linear-gradient(180deg,var(--mint) 0%,var(--mint) 59%,rgba(232,243,237,.96) 66%,rgba(232,243,237,.24) 78%,transparent 91%); }
+      .hero-grid { min-height:665px; }
+      .hero-copy { width:100%; padding:54px 0 35px; }
+      h1 { font-size:49px; letter-spacing:-1.8px; margin:17px 0 18px; }
+      .hero-copy p { font-size:16px; margin-bottom:23px; }
+      .hero-image { top:0; bottom:0; left:50%; width:100vw; }
+      .hero-image:after { display:none; }
+      .hero-image img { object-position:72% 100%; }
+      .trust-inner { flex-wrap:wrap; padding-top:22px; padding-bottom:22px; gap:15px 20px; font-size:11px; }
+      .section { padding-top:74px; padding-bottom:73px; }
+      .section-head { display:block; margin-bottom:28px; }
+      h2 { font-size:41px; margin-bottom:15px; }
+      .section-head p { font-size:14px; }
+      .cards { grid-template-columns:repeat(2,1fr); gap:13px; }
+      .card { border-radius:15px; }
+      .card-copy { padding:15px 13px 19px; }
+      .card h3 { font-size:18px; }
+      .card p { font-size:11px; }
+      .story-inner { display:flex; flex-direction:column-reverse; gap:35px; padding-top:70px; padding-bottom:72px; }
+      .story .portrait { width:100%; height:300px; border-radius:100px 16px 16px 16px; }
+      .story p { font-size:15px; }
+      .emergency { padding-top:65px; padding-bottom:65px; }
+      .emergency-box { padding:35px 28px; display:block; }
+      .emergency h2 { font-size:35px; }
+      .emergency p { margin-bottom:25px; font-size:14px; }
+      footer { padding:38px 0; }
+      .footer-inner { display:block; }
+    }
+  </style>
+</head>
+<body>
+  <header><nav class="wrap nav"><div class="brand">PawZen<span>Topia</span></div><div class="links"><a href="#services">Nos services</a><a href="#approche">Notre approche</a><a href="#urgence">Disponibilité 24/7</a></div><a class="pill" href="#urgence">Nous contacter ↗</a></nav></header>
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">Garde & accompagnement canin · Toulouse</div><h1>Heureux comme à la maison.<br>Entouré d’attention.</h1><p>Un accueil à taille humaine, des moments de jeu et une présence attentive pour votre compagnon.</p><div class="hero-actions"><a class="pill" href="#services">Découvrir nos services ↗</a><a class="textlink" href="#approche">Rencontrer PawZenTopia</a></div></div><div class="hero-image"><img src="../assets/photos/hero-approved.png" alt="Une gardienne souriante avec deux chiens dans un salon accueillant"></div></div></section>
+    <div class="trust"><div class="wrap trust-inner"><div>Un accueil à taille humaine</div><div>Le rythme de chaque chien respecté</div><div>À Toulouse et ses environs</div></div></div>
+    <section class="wrap section" id="services"><div class="section-head"><div><div class="eyebrow">Ce que nous faisons</div><h2>Le bon soin,<br>au bon moment.</h2></div><p>Du quotidien aux imprévus, un accompagnement attentif pensé pour votre chien et votre tranquillité d’esprit.</p></div><div class="cards">
+      <article class="card"><img src="../assets/photos/family-care-approved.png" alt="Une gardienne souriante et un chien dans un salon"><div class="card-copy"><h3>Garde familiale</h3><p>Le confort d’un foyer et une attention adaptée à ses habitudes.</p></div></article>
+      <article class="card"><img src="../assets/photos/training-approved.png" alt="Séance d’éducation canine dans un jardin"><div class="card-copy"><h3>Éducation canine</h3><p>Un accompagnement patient, fondé sur l’écoute et la confiance.</p></div></article>
+      <article class="card"><img src="../assets/photos/urgent-care-approved.png" alt="Une gardienne souriante veille sur un chien dans un salon"><div class="card-copy"><h3>Garde d’urgence</h3><p>Une solution de garde pour les imprévus, à organiser ensemble.</p></div></article>
+      <article class="card"><img src="../assets/photos/transport-approved.png" alt="Un chien installé dans une caisse de transport en voiture"><div class="card-copy"><h3>Transport 24/7</h3><p>Un accompagnement lors des trajets, selon vos besoins.</p></div></article>
+    </div></section>
+    <section class="story" id="approche"><div class="wrap story-inner"><div><div class="small-note">Leur bien-être, notre point de départ</div><h2>Une présence familière, même loin de chez vous.</h2><p>Chez PawZenTopia, chaque chien est accueilli comme un individu. On prend le temps de comprendre son caractère, son rythme et ce qui le rassure.</p><a class="textlink" href="#urgence">Parlons de votre chien ↗</a></div><div class="portrait"><img src="../assets/photos/family-care-approved.png" alt="La gardienne souriante de PawZenTopia et un chien"></div></div></section>
+    <section class="wrap emergency" id="urgence"><div class="emergency-box"><div><div class="eyebrow">Un imprévu ?</div><h2>Besoin d’une solution pour votre chien ?</h2><p>Contactez-nous pour discuter de la garde d’urgence ou d’un transport, à toute heure.</p></div><a class="pill" href="#urgence">Prendre contact ↗</a></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><div><div class="brand">PawZen<span>Topia</span></div><p>Garde canine chaleureuse à Toulouse.</p></div><p>© PawZenTopia · Toulouse</p></div></footer>
+</body></html>
