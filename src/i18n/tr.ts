@@ -21,6 +21,7 @@ const tr: Dictionary = {
     prices: 'Fiyatlar',
     approach: 'Yaklaşımımız',
     availability: '7/24 ulaşılabilirlik',
+    blog: 'Blog',
     contact: 'Bize ulaşın',
   },
   hero: {
@@ -118,6 +119,13 @@ const tr: Dictionary = {
       error: 'Mesajınız gönderilemedi. Bize doğrudan {email} adresinden yazabilirsiniz.',
     },
     social: 'Bizi takip edin',
+  },
+  blog: {
+    title: 'Blog',
+    latest: 'Son yazılar',
+    empty: 'İlk yazılarımız çok yakında.',
+    read: 'Yazıyı okuyun →',
+    all: 'Tüm yazılar →',
   },
   footer: {
     tagline: 'PawZenTopia — Refah ve eğitim',

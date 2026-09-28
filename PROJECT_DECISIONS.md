@@ -88,3 +88,8 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
 - **Mobile header:** logo mark + name, language switcher and a menu button; on phones the contact action is the
   floating WhatsApp button and the WhatsApp button inside the menu.
 - **Blog + CMS (Pages CMS):** planned as the second step, after approval of the items above.
+- **§1–§5 approved and merged on 28 September 2026.** Round WhatsApp button added to the mobile header on request.
+- **Blog + CMS (§6):** Pages CMS (`.pages.yml`), blog posts in `src/content/blog/`, blog images in
+  `src/content/blog/images/`, prices moved to `src/data/prices.json`. Guides: `BLOG_REHBERI.md` (TR),
+  `GUIDE_BLOG_FR.md` (FR). Interface strings added for the blog: "Lire l’article →" and "Tous les articles →"
+  (and translations) — to be confirmed by the user.

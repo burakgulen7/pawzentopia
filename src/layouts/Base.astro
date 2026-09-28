@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Intro from '../components/Intro.astro';
@@ -18,14 +19,30 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  /** Canonical path when the page is not one of the shared pages (e.g. a blog post). */
+  path?: string;
+  /** false = page exists in one language only (no hreflang alternates). */
+  alternates?: boolean;
+  image?: ImageMetadata;
+  ogType?: 'website' | 'article';
 }
-const { lang, page, title, description, noindex = false } = Astro.props;
+const {
+  lang,
+  page,
+  title,
+  description,
+  noindex = false,
+  path,
+  alternates = true,
+  image,
+  ogType = 'website',
+} = Astro.props;
 const t = getLanguage(lang).dict;
 const pageTitle = title ? `${title} — PawZenTopia` : t.meta.title;
 const pageDescription = description ?? t.meta.description;
 const abs = (path: string) => new URL(url(path), Astro.site).href;
-const canonical = abs(pagePath(page, lang));
-const og = await getImage({ src: getPhoto('hero').src, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+const canonical = abs(path ?? pagePath(page, lang));
+const og = await getImage({ src: image ?? getPhoto('hero').src, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
 const ogImage = new URL(og.src, Astro.site).href;
 
 const jsonLd = {
@@ -51,8 +68,8 @@ const jsonLd = {
     <meta name="description" content={pageDescription} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    {languages.map((l) => <link rel="alternate" hreflang={l.code} href={abs(pagePath(page, l.code))} />)}
-    <link rel="alternate" hreflang="x-default" href={abs(pagePath(page, defaultLang))} />
+    {alternates && languages.map((l) => <link rel="alternate" hreflang={l.code} href={abs(pagePath(page, l.code))} />)}
+    {alternates && <link rel="alternate" hreflang="x-default" href={abs(pagePath(page, defaultLang))} />}
     <meta name="theme-color" content="#e8f3ed" />
     <link rel="icon" href={url('favicon.ico')} sizes="48x48" />
     <link rel="icon" href={url('favicon.png')} type="image/png" />
@@ -60,7 +77,7 @@ const jsonLd = {
     <link rel="preload" href={serifFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={sansFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={sansBoldFont} as="font" type="font/woff2" crossorigin />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="PawZenTopia" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />

@@ -184,3 +184,7 @@ Link: `Nous contacter →`
 Phone button: `Appeler`
 
 Note: `Première demande ? Écrivez-nous sur WhatsApp pour une réponse rapide. Clients et urgences : appelez directement.`
+
+### Blog
+
+Nav / page title: `Blog` · Home block: `Derniers articles` · Empty state: `Nos premiers articles arrivent bientôt.` · Card link: `Lire l’article →` · All posts link: `Tous les articles →`

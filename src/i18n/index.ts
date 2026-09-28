@@ -38,8 +38,10 @@ export function url(path = '') {
 }
 
 /** Pages that exist in every language, used for the language switcher and hreflang. */
-export type PageKey = 'home' | 'legal';
+export type PageKey = 'home' | 'legal' | 'blog';
 export function pagePath(page: PageKey, code: Lang) {
   const dict = getLanguage(code).dict;
-  return langPrefix(code) + (page === 'legal' ? `${dict.legalPage.slug}/` : '');
+  if (page === 'legal') return `${langPrefix(code)}${dict.legalPage.slug}/`;
+  if (page === 'blog') return `${langPrefix(code)}blog/`;
+  return langPrefix(code);
 }

@@ -1,0 +1,138 @@
+---
+import { Image, Picture } from 'astro:assets';
+import mark from '../assets/brand/logo-mark.png';
+import { formatDate, postPath, type Post } from '../lib/blog';
+import { getLanguage, url, type Lang } from '../i18n';
+
+interface Props {
+  post: Post;
+  /** Language of the page showing the card (interface text). */
+  lang: Lang;
+}
+const { post, lang } = Astro.props;
+const t = getLanguage(lang).dict;
+const postLang = getLanguage(post.data.lang);
+const href = url(postPath(post));
+---
+<article class="post-card hover-card">
+  <a class="media" href={href} tabindex="-1" aria-hidden="true">
+    {
+      post.data.cover ? (
+        <Picture
+          src={post.data.cover}
+          alt=""
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          quality={78}
+          widths={[320, 480, 640, 900]}
+          sizes="(max-width: 800px) 92vw, (max-width: 1440px) 31vw, 440px"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span class="placeholder">
+          <Image src={mark} alt="" width={72} densities={[1, 2]} loading="lazy" />
+        </span>
+      )
+    }
+    <span class="overlay"><span class="read">{t.blog.read}</span></span>
+  </a>
+  <div class="copy">
+    <p class="meta">
+      {post.data.date && <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date, lang)}</time>}
+      <span class="lang" lang={postLang.code}>{postLang.label}</span>
+    </p>
+    <h3 lang={postLang.code}><a href={href}>{post.data.title}</a></h3>
+    {post.data.summary && <p class="summary" lang={postLang.code}>{post.data.summary}</p>}
+  </div>
+</article>
+
+<style>
+  .post-card {
+    position: relative;
+    background: #fff;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .media {
+    position: relative;
+    display: block;
+  }
+  .placeholder {
+    display: grid !important;
+    place-items: center;
+  }
+  .placeholder :global(img) {
+    width: 72px;
+    height: auto;
+    aspect-ratio: auto;
+    opacity: 0.55;
+    background: none;
+  }
+  .media > :global(picture img),
+  .placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-fit: cover;
+    background: var(--mint);
+  }
+  .read {
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 3px;
+    align-self: flex-start;
+  }
+  .copy {
+    padding: 22px 20px 28px;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .lang {
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--mint-soft);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 11px;
+  }
+  h3 {
+    margin: 12px 0 10px;
+    font-size: 23px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  /* The whole card is clickable through the title link. */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  @media (max-width: 800px) {
+    .copy {
+      padding: 18px 16px 22px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+  }
+</style>

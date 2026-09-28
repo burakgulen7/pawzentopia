@@ -1,17 +1,25 @@
 /**
- * Prices — the ONLY place where amounts are defined. Change a number here and every
- * language updates automatically. Amounts in euros, per dog, per day.
+ * Prices are stored in src/data/prices.json (editable in Pages CMS under "Tarifs").
+ * Amounts in euros, per dog, per day. Every language reads them from here.
+ * Weight: maxKg only = "up to", minKg + maxKg = range, minKg only = "over".
  */
-export const boarding = [
-  // weight: maxKg only = "up to", minKg + maxKg = range, minKg only = "over"
-  { size: 'S', maxKg: 5, price: 18 },
-  { size: 'M', minKg: 5, maxKg: 10, price: 20 },
-  { size: 'L', minKg: 10, maxKg: 25, price: 25 },
-  { size: 'XL', minKg: 25, price: 35 },
-] as const;
+import data from '../data/prices.json';
 
-/** Long-stay discount: `percent` off the total for stays of more than `minDays` days. */
-export const longStayDiscount = { percent: 5, minDays: 10 };
+/** Accept numbers written as text by an editor; empty values become undefined. */
+const num = (v: unknown) => (v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? undefined : Number(v));
 
-/** Day care (daytime only), "from" prices. */
-export const dayCare = { from: 15, subscriptionFrom: 12 };
+export type BoardingRow = { size: string; minKg: number | undefined; maxKg: number | undefined; price: number };
+
+export const boarding: BoardingRow[] = data.boarding
+  .map((r) => ({ size: String(r.size ?? ''), minKg: num(r.minKg), maxKg: num(r.maxKg), price: num(r.price) }))
+  .filter((r): r is BoardingRow => r.size !== '' && r.price !== undefined);
+
+export const longStayDiscount = {
+  percent: num(data.longStayDiscount?.percent) ?? 5,
+  minDays: num(data.longStayDiscount?.minDays) ?? 10,
+};
+
+export const dayCare = {
+  from: num(data.dayCare?.from) ?? 15,
+  subscriptionFrom: num(data.dayCare?.subscriptionFrom) ?? 12,
+};

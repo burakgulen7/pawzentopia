@@ -23,6 +23,7 @@ const fr = {
     prices: 'Tarifs',
     approach: 'Notre approche',
     availability: 'Disponibilité 24/7',
+    blog: 'Blog',
     contact: 'Nous contacter',
   },
   hero: {
@@ -123,6 +124,13 @@ const fr = {
       error: 'L’envoi n’a pas abouti. Vous pouvez nous écrire directement à {email}.',
     },
     social: 'Suivez-nous',
+  },
+  blog: {
+    title: 'Blog',
+    latest: 'Derniers articles',
+    empty: 'Nos premiers articles arrivent bientôt.',
+    read: 'Lire l’article →',
+    all: 'Tous les articles →',
   },
   footer: {
     tagline: 'PawZenTopia — Bien-être et éducation',

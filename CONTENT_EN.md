@@ -172,3 +172,7 @@ Link: `Contact us →`
 Phone button: `Call`
 
 Note: `First enquiry? Message us on WhatsApp for a quick reply. Existing clients and emergencies: call us directly.`
+
+### Blog
+
+Nav / page title: `Blog` · Home block: `Latest articles` · Empty state: `Our first articles are coming soon.` · Card link: `Read the article →` · All posts link: `All articles →`

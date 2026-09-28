@@ -1,5 +1,5 @@
 ---
-import { boarding, dayCare, longStayDiscount } from '../config/prices';
+import { boarding, dayCare, longStayDiscount, type BoardingRow } from '../config/prices';
 import { fill, getLanguage, type Lang } from '../i18n';
 
 interface Props {
@@ -7,9 +7,8 @@ interface Props {
 }
 const t = getLanguage(Astro.props.lang).dict.pricing;
 const price = (n: number) => fill(t.price, { n });
-const weight = (row: (typeof boarding)[number]) => {
-  const min = 'minKg' in row ? row.minKg : undefined;
-  const max = 'maxKg' in row ? row.maxKg : undefined;
+const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
+  if (min === undefined && max === undefined) return '';
   if (min === undefined) return fill(t.weightUpTo, { max: max! });
   if (max === undefined) return fill(t.weightOver, { min });
   return fill(t.weightRange, { min, max });

@@ -1,0 +1,183 @@
+---
+import { Picture } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import { formatDate, getPosts, postPath, type Post } from '../../../lib/blog';
+import { whatsappUrl } from '../../../config/site';
+import { defaultLang, getLanguage, pagePath, url, type Lang } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { lang: post.data.lang === defaultLang ? undefined : post.data.lang, slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: Post };
+const lang = post.data.lang as Lang;
+const t = getLanguage(lang).dict;
+const { Content } = await render(post);
+---
+<Base
+  lang={lang}
+  page="blog"
+  title={post.data.title}
+  description={post.data.summary}
+  path={postPath(post)}
+  alternates={false}
+  image={post.data.cover}
+  ogType="article"
+>
+  <article class="post">
+    <div class="wrap narrow">
+      <a class="back textlink" href={url(pagePath('blog', lang))}>← {t.blog.title}</a>
+      <h1>{post.data.title}</h1>
+      {post.data.date && <p class="date"><time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date, lang)}</time></p>}
+    </div>
+    {
+      post.data.cover && (
+        <div class="wrap cover-wrap">
+          <Picture
+            src={post.data.cover}
+            alt={post.data.coverAlt ?? ''}
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            quality={80}
+            widths={[480, 800, 1200, 1600]}
+            sizes="(max-width: 1000px) 100vw, 960px"
+            class="cover"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      )
+    }
+    <div class="wrap narrow body">
+      <Content />
+    </div>
+    <div class="wrap narrow">
+      <aside class="cta">
+        <h2>{t.contact.heading}</h2>
+        <p>{t.contact.body}</p>
+        <a class="pill" href={whatsappUrl(t.contact.whatsappMessage)} target="_blank" rel="noopener">
+          <Icon name="whatsapp" size={20} />{t.contact.whatsapp}<span class="visually-hidden"> {t.ui.newTab}</span>
+        </a>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    padding-top: 56px;
+    padding-bottom: 100px;
+  }
+  .narrow {
+    max-width: calc(680px + 2 * var(--pad));
+  }
+  .back {
+    margin-bottom: 26px;
+  }
+  h1 {
+    font-size: clamp(34px, 4.6vw, 54px);
+    line-height: 1.12;
+  }
+  .date {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .cover-wrap {
+    max-width: calc(960px + 2 * var(--pad));
+    margin-top: 36px;
+  }
+  .cover-wrap :global(img) {
+    width: 100%;
+    height: auto;
+    max-height: 640px;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+  }
+  .body {
+    margin-top: 40px;
+    color: #3d544b;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  .body :global(p),
+  .body :global(ul),
+  .body :global(ol),
+  .body :global(blockquote) {
+    margin: 0 0 1.2em;
+  }
+  .body :global(h2),
+  .body :global(h3) {
+    margin: 1.6em 0 0.6em;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .body :global(h2) {
+    font-size: 32px;
+  }
+  .body :global(h3) {
+    font-size: 25px;
+  }
+  .body :global(a) {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .body :global(img) {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 760px;
+    height: auto;
+    margin: 1.4em 0;
+    border-radius: 18px;
+  }
+  .body :global(blockquote) {
+    padding-left: 20px;
+    border-left: 3px solid var(--terra);
+    font-style: italic;
+  }
+  .cta {
+    margin-top: 56px;
+    padding: 34px 32px;
+    border-radius: var(--radius-card);
+    background: var(--mint);
+  }
+  .cta h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  .cta p {
+    margin: 12px 0 22px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 800px) {
+    .post {
+      padding-top: 36px;
+      padding-bottom: 70px;
+    }
+    .cover-wrap {
+      padding-inline: 0;
+    }
+    .cover-wrap :global(img) {
+      border-radius: 0;
+    }
+    .body {
+      font-size: 16.5px;
+    }
+    .cta {
+      padding: 26px 20px;
+    }
+    .cta .pill {
+      width: 100%;
+    }
+  }
+</style>

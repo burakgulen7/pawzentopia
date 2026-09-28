@@ -172,3 +172,7 @@ Link: `Bize ulaşın →`
 Phone button: `Arayın`
 
 Note: `İlk kez mi ulaşıyorsunuz? Hızlı yanıt için WhatsApp’tan yazın. Mevcut müşterilerimiz ve acil durumlar için doğrudan arayabilirsiniz.`
+
+### Blog
+
+Nav / page title: `Blog` · Home block: `Son yazılar` · Empty state: `İlk yazılarımız çok yakında.` · Card link: `Yazıyı okuyun →` · All posts link: `Tüm yazılar →`

@@ -14,11 +14,12 @@ Dosyaları GitHub web sitesinde açıp kalem simgesine (✏️) basarak düzenle
 | Ne değişecek? | Hangi dosya? |
 | --- | --- |
 | Fotoğraflar | `src/photos/` klasörü — bkz. [FOTO_DEGISTIRME.md](FOTO_DEGISTIRME.md) |
-| Fiyatlar (4 dilde birden) | `src/config/prices.ts` |
+| Fiyatlar (4 dilde birden) | `src/data/prices.json` (Pages CMS'te "Tarifs") |
 | Telefon, WhatsApp, e-posta, sosyal medya | `src/config/site.ts` |
 | İletişim formunu açmak (Formspree kimliği) | `src/config/site.ts` → `formspreeId` |
 | Yasal bilgiler (SIRET, adres, statü) | `src/config/site.ts` → `legal` |
 | Metinler | `src/i18n/fr.ts`, `en.ts`, `ru.ts`, `tr.ts` |
+| Blog yazıları | Pages CMS (https://app.pagescms.org) — bkz. [BLOG_REHBERI.md](BLOG_REHBERI.md) |
 
 Metinlerde tırnak işaretlerinin (`'...'`) arasındaki yazıyı değiştirin; tırnakları ve virgülleri silmeyin.
 `{price}`, `{email}` gibi süslü parantezli kelimeler otomatik doldurulur, olduğu gibi bırakın.

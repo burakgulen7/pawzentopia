@@ -1,0 +1,127 @@
+# Pages CMS configuration (https://app.pagescms.org).
+# Lets Marianna edit the blog, the prices and the site photos from her browser.
+# Every save is a commit on "main"; GitHub Actions then republishes the site (~2–3 min).
+
+media:
+  - name: blog
+    label: Photos du blog
+    input: src/content/blog/images
+    output: ./images
+    categories: [image]
+    rename: safe
+  - name: photos
+    label: Photos du site
+    input: src/photos
+    output: src/photos
+    categories: [image]
+    rename: false
+
+content:
+  - name: blog
+    label: Articles du blog
+    description: Un article = une page du blog. Décochez « Brouillon » pour le publier.
+    type: collection
+    path: src/content/blog
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, lang, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titre
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: lang
+        label: Langue
+        type: select
+        default: fr
+        options:
+          values:
+            - { value: fr, label: Français }
+            - { value: en, label: English }
+            - { value: ru, label: Русский }
+            - { value: tr, label: Türkçe }
+      - name: cover
+        label: Photo de couverture
+        type: image
+        options:
+          media: blog
+      - name: coverAlt
+        label: Description de la photo
+        description: Une phrase simple qui décrit la photo (pour les personnes malvoyantes et Google).
+        type: string
+      - name: summary
+        label: Résumé
+        description: Deux phrases maximum, affichées sous le titre dans la liste des articles.
+        type: text
+      - name: draft
+        label: Brouillon
+        description: Coché = l’article n’est pas visible sur le site. Décochez pour le publier.
+        type: boolean
+        default: true
+      - name: body
+        label: Texte
+        type: rich-text
+        options:
+          format: markdown
+          media: blog
+
+  - name: prices
+    label: Tarifs
+    description: Prix en euros, par chien et par jour. Ils s’affichent automatiquement dans les 4 langues.
+    type: file
+    path: src/data/prices.json
+    format: json
+    fields:
+      - name: boarding
+        label: Garde 24 h (nuit comprise)
+        type: object
+        list: true
+        fields:
+          - name: size
+            label: Gabarit (S, M, L, XL)
+            type: string
+            required: true
+          - name: minKg
+            label: Poids minimum (kg) — vide = « jusqu’à »
+            type: number
+          - name: maxKg
+            label: Poids maximum (kg) — vide = « plus de »
+            type: number
+          - name: price
+            label: Prix par jour (€)
+            type: number
+            required: true
+      - name: longStayDiscount
+        label: Réduction longue garde
+        type: object
+        fields:
+          - name: percent
+            label: Réduction (%)
+            type: number
+          - name: minDays
+            label: À partir de plus de … jours
+            type: number
+      - name: dayCare
+        label: Crèche de jour
+        type: object
+        fields:
+          - name: from
+            label: À partir de (€ / jour)
+            type: number
+          - name: subscriptionFrom
+            label: Avec abonnement annuel, à partir de (€ / jour)
+            type: number
+
+settings:
+  commit:
+    identity: user

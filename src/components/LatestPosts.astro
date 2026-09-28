@@ -1,0 +1,81 @@
+---
+/** "Latest articles" on the home page — hidden entirely when there are no posts. */
+import BlogCard from './BlogCard.astro';
+import { getPosts } from '../lib/blog';
+import { getLanguage, pagePath, url, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getLanguage(lang).dict;
+const posts = (await getPosts()).slice(0, 3);
+---
+{
+  posts.length > 0 && (
+    <section class="wrap latest" id="blog" aria-labelledby="latest-title">
+      <div class="head">
+        <div>
+          <p class="eyebrow">{t.blog.title}</p>
+          <h2 id="latest-title">{t.blog.latest}</h2>
+        </div>
+        <a class="textlink" href={url(pagePath('blog', lang))}>{t.blog.all}</a>
+      </div>
+      <div class="grid">
+        {posts.map((post) => <BlogCard post={post} lang={lang} />)}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .latest {
+    padding-top: 96px;
+  }
+  .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 40px;
+    flex-wrap: wrap;
+    margin-bottom: 42px;
+  }
+  .eyebrow {
+    padding-left: 3px;
+  }
+  h2 {
+    margin-top: 22px;
+    font-size: 54px;
+    line-height: 1.12;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  @media (max-width: 1020px) {
+    h2 {
+      font-size: 46px;
+    }
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 800px) {
+    .latest {
+      padding-top: 64px;
+    }
+    .head {
+      margin-bottom: 26px;
+    }
+    h2 {
+      margin-top: 12px;
+      font-size: 36px;
+      line-height: 42px;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+</style>

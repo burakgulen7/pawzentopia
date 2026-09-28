@@ -21,6 +21,7 @@ const en: Dictionary = {
     prices: 'Prices',
     approach: 'Our approach',
     availability: '24/7 availability',
+    blog: 'Blog',
     contact: 'Contact us',
   },
   hero: {
@@ -118,6 +119,13 @@ const en: Dictionary = {
       error: 'Your message could not be sent. You can write to us directly at {email}.',
     },
     social: 'Follow us',
+  },
+  blog: {
+    title: 'Blog',
+    latest: 'Latest articles',
+    empty: 'Our first articles are coming soon.',
+    read: 'Read the article →',
+    all: 'All articles →',
   },
   footer: {
     tagline: 'PawZenTopia — Well-being and training',

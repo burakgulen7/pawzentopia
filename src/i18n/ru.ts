@@ -21,6 +21,7 @@ const ru: Dictionary = {
     prices: 'Цены',
     approach: 'Наш подход',
     availability: 'Доступность 24/7',
+    blog: 'Блог',
     contact: 'Связаться с нами',
   },
   hero: {
@@ -118,6 +119,13 @@ const ru: Dictionary = {
       error: 'Не удалось отправить сообщение. Напишите нам напрямую: {email}.',
     },
     social: 'Мы в соцсетях',
+  },
+  blog: {
+    title: 'Блог',
+    latest: 'Последние статьи',
+    empty: 'Наши первые статьи скоро появятся.',
+    read: 'Читать статью →',
+    all: 'Все статьи →',
   },
   footer: {
     tagline: 'PawZenTopia — Благополучие и воспитание',
