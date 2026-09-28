@@ -56,6 +56,9 @@ const links = [
       <a class="pill contact" href={wa} target="_blank" rel="noopener">
         <Icon name="whatsapp" size={18} /><span>{t.nav.contact}</span><span class="visually-hidden"> {t.ui.newTab}</span>
       </a>
+      <a class="wa-round" href={wa} target="_blank" rel="noopener" aria-label={`${t.contact.whatsapp} ${t.ui.newTab}`}>
+        <Icon name="whatsapp" size={22} />
+      </a>
       <details class="menu" data-menu>
         <summary aria-label={t.ui.menu}>
           <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -186,6 +189,22 @@ const links = [
     white-space: nowrap;
   }
 
+  /* Round WhatsApp button (phones only). */
+  .wa-round {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--cream);
+    transition: background-color 0.18s ease;
+  }
+  .wa-round:hover {
+    background: var(--cta);
+  }
+
   /* Menu button (shown when the nav links no longer fit). */
   .menu {
     display: none;
@@ -309,6 +328,10 @@ const links = [
     .contact {
       display: none;
     }
+    .wa-round {
+      display: inline-flex;
+      margin-left: 2px;
+    }
   }
   @media (max-width: 370px) {
     .brand-name {
@@ -316,6 +339,12 @@ const links = [
     }
     .brand-mark {
       height: 36px;
+    }
+  }
+  /* Very small phones: keep every button tappable, the logo mark stays visible. */
+  @media (max-width: 345px) {
+    .brand-name {
+      display: none;
     }
   }
 </style>
