@@ -113,7 +113,7 @@ Eyebrow: `Contact us`
 
 Heading: `Let’s talk about your dog.`
 
-Body: `Marianna will get back to you to arrange care, transport or an emergency solution.`
+Body: `Marianna will get back to you to arrange care, a home visit or an emergency solution.`
 
 Languages: `We speak French, English, Russian and Turkish.`
 

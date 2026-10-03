@@ -125,7 +125,7 @@ Eyebrow: `Nous contacter`
 
 Heading: `Parlons de votre chien.`
 
-Body: `Marianna vous répond pour organiser une garde, un transport ou une solution d’urgence.`
+Body: `Marianna vous répond pour organiser une garde, une visite à domicile ou une solution d’urgence.`
 
 Languages: `Nous parlons français, anglais, russe et turc.`
 

@@ -102,7 +102,7 @@ const en: Dictionary = {
   contact: {
     eyebrow: 'Contact us',
     heading: 'Let’s talk about your dog.',
-    body: 'Marianna will get back to you to arrange care, transport or an emergency solution.',
+    body: 'Marianna will get back to you to arrange care, a home visit or an emergency solution.',
     languages: 'We speak French, English and Turkish.',
     pricingNote: 'Extras on quote, depending on the situation, the distance and your dog’s size.',
     area: 'Saint-Jean (31240) & Toulouse metro area',

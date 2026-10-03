@@ -105,7 +105,7 @@ const fr = {
   contact: {
     eyebrow: 'Nous contacter',
     heading: 'Parlons de votre chien.',
-    body: 'Marianna vous répond pour organiser une garde, un transport ou une solution d’urgence.',
+    body: 'Marianna vous répond pour organiser une garde, une visite à domicile ou une solution d’urgence.',
     languages: 'Nous parlons français, anglais et turc.',
     pricingNote: 'Suppléments sur devis, selon la situation, la distance et le gabarit de votre chien.',
     area: 'Saint-Jean (31240) & métropole toulousaine',

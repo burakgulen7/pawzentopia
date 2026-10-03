@@ -102,7 +102,7 @@ const tr: Dictionary = {
   contact: {
     eyebrow: 'Bize ulaşın',
     heading: 'Köpeğiniz hakkında konuşalım.',
-    body: 'Marianna; bakım, ulaşım ya da acil bir çözüm planlamak için size geri dönüş yapar.',
+    body: 'Marianna; bakım, evde ziyaret ya da acil bir çözüm planlamak için size geri dönüş yapar.',
     languages: 'Fransızca, İngilizce ve Türkçe konuşuyoruz.',
     pricingNote: 'Ek hizmetler; duruma, mesafeye ve köpeğinizin boyutuna göre teklif üzerine.',
     area: 'Saint-Jean (31240) ve Toulouse metropol bölgesi',

@@ -113,7 +113,7 @@ Eyebrow: `Bize ulaşın`
 
 Heading: `Köpeğiniz hakkında konuşalım.`
 
-Body: `Marianna; bakım, ulaşım ya da acil bir çözüm planlamak için size geri dönüş yapar.`
+Body: `Marianna; bakım, evde ziyaret ya da acil bir çözüm planlamak için size geri dönüş yapar.`
 
 Languages: `Fransızca, İngilizce, Rusça ve Türkçe konuşuyoruz.`
 
