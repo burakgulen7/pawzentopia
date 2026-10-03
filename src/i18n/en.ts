@@ -120,6 +120,14 @@ const en: Dictionary = {
     },
     social: 'Follow us',
   },
+  findUs: {
+    eyebrow: 'Find us',
+    heading: 'Saint-Jean, right next to Toulouse.',
+    body: 'For boarding, day care or an assessment, come and meet us in Saint-Jean (31240). Home visits take place at your home, across the Toulouse metropolitan area.',
+    directions: 'Get directions in Google Maps',
+    profile: 'View on Google Maps',
+    chip: 'Directions',
+  },
   blog: {
     title: 'Blog',
     latest: 'Latest articles',

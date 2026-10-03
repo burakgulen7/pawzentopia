@@ -250,3 +250,11 @@ Review texts: `src/data/reviews.json` (originals in French, never altered).
 ### Service pages (local SEO)
 
 Copy for the 4 service pages lives in `src/i18n/services/fr.ts` (FR text approved by the user; EN/TR are translations).
+
+## Map block — change request 04
+
+Eyebrow `Nous trouver` · Heading `Saint-Jean, aux portes de Toulouse.`
+
+Body: `Pour une pension, une crèche ou un bilan, venez nous rencontrer à Saint-Jean (31240). Les visites à domicile se font chez vous, dans la métropole toulousaine.`
+
+Button `Itinéraire avec Google Maps` · Link `Voir la fiche Google` · Map chip `Itinéraire` · Map label `Saint-Jean (31240)` (no street address)

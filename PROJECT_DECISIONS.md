@@ -114,3 +114,13 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
   no street address, no opening hours, no ratings), `Service` + `BreadcrumbList` on service pages.
   Home title: "PawZenTopia — Pension canine & pet sitting à Saint-Jean (Toulouse)". Blog ideas: `BLOG_FIKIRLERI.md`.
 - Dog-sitting line: « fraîcheur » removed on purpose by Marianna (do not add back).
+
+## Change request 04 (3 October 2026) — map & directions ("Nous trouver")
+
+- Map block at the bottom of the home page (after contact) and a compact version on the boarding, day-care and
+  training pages. Only `Saint-Jean (31240)` is shown — **no street address** (user's decision).
+- No Google Maps iframe/JS (no third-party cookies). OpenStreetMap tiles could not be fetched from the build
+  environment, so the card is a stylised SVG map in the brand colours (pin + label, no invented roads) served
+  from the site itself.
+- The card and the main button open Google Maps directions to the Business Profile pin
+  (`43.6583093,1.508352`); a text link opens the Google Business Profile. Both in `src/config/site.ts` → `location`.

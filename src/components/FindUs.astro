@@ -1,0 +1,211 @@
+---
+/**
+ * "Nous trouver" — map & directions. No Google Maps iframe/JS (no third-party cookies):
+ * a stylised map card drawn in SVG and served from our own site, linking to Google Maps directions.
+ * The street address is intentionally not shown; only "Saint-Jean (31240)".
+ */
+import Icon from './Icon.astro';
+import { location } from '../config/site';
+import { getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Smaller version used at the bottom of service pages. */
+  compact?: boolean;
+}
+const { lang, compact = false } = Astro.props;
+const d = getLanguage(lang).dict;
+const t = d.findUs;
+const id = compact ? 'find-us-compact' : 'find-us';
+---
+<section class:list={['find-us', compact ? 'compact' : 'wrap']} id={compact ? undefined : 'nous-trouver'} aria-labelledby={`${id}-title`}>
+  <div class="copy">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2 id={`${id}-title`}>{t.heading}</h2>
+    <p class="body">{t.body}</p>
+    <div class="actions">
+      <a class="pill" href={location.directionsUrl} target="_blank" rel="noopener">
+        <Icon name="google" size={20} />{t.directions}<span class="visually-hidden"> {d.ui.newTab}</span>
+      </a>
+      <a class="textlink" href={location.profileUrl} target="_blank" rel="noopener">
+        {t.profile} <span aria-hidden="true">↗</span><span class="visually-hidden"> {d.ui.newTab}</span>
+      </a>
+    </div>
+  </div>
+
+  <a class="map-card" href={location.directionsUrl} target="_blank" rel="noopener" aria-label={`${t.directions} — ${location.label} ${d.ui.newTab}`}>
+    <svg viewBox="0 0 640 400" role="presentation" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id={`${id}-glow`} cx="50%" cy="46%" r="60%">
+          <stop offset="0" stop-color="#f6fbf7" />
+          <stop offset="1" stop-color="#d3e8dc" />
+        </radialGradient>
+        <pattern id={`${id}-dots`} width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.4" fill="#25443c" fill-opacity="0.11" />
+        </pattern>
+        <radialGradient id={`${id}-edge`} cx="50%" cy="50%" r="75%">
+          <stop offset="0.62" stop-color="#e8f3ed" stop-opacity="0" />
+          <stop offset="1" stop-color="#e8f3ed" stop-opacity="0.95" />
+        </radialGradient>
+      </defs>
+      <rect width="640" height="400" fill={`url(#${id}-glow)`} />
+      <rect width="640" height="400" fill={`url(#${id}-dots)`} />
+      <!-- soft, abstract landscape shapes (not real roads or places) -->
+      <path d="M-20 300 C 90 250 170 330 290 290 S 520 240 660 300 L 660 420 L -20 420 Z" fill="#c9e1d3" fill-opacity="0.55" />
+      <path d="M-20 90 C 80 60 150 120 250 95 S 450 40 660 80 L 660 -20 L -20 -20 Z" fill="#c9e1d3" fill-opacity="0.45" />
+      <!-- area rings around the pin -->
+      <circle cx="320" cy="196" r="150" fill="none" stroke="#25443c" stroke-opacity="0.10" stroke-width="1.5" stroke-dasharray="4 7" />
+      <circle cx="320" cy="196" r="96" fill="#31584d" fill-opacity="0.07" stroke="#31584d" stroke-opacity="0.16" stroke-width="1.5" />
+      <circle cx="320" cy="196" r="46" fill="#31584d" fill-opacity="0.09" />
+      <!-- pin -->
+      <g transform="translate(320 196) scale(1.3)">
+        <ellipse cx="0" cy="4" rx="13" ry="4.5" fill="#25443c" fill-opacity="0.22" />
+        <path d="M0 0 C -6 -14 -26 -26 -26 -48 A 26 26 0 1 1 26 -48 C 26 -26 6 -14 0 0 Z" fill="#25443c" />
+        <circle cx="0" cy="-48" r="10" fill="#c98568" />
+      </g>
+      <!-- label -->
+      <g transform="translate(320 256)">
+        <rect x="-142" y="-27" width="284" height="54" rx="27" fill="#fff" />
+        <text x="0" y="8" text-anchor="middle" font-family="PZT Sans, Arial, sans-serif" font-weight="700" font-size="23" fill="#25443c">{location.label}</text>
+      </g>
+      <rect width="640" height="400" fill={`url(#${id}-edge)`} />
+    </svg>
+    <span class="chip"><Icon name="google" size={16} />{t.chip} <span aria-hidden="true">↗</span></span>
+  </a>
+</section>
+
+<style>
+  .find-us {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 56px;
+    align-items: center;
+    padding-bottom: 90px;
+  }
+  .eyebrow {
+    padding-left: 3px;
+  }
+  h2 {
+    margin: 22px 0 18px;
+    font-size: 46px;
+    line-height: 1.12;
+  }
+  .body {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    margin-top: 28px;
+  }
+  .map-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--mint);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .map-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .chip {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 13px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .map-card:hover,
+  .map-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px rgba(41, 77, 61, 0.12);
+  }
+  .map-card:hover .chip,
+  .map-card:focus-visible .chip {
+    opacity: 1;
+    transform: none;
+  }
+  @media (hover: none) {
+    .chip {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .map-card,
+    .chip {
+      transform: none !important;
+    }
+  }
+
+  /* Compact version (service pages) */
+  .compact {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 56px;
+    padding-bottom: 0;
+  }
+  .compact h2 {
+    margin: 14px 0 12px;
+    font-size: 34px;
+  }
+  .compact .body {
+    font-size: 16px;
+  }
+  .compact .actions {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 1020px) {
+    .find-us {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+  @media (max-width: 800px) {
+    .find-us:not(.compact) {
+      padding-bottom: 60px;
+    }
+    h2,
+    .compact h2 {
+      margin: 12px 0 12px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+    .body {
+      font-size: 15px;
+    }
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .actions .pill {
+      width: 100%;
+    }
+    .actions .textlink {
+      align-self: flex-start;
+    }
+    .map-card {
+      border-radius: 22px;
+    }
+  }
+</style>

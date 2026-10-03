@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import FindUs from './FindUs.astro';
 import Icon from './Icon.astro';
 import PriceGroup from './PriceGroup.astro';
 import RatingBadge from './RatingBadge.astro';
@@ -124,6 +125,8 @@ const jsonLd = [
             <Icon name="whatsapp" size={20} />{t.contact.whatsapp}<span class="visually-hidden"> {t.ui.newTab}</span>
           </a>
         </aside>
+
+        {service !== 'petSitting' && <FindUs lang={lang} compact />}
       </div>
 
       <nav class="others" aria-labelledby="others-title">

@@ -120,6 +120,14 @@ const tr: Dictionary = {
     },
     social: 'Bizi takip edin',
   },
+  findUs: {
+    eyebrow: 'Bizi bulun',
+    heading: 'Saint-Jean, Toulouse’un hemen yanında.',
+    body: 'Pansiyon, kreş ya da değerlendirme için Saint-Jean’da (31240) bizimle tanışın. Evde ziyaretler ise Toulouse metropol bölgesinde sizin evinizde yapılır.',
+    directions: 'Google Maps ile yol tarifi',
+    profile: 'Google Maps’te görün',
+    chip: 'Yol tarifi',
+  },
   blog: {
     title: 'Blog',
     latest: 'Son yazılar',

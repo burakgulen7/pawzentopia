@@ -49,3 +49,19 @@ export const host = {
 /** WhatsApp link with a pre-filled message (in the visitor's language). */
 export const whatsappUrl = (message: string) =>
   `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
+
+/**
+ * Location for the "Nous trouver" map block. The street address is intentionally NOT shown on the site.
+ * Coordinates = PawZenTopia's Google Business Profile pin.
+ */
+const lat = 43.6583093;
+const lng = 1.508352;
+export const location = {
+  label: 'Saint-Jean (31240)',
+  lat,
+  lng,
+  /** Opens Google Maps directions from the visitor's position (app on phones). */
+  directionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
+  /** Google Business Profile on Google Maps (reviews, photos). */
+  profileUrl: 'https://maps.google.com/?cid=8526896004295926302',
+};

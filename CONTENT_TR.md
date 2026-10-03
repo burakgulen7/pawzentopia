@@ -238,3 +238,11 @@ Review texts: `src/data/reviews.json` (originals in French, never altered).
 ### Service pages (local SEO)
 
 Copy for the 4 service pages lives in `src/i18n/services/tr.ts` (FR text approved by the user; EN/TR are translations).
+
+## Map block — change request 04
+
+Eyebrow `Bizi bulun` · Heading `Saint-Jean, Toulouse’un hemen yanında.`
+
+Body: `Pansiyon, kreş ya da değerlendirme için Saint-Jean’da (31240) bizimle tanışın. Evde ziyaretler ise Toulouse metropol bölgesinde sizin evinizde yapılır.`
+
+Button `Google Maps ile yol tarifi` · Link `Google Maps’te görün` · Map chip `Yol tarifi` · Map label `Saint-Jean (31240)` (no street address)

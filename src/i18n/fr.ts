@@ -123,6 +123,14 @@ const fr = {
     },
     social: 'Suivez-nous',
   },
+  findUs: {
+    eyebrow: 'Nous trouver',
+    heading: 'Saint-Jean, aux portes de Toulouse.',
+    body: 'Pour une pension, une crèche ou un bilan, venez nous rencontrer à Saint-Jean (31240). Les visites à domicile se font chez vous, dans la métropole toulousaine.',
+    directions: 'Itinéraire avec Google Maps',
+    profile: 'Voir la fiche Google',
+    chip: 'Itinéraire',
+  },
   blog: {
     title: 'Blog',
     latest: 'Derniers articles',
