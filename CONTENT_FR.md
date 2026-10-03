@@ -133,7 +133,7 @@ Pricing note: `Suppléments sur devis, selon la situation, la distance et le gab
 
 Area: `Toulouse, Saint-Jean et 20 km alentour`
 
-Buttons: `Écrire sur WhatsApp` · `Appeler le 06 98 48 26 18` · e-mail link `pawzentopia@gmail.com`
+Buttons: `Écrire sur WhatsApp` · `Appeler le 06 98 38 26 18` · e-mail link `pawzentopia@gmail.com`
 
 WhatsApp pre-filled message: `Bonjour, je vous contacte depuis le site PawZenTopia.`
 
@@ -149,7 +149,7 @@ Social: `Suivez-nous` — Instagram @pawzentopia · TikTok @pawzentopia
 
 Location: `Toulouse, France`
 
-Languages: `Français · English · Русский · Türkçe`
+Languages: `Français · English · Türkçe`
 
 Links: phone, e-mail, Instagram, TikTok, `Mentions légales`. Add only confirmed contact, social and legal data.
 
@@ -188,3 +188,61 @@ Note: `Première demande ? Écrivez-nous sur WhatsApp pour une réponse rapide. 
 ### Blog
 
 Nav / page title: `Blog` · Home block: `Derniers articles` · Empty state: `Nos premiers articles arrivent bientôt.` · Card link: `Lire l’article →` · All posts link: `Tous les articles →`
+
+
+## Mise à jour — demande de modification 03 (remplace les sections correspondantes ci-dessus)
+Languages of the site: French, English, Turkish (Russian removed).
+Service area: `Saint-Jean (31240) & métropole toulousaine`
+Languages spoken: `Nous parlons français, anglais et turc.`
+Nav (urgent panel): `Urgences`
+
+### Service cards
+- **Pension familiale & crèche** — `Le confort d’un foyer et une attention adaptée à ses habitudes.` — hover: `Pension (nuit) ou crèche (journée), de {min} à {max} € selon le gabarit.` (amounts from `src/data/prices.json`)
+- **Éducation canine** — `Un accompagnement patient, fondé sur l’écoute et la confiance.` — hover: `Bilan comportemental, sessions journée et packs de 5 ou 10 jours. Dès {from} € / jour.` (amounts from `src/data/prices.json`)
+- **Visites à domicile** — `Chien ou chat : des visites chez vous de 40 à 60 minutes.` — hover: `Dog sitting dès {dog} € et cat sitting dès {cat} € par passage.` (amounts from `src/data/prices.json`)
+- **Cas d’urgence** — `Réservé aux clients déjà connus de PawZenTopia.` — hover: `Imprévu ou hospitalisation : accompagnement, garde ou transport réactif. Sur devis.` (amounts from `src/data/prices.json`)
+
+### Pricing
+
+Eyebrow `Tarifs` · Heading `Une grille claire, service par service.` · Intro `Saint-Jean (31240) & métropole toulousaine — accueil familial, éducation, pension & visites à domicile.` · CTA `Demander un devis`
+
+**Éducation, sociabilisation & réhabilitation**
+
+- `Bilan comportemental initial (obligatoire) · 1 h à 1 h 30` — 50–60 € 
+- `Session journée — suivi & sociabilisation classique` — 35 € / jour
+- `Session journée — besoins complexes / réhabilitation lourde` — 45–50 € / jour
+- `Pack 5 journées` — 160 € 
+- `Pack 10 journées` — 300 € 
+- note: `Les tarifs sont fixés uniquement selon la complexité du comportement, et non selon la taille ou le poids du chien.`
+
+**Pension familiale (nuitée) & crèche (journée sans éducation)**
+
+- subtitle: `Hébergement chaleureux à la maison ou garderie de jour, sans éducation.`
+- per: `par jour ou par nuit`
+- S · `Petit chien · jusqu’à 10 kg` — 18 € 
+- M · `Chien moyen · 10–20 kg` — 20 € 
+- L · `Grand chien · 20–30 kg` — 25 € 
+- XL · `Très grand chien · plus de 30 kg` — 30 € 
+- offer: `Offre longue durée : −3 € par jour/nuit à partir du 10ᵉ jour consécutif.`
+- note: `Les chats ne sont pas pris en pension, uniquement en visites à domicile.`
+
+**Dog sitting & cat sitting à domicile**
+
+- subtitle: `Visites individuelles à domicile de 40 à 60 minutes pour vos compagnons.`
+- `Dog sitting (chien)` — 15–20 € / passage
+  - `Inclut : promenade de 40–60 min, soins, présence, fraîcheur. Tarif ajusté selon la taille du chien et la distance kilométrique.`
+- `Cat sitting (chat)` — 12–15 € / passage
+  - `Inclut : litière, nourriture, câlins/jeux, présence de 40–60 min. Tarif ajusté selon les besoins spécifiques du chat et la distance kilométrique.`
+- footer: `Abonnements & forfaits réguliers : sur demande / devis.`
+
+**Cas d’urgence**
+
+- badge: `Réservé aux clients déjà connus de PawZenTopia`
+- text: `En cas d’imprévu ou d’hospitalisation du maître, un service d’accompagnement, de garde ou de transport réactif peut être envisagé.`
+- price: `Tarif de prise en charge d’urgence : sur devis`
+
+### Google reviews
+
+Eyebrow `Avis Google` · Heading `Ils nous confient leurs compagnons.` · Score `sur 5 · {count} avis` · Hero badge `{rating} · {count} avis Google` · `Lire la suite` · `Voir tous les avis sur Google` · `Laisser un avis` · `Avis original en français` · `Traduit du français`
+
+Review texts: `src/data/reviews.json` (originals in French, never altered).

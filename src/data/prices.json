@@ -1,10 +1,131 @@
 {
-  "boarding": [
-    { "size": "S", "minKg": null, "maxKg": 5, "price": 18 },
-    { "size": "M", "minKg": 5, "maxKg": 10, "price": 20 },
-    { "size": "L", "minKg": 10, "maxKg": 25, "price": 25 },
-    { "size": "XL", "minKg": 25, "maxKg": null, "price": 35 }
-  ],
-  "longStayDiscount": { "percent": 5, "minDays": 10 },
-  "dayCare": { "from": 15, "subscriptionFrom": 12 }
+  "training": {
+    "title_fr": "Éducation, sociabilisation & réhabilitation",
+    "title_en": "Training, socialisation & rehabilitation",
+    "title_tr": "Eğitim, sosyalleşme ve rehabilitasyon",
+    "rows": [
+      {
+        "key": "assessment",
+        "label_fr": "Bilan comportemental initial (obligatoire) · 1 h à 1 h 30",
+        "label_en": "Initial behavioural assessment (required) · 1 h to 1 h 30",
+        "label_tr": "İlk davranış değerlendirmesi (zorunlu) · 1–1,5 saat",
+        "min": 50,
+        "max": 60,
+        "unit": "none"
+      },
+      {
+        "key": "daySession",
+        "label_fr": "Session journée — suivi & sociabilisation classique",
+        "label_en": "Day session — follow-up & standard socialisation",
+        "label_tr": "Günlük seans — takip ve klasik sosyalleşme",
+        "min": 35,
+        "max": null,
+        "unit": "day"
+      },
+      {
+        "key": "dayComplex",
+        "label_fr": "Session journée — besoins complexes / réhabilitation lourde",
+        "label_en": "Day session — complex needs / intensive rehabilitation",
+        "label_tr": "Günlük seans — karmaşık ihtiyaçlar / yoğun rehabilitasyon",
+        "min": 45,
+        "max": 50,
+        "unit": "day"
+      },
+      {
+        "key": "pack5",
+        "label_fr": "Pack 5 journées",
+        "label_en": "5-day pack",
+        "label_tr": "5 günlük paket",
+        "min": 160,
+        "max": null,
+        "unit": "none"
+      },
+      {
+        "key": "pack10",
+        "label_fr": "Pack 10 journées",
+        "label_en": "10-day pack",
+        "label_tr": "10 günlük paket",
+        "min": 300,
+        "max": null,
+        "unit": "none"
+      }
+    ],
+    "note_fr": "Les tarifs sont fixés uniquement selon la complexité du comportement, et non selon la taille ou le poids du chien.",
+    "note_en": "Prices depend only on the complexity of the behaviour, not on the dog’s size or weight.",
+    "note_tr": "Fiyatlar köpeğin boyutuna veya kilosuna göre değil, yalnızca davranışın karmaşıklığına göre belirlenir."
+  },
+  "boarding": {
+    "title_fr": "Pension familiale (nuitée) & crèche (journée sans éducation)",
+    "title_en": "Family boarding (overnight) & day care (no training)",
+    "title_tr": "Aile ortamında pansiyon (gecelik) ve kreş (eğitimsiz gündüz bakımı)",
+    "subtitle_fr": "Hébergement chaleureux à la maison ou garderie de jour, sans éducation.",
+    "subtitle_en": "Warm home boarding or daytime care, without training.",
+    "subtitle_tr": "Evde sıcak bir konaklama ya da eğitim içermeyen gündüz bakımı.",
+    "per_fr": "par jour ou par nuit",
+    "per_en": "per day or per night",
+    "per_tr": "gün ya da gece başına",
+    "rows": [
+      { "size": "S", "label_fr": "Petit chien · jusqu’à 10 kg", "label_en": "Small dog · up to 10 kg", "label_tr": "Küçük köpek · 10 kg’a kadar", "price": 18 },
+      { "size": "M", "label_fr": "Chien moyen · 10–20 kg", "label_en": "Medium dog · 10–20 kg", "label_tr": "Orta boy köpek · 10–20 kg", "price": 20 },
+      { "size": "L", "label_fr": "Grand chien · 20–30 kg", "label_en": "Large dog · 20–30 kg", "label_tr": "Büyük köpek · 20–30 kg", "price": 25 },
+      { "size": "XL", "label_fr": "Très grand chien · plus de 30 kg", "label_en": "Extra-large dog · over 30 kg", "label_tr": "Çok büyük köpek · 30 kg üzeri", "price": 30 }
+    ],
+    "offer_fr": "Offre longue durée : −3 € par jour/nuit à partir du 10ᵉ jour consécutif.",
+    "offer_en": "Long-stay offer: €3 off per day/night from the 10th consecutive day.",
+    "offer_tr": "Uzun süre fırsatı: 10. ardışık günden itibaren gün/gece başına 3 € indirim.",
+    "note_fr": "Les chats ne sont pas pris en pension, uniquement en visites à domicile.",
+    "note_en": "Cats are not boarded — home visits only.",
+    "note_tr": "Kediler pansiyona kabul edilmez, yalnızca evde ziyaret yapılır."
+  },
+  "visits": {
+    "title_fr": "Dog sitting & cat sitting à domicile",
+    "title_en": "Dog sitting & cat sitting at your home",
+    "title_tr": "Evde köpek ve kedi bakımı",
+    "subtitle_fr": "Visites individuelles à domicile de 40 à 60 minutes pour vos compagnons.",
+    "subtitle_en": "Individual 40–60 minute home visits for your companions.",
+    "subtitle_tr": "Dostlarınız için evinizde 40–60 dakikalık bireysel ziyaretler.",
+    "rows": [
+      {
+        "key": "dog",
+        "label_fr": "Dog sitting (chien)",
+        "label_en": "Dog sitting",
+        "label_tr": "Köpek bakımı",
+        "min": 15,
+        "max": 20,
+        "unit": "visit",
+        "detail_fr": "Inclut : promenade de 40–60 min, soins, présence, fraîcheur. Tarif ajusté selon la taille du chien et la distance kilométrique.",
+        "detail_en": "Includes: 40–60 min walk, care, company, fresh water. Price adjusted to the dog’s size and the distance.",
+        "detail_tr": "Dahil: 40–60 dk yürüyüş, bakım, refakat, taze su. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir."
+      },
+      {
+        "key": "cat",
+        "label_fr": "Cat sitting (chat)",
+        "label_en": "Cat sitting",
+        "label_tr": "Kedi bakımı",
+        "min": 12,
+        "max": 15,
+        "unit": "visit",
+        "detail_fr": "Inclut : litière, nourriture, câlins/jeux, présence de 40–60 min. Tarif ajusté selon les besoins spécifiques du chat et la distance kilométrique.",
+        "detail_en": "Includes: litter, food, cuddles/play, 40–60 min of company. Price adjusted to the cat’s specific needs and the distance.",
+        "detail_tr": "Dahil: kum kabı, mama, sevgi/oyun, 40–60 dk refakat. Fiyat kedinin özel ihtiyaçlarına ve mesafeye göre belirlenir."
+      }
+    ],
+    "footer_fr": "Abonnements & forfaits réguliers : sur demande / devis.",
+    "footer_en": "Subscriptions & regular packages: on request / quote.",
+    "footer_tr": "Abonelikler ve düzenli paketler: talep üzerine / teklifle."
+  },
+  "emergency": {
+    "title_fr": "Cas d’urgence",
+    "title_en": "Emergencies",
+    "title_tr": "Acil durumlar",
+    "badge_fr": "Réservé aux clients déjà connus de PawZenTopia",
+    "badge_en": "Existing PawZenTopia clients only",
+    "badge_tr": "Yalnızca PawZenTopia’nın mevcut müşterileri için",
+    "text_fr": "En cas d’imprévu ou d’hospitalisation du maître, un service d’accompagnement, de garde ou de transport réactif peut être envisagé.",
+    "text_en": "If something unexpected happens or the owner is hospitalised, a responsive support, care or transport service can be arranged.",
+    "text_tr": "Beklenmedik bir durumda ya da sahibinin hastaneye yatması halinde hızlı refakat, bakım veya ulaşım hizmeti planlanabilir.",
+    "price_fr": "Tarif de prise en charge d’urgence : sur devis",
+    "price_en": "Emergency care price: on quote",
+    "price_tr": "Acil durum fiyatı: teklif üzerine"
+  }
 }

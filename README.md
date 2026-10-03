@@ -1,7 +1,7 @@
 # PawZenTopia — web sitesi
 
-Toulouse'daki PawZenTopia köpek bakımı ve eğitimi işletmesinin 4 dilli web sitesi
-(Fransızca `/`, İngilizce `/en/`, Rusça `/ru/`, Türkçe `/tr/`).
+Saint-Jean (Toulouse) PawZenTopia köpek bakımı ve eğitimi işletmesinin 3 dilli web sitesi
+(Fransızca `/`, İngilizce `/en/`, Türkçe `/tr/`) — https://pawzentopia.com
 
 Site [Astro](https://astro.build) ile yapılmış, hafif ve hızlı bir statik sitedir. GitHub Pages üzerinde
 ücretsiz yayınlanır; `main` dalına yapılan her değişiklikten sonra otomatik olarak yeniden yayınlanır.
@@ -14,7 +14,8 @@ Dosyaları GitHub web sitesinde açıp kalem simgesine (✏️) basarak düzenle
 | Ne değişecek? | Hangi dosya? |
 | --- | --- |
 | Fotoğraflar | `src/photos/` klasörü — bkz. [FOTO_DEGISTIRME.md](FOTO_DEGISTIRME.md) |
-| Fiyatlar (4 dilde birden) | `src/data/prices.json` (Pages CMS'te "Tarifs") |
+| Fiyatlar (3 dilde birden) | `src/data/prices.json` (Pages CMS'te "Tarifs") |
+| Google puanı ve yorumlar | `src/data/reviews.json` (Pages CMS'te "Avis Google") |
 | Telefon, WhatsApp, e-posta, sosyal medya | `src/config/site.ts` |
 | İletişim formunu açmak (Formspree kimliği) | `src/config/site.ts` → `formspreeId` |
 | Yasal bilgiler (SIRET, adres, statü) | `src/config/site.ts` → `legal` |

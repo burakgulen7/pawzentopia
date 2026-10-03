@@ -1,13 +1,13 @@
 /**
  * Textes en français (langue par défaut, servie à « / »).
- * Source : CONTENT_FR.md. Les autres langues (en.ts, ru.ts, tr.ts) suivent exactement la même structure.
+ * Source : CONTENT_FR.md. Les autres langues (en.ts, tr.ts) suivent exactement la même structure.
  * {placeholders} are filled in automatically from src/config/site.ts and src/config/prices.ts.
  */
 const fr = {
   meta: {
     title: 'PawZenTopia — Garde & accompagnement canin · Toulouse',
     description:
-      'Un accueil à taille humaine, des moments de jeu et une présence attentive pour votre compagnon. Toulouse, Saint-Jean et 20 km alentour.',
+      'Un accueil à taille humaine, des moments de jeu et une présence attentive pour votre compagnon. Saint-Jean (31240) & métropole toulousaine.',
     ogLocale: 'fr_FR',
   },
   ui: {
@@ -22,7 +22,7 @@ const fr = {
     services: 'Nos services',
     prices: 'Tarifs',
     approach: 'Notre approche',
-    availability: 'Disponibilité 24/7',
+    availability: 'Urgences',
     blog: 'Blog',
     contact: 'Nous contacter',
   },
@@ -34,53 +34,42 @@ const fr = {
     primary: 'Découvrir nos services',
     secondary: 'Rencontrer PawZenTopia',
   },
-  trust: ['Un accueil à taille humaine', 'Le rythme de chaque chien respecté', 'Toulouse, Saint-Jean et 20 km alentour'],
+  trust: ['Un accueil à taille humaine', 'Le rythme de chaque chien respecté', 'Saint-Jean (31240) & métropole toulousaine'],
   services: {
     eyebrow: 'Ce que nous faisons',
     heading: 'Le bon soin,| au bon moment.',
     body: 'Du quotidien aux imprévus, un accompagnement attentif pensé pour votre chien et votre tranquillité d’esprit.',
-    // TODO(content): confirm scope/limits of each service with the owner (see CONTENT_FR.md "CONFIRM").
     items: {
       familyCare: {
-        title: 'Garde familiale',
+        title: 'Pension familiale & crèche',
         text: 'Le confort d’un foyer et une attention adaptée à ses habitudes.',
-        detail: 'Garde 24 h, nuit comprise, chez vous ou chez nous selon les disponibilités. À partir de {price} / jour.',
+        detail: 'Pension (nuit) ou crèche (journée), de {min} à {max} € selon le gabarit.',
       },
-      // Training: approved short copy kept until the owner provides details — no claims, no price.
       training: {
         title: 'Éducation canine',
         text: 'Un accompagnement patient, fondé sur l’écoute et la confiance.',
-        detail: 'Un accompagnement adapté au caractère et au rythme de votre chien. Tarif sur devis.',
+        detail: 'Bilan comportemental, sessions journée et packs de 5 ou 10 jours. Dès {from} € / jour.',
+      },
+      visits: {
+        title: 'Visites à domicile',
+        text: 'Chien ou chat : des visites chez vous de 40 à 60 minutes.',
+        detail: 'Dog sitting dès {dog} € et cat sitting dès {cat} € par passage.',
       },
       urgentCare: {
-        title: 'Garde d’urgence',
-        text: 'Une solution de garde pour les imprévus, à organiser ensemble.',
-        detail: 'Hospitalisation, accident, départ imprévu : nous venons chercher votre chien ou vous nous le déposez, à toute heure.',
-      },
-      transport: {
-        title: 'Transport 24/7',
-        text: 'Un accompagnement lors des trajets, selon vos besoins.',
-        detail: 'Trajets à Toulouse, Saint-Jean et 20 km alentour, à toute heure. Tarif sur devis.',
+        title: 'Cas d’urgence',
+        text: 'Réservé aux clients déjà connus de PawZenTopia.',
+        detail: 'Imprévu ou hospitalisation : accompagnement, garde ou transport réactif. Sur devis.',
       },
     },
     more: 'Nous contacter →',
   },
   pricing: {
     eyebrow: 'Tarifs',
-    heading: 'Des prix clairs, selon le gabarit.',
-    body: 'Tarifs de base par jour. Pour tout besoin particulier, parlons-en ensemble.',
-    boardingTitle: 'Garde 24 h (nuit comprise)',
-    columns: { size: 'Gabarit', weight: 'Poids', price: 'Prix / jour / chien' },
-    weightUpTo: 'jusqu’à {max} kg',
-    weightRange: '{min}–{max} kg',
-    weightOver: 'plus de {min} kg',
+    heading: 'Une grille claire, service par service.',
+    body: 'Saint-Jean (31240) & métropole toulousaine — accueil familial, éducation, pension & visites à domicile.',
+    perDay: '/ jour',
+    perVisit: '/ passage',
     price: '{n} €',
-    discount: '−{percent} % sur le total pour toute garde de plus de {days} jours.',
-    dayCareTitle: 'Crèche de jour',
-    dayCareFrom: 'À partir de {price} / jour',
-    dayCareSubscription: 'Avec abonnement annuel : à partir de {price} / jour',
-    extras:
-      'Suppléments sur devis : soins particuliers ou administration de médicaments, toilettage (brossage, bain…), demandes urgentes ou de nuit, transport, distance.',
     cta: 'Demander un devis',
   },
   approach: {
@@ -88,6 +77,18 @@ const fr = {
     heading: 'Une présence familière, même loin de chez vous.',
     body: 'Chez PawZenTopia, chaque chien est accueilli comme un individu. On prend le temps de comprendre son caractère, son rythme et ce qui le rassure.',
     cta: 'Parlons de votre chien',
+  },
+  reviews: {
+    eyebrow: 'Avis Google',
+    heading: 'Ils nous confient leurs compagnons.',
+    outOf: 'sur 5 · {count} avis',
+    badge: '{rating} · {count} avis Google',
+    stars: '{rating} sur 5',
+    readMore: 'Lire la suite',
+    seeAll: 'Voir tous les avis sur Google',
+    leave: 'Laisser un avis',
+    original: 'Avis original en français',
+    translated: 'Traduit du français',
   },
   social: {
     eyebrow: 'Instagram & TikTok',
@@ -99,18 +100,15 @@ const fr = {
   urgent: {
     eyebrow: 'Un imprévu ?',
     heading: 'Besoin d’une solution pour votre chien ?',
-    body: 'Contactez-nous pour discuter de la garde d’urgence ou d’un transport, à toute heure.',
-    detail:
-      'Hospitalisation, accident, départ imprévu : nous pouvons venir chercher votre chien, le garder chez vous ou, selon les disponibilités, chez nous.',
     cta: 'Prendre contact',
   },
   contact: {
     eyebrow: 'Nous contacter',
     heading: 'Parlons de votre chien.',
     body: 'Marianna vous répond pour organiser une garde, un transport ou une solution d’urgence.',
-    languages: 'Nous parlons français, anglais, russe et turc.',
+    languages: 'Nous parlons français, anglais et turc.',
     pricingNote: 'Suppléments sur devis, selon la situation, la distance et le gabarit de votre chien.',
-    area: 'Toulouse, Saint-Jean et 20 km alentour',
+    area: 'Saint-Jean (31240) & métropole toulousaine',
     whatsapp: 'Écrire sur WhatsApp',
     call: 'Appeler',
     note: 'Première demande ? Écrivez-nous sur WhatsApp pour une réponse rapide. Clients et urgences : appelez directement.',

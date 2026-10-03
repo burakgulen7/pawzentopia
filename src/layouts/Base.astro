@@ -54,8 +54,8 @@ const jsonLd = {
   image: ogImage,
   telephone: contact.phoneE164,
   email: contact.email,
-  areaServed: 'Toulouse, Saint-Jean',
-  knowsLanguage: ['fr', 'en', 'ru', 'tr'],
+  areaServed: 'Saint-Jean (31240), Toulouse',
+  knowsLanguage: languages.map((l) => l.code),
   sameAs: socials.map((s) => s.url),
 };
 ---

@@ -1,25 +1,46 @@
 /**
  * Prices are stored in src/data/prices.json (editable in Pages CMS under "Tarifs").
- * Amounts in euros, per dog, per day. Every language reads them from here.
- * Weight: maxKg only = "up to", minKg + maxKg = range, minKg only = "over".
+ * Every text exists per language (field_fr, field_en, field_tr); amounts in euros.
+ * The pricing section, the service-card hover texts and the urgent panel all read from here.
  */
 import data from '../data/prices.json';
+import { defaultLang, type Lang } from '../i18n';
 
 /** Accept numbers written as text by an editor; empty values become undefined. */
-const num = (v: unknown) => (v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? undefined : Number(v));
+export const num = (v: unknown) =>
+  v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? undefined : Number(v);
 
-export type BoardingRow = { size: string; minKg: number | undefined; maxKg: number | undefined; price: number };
+type Localised = Record<string, unknown>;
 
-export const boarding: BoardingRow[] = data.boarding
-  .map((r) => ({ size: String(r.size ?? ''), minKg: num(r.minKg), maxKg: num(r.maxKg), price: num(r.price) }))
-  .filter((r): r is BoardingRow => r.size !== '' && r.price !== undefined);
+/** Text of a field in the given language, falling back to French, then to ''. */
+export const tx = (obj: Localised | undefined, field: string, lang: Lang) =>
+  String(obj?.[`${field}_${lang}`] ?? obj?.[`${field}_${defaultLang}`] ?? '').trim();
 
-export const longStayDiscount = {
-  percent: num(data.longStayDiscount?.percent) ?? 5,
-  minDays: num(data.longStayDiscount?.minDays) ?? 10,
-};
+export type Unit = 'none' | 'day' | 'visit';
+export type PriceRow = Localised & { key?: string; size?: string; min?: number; max?: number; unit: Unit };
 
-export const dayCare = {
-  from: num(data.dayCare?.from) ?? 15,
-  subscriptionFrom: num(data.dayCare?.subscriptionFrom) ?? 12,
+const rowsOf = (group: { rows?: unknown[] } | undefined): PriceRow[] =>
+  (group?.rows ?? []).map((r) => {
+    const row = r as Localised;
+    const min = num(row.min ?? row.price);
+    const max = num(row.max);
+    const unit = (['none', 'day', 'visit'] as const).find((u) => u === row.unit) ?? 'none';
+    return { ...row, key: row.key as string | undefined, size: row.size as string | undefined, min, max, unit };
+  });
+
+export const training = { ...(data.training as Localised), rows: rowsOf(data.training) };
+export const boarding = { ...(data.boarding as Localised), rows: rowsOf(data.boarding) };
+export const visits = { ...(data.visits as Localised), rows: rowsOf(data.visits) };
+export const emergency = data.emergency as Localised;
+
+const amounts = (rows: PriceRow[]) => rows.map((r) => r.min).filter((n): n is number => n !== undefined);
+const lowest = (rows: PriceRow[]) => (amounts(rows).length ? Math.min(...amounts(rows)) : undefined);
+
+/** Values used in the service cards' hover texts. */
+export const highlights = {
+  boardingMin: lowest(boarding.rows),
+  boardingMax: amounts(boarding.rows).length ? Math.max(...amounts(boarding.rows)) : undefined,
+  trainingFrom: lowest(training.rows.filter((r) => r.unit === 'day')),
+  dogFrom: visits.rows.find((r) => r.key === 'dog')?.min,
+  catFrom: visits.rows.find((r) => r.key === 'cat')?.min,
 };

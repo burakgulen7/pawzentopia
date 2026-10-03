@@ -48,7 +48,6 @@ content:
           values:
             - { value: fr, label: Français }
             - { value: en, label: English }
-            - { value: ru, label: Русский }
             - { value: tr, label: Türkçe }
       - name: cover
         label: Photo de couverture
@@ -77,50 +76,288 @@ content:
 
   - name: prices
     label: Tarifs
-    description: Prix en euros, par chien et par jour. Ils s’affichent automatiquement dans les 4 langues.
+    description: Prix en euros. Chaque texte existe en français, anglais et turc. Les montants des cartes « services » se mettent à jour automatiquement.
     type: file
     path: src/data/prices.json
     format: json
     fields:
+      - name: training
+        label: 1. Éducation, sociabilisation & réhabilitation
+        type: object
+        fields:
+          - name: title_fr
+            label: Titre (français)
+            type: string
+          - name: title_en
+            label: Titre (anglais)
+            type: string
+          - name: title_tr
+            label: Titre (turc)
+            type: string
+          - name: rows
+            label: Lignes
+            type: object
+            list: true
+            fields:
+              - name: key
+                label: Code interne (ne pas modifier)
+                type: string
+                readonly: true
+              - name: label_fr
+                label: Libellé (français)
+                type: string
+              - name: label_en
+                label: Libellé (anglais)
+                type: string
+              - name: label_tr
+                label: Libellé (turc)
+                type: string
+              - name: min
+                label: Prix (€) — ou prix minimum d’une fourchette
+                type: number
+              - name: max
+                label: Prix maximum (€) — vide si prix unique
+                type: number
+              - name: unit
+                label: Unité
+                type: select
+                default: none
+                options:
+                  values:
+                    - { value: none, label: "(aucune)" }
+                    - { value: day, label: "/ jour" }
+                    - { value: visit, label: "/ passage" }
+          - name: note_fr
+            label: Remarque (français)
+            type: text
+          - name: note_en
+            label: Remarque (anglais)
+            type: text
+          - name: note_tr
+            label: Remarque (turc)
+            type: text
       - name: boarding
-        label: Garde 24 h (nuit comprise)
+        label: 2. Pension familiale & crèche
+        type: object
+        fields:
+          - name: title_fr
+            label: Titre (français)
+            type: string
+          - name: title_en
+            label: Titre (anglais)
+            type: string
+          - name: title_tr
+            label: Titre (turc)
+            type: string
+          - name: subtitle_fr
+            label: Sous-titre (français)
+            type: text
+          - name: subtitle_en
+            label: Sous-titre (anglais)
+            type: text
+          - name: subtitle_tr
+            label: Sous-titre (turc)
+            type: text
+          - name: per_fr
+            label: En-tête des prix (français)
+            type: string
+          - name: per_en
+            label: En-tête des prix (anglais)
+            type: string
+          - name: per_tr
+            label: En-tête des prix (turc)
+            type: string
+          - name: rows
+            label: Gabarits
+            type: object
+            list: true
+            fields:
+              - name: size
+                label: Gabarit (S, M, L, XL)
+                type: string
+              - name: label_fr
+                label: Libellé (français)
+                type: string
+              - name: label_en
+                label: Libellé (anglais)
+                type: string
+              - name: label_tr
+                label: Libellé (turc)
+                type: string
+              - name: price
+                label: Prix par jour ou par nuit (€)
+                type: number
+          - name: offer_fr
+            label: Offre (mise en avant) (français)
+            type: text
+          - name: offer_en
+            label: Offre (mise en avant) (anglais)
+            type: text
+          - name: offer_tr
+            label: Offre (mise en avant) (turc)
+            type: text
+          - name: note_fr
+            label: Remarque (français)
+            type: text
+          - name: note_en
+            label: Remarque (anglais)
+            type: text
+          - name: note_tr
+            label: Remarque (turc)
+            type: text
+      - name: visits
+        label: 3. Dog sitting & cat sitting à domicile
+        type: object
+        fields:
+          - name: title_fr
+            label: Titre (français)
+            type: string
+          - name: title_en
+            label: Titre (anglais)
+            type: string
+          - name: title_tr
+            label: Titre (turc)
+            type: string
+          - name: subtitle_fr
+            label: Sous-titre (français)
+            type: text
+          - name: subtitle_en
+            label: Sous-titre (anglais)
+            type: text
+          - name: subtitle_tr
+            label: Sous-titre (turc)
+            type: text
+          - name: rows
+            label: Lignes
+            type: object
+            list: true
+            fields:
+              - name: key
+                label: Code interne (ne pas modifier)
+                type: string
+                readonly: true
+              - name: label_fr
+                label: Libellé (français)
+                type: string
+              - name: label_en
+                label: Libellé (anglais)
+                type: string
+              - name: label_tr
+                label: Libellé (turc)
+                type: string
+              - name: min
+                label: Prix (€) — ou prix minimum d’une fourchette
+                type: number
+              - name: max
+                label: Prix maximum (€) — vide si prix unique
+                type: number
+              - name: unit
+                label: Unité
+                type: select
+                default: none
+                options:
+                  values:
+                    - { value: none, label: "(aucune)" }
+                    - { value: day, label: "/ jour" }
+                    - { value: visit, label: "/ passage" }
+              - name: detail_fr
+                label: Détail (inclut…) (français)
+                type: text
+              - name: detail_en
+                label: Détail (inclut…) (anglais)
+                type: text
+              - name: detail_tr
+                label: Détail (inclut…) (turc)
+                type: text
+          - name: footer_fr
+            label: Ligne finale (français)
+            type: text
+          - name: footer_en
+            label: Ligne finale (anglais)
+            type: text
+          - name: footer_tr
+            label: Ligne finale (turc)
+            type: text
+      - name: emergency
+        label: 4. Cas d’urgence
+        type: object
+        fields:
+          - name: title_fr
+            label: Titre (français)
+            type: string
+          - name: title_en
+            label: Titre (anglais)
+            type: string
+          - name: title_tr
+            label: Titre (turc)
+            type: string
+          - name: badge_fr
+            label: Badge (français)
+            type: string
+          - name: badge_en
+            label: Badge (anglais)
+            type: string
+          - name: badge_tr
+            label: Badge (turc)
+            type: string
+          - name: text_fr
+            label: Texte (français)
+            type: text
+          - name: text_en
+            label: Texte (anglais)
+            type: text
+          - name: text_tr
+            label: Texte (turc)
+            type: text
+          - name: price_fr
+            label: Ligne de prix (français)
+            type: string
+          - name: price_en
+            label: Ligne de prix (anglais)
+            type: string
+          - name: price_tr
+            label: Ligne de prix (turc)
+            type: string
+
+  - name: reviews
+    label: Avis Google
+    description: Note, nombre d’avis et avis affichés sur le site. Ne modifiez jamais le texte original d’un avis.
+    type: file
+    path: src/data/reviews.json
+    format: json
+    fields:
+      - name: rating
+        label: Note (ex. 5)
+        type: number
+      - name: count
+        label: Nombre d’avis
+        type: number
+      - name: profileUrl
+        label: Lien vers la fiche Google
+        type: string
+      - name: reviewUrl
+        label: Lien « Demander des avis » de Google (pour le bouton « Laisser un avis »)
+        type: string
+      - name: reviews
+        label: Avis affichés (3 conseillés)
         type: object
         list: true
         fields:
-          - name: size
-            label: Gabarit (S, M, L, XL)
+          - name: name
+            label: Prénom + initiale (ex. Daniela P.)
             type: string
-            required: true
-          - name: minKg
-            label: Poids minimum (kg) — vide = « jusqu’à »
+          - name: stars
+            label: Étoiles (1 à 5)
             type: number
-          - name: maxKg
-            label: Poids maximum (kg) — vide = « plus de »
-            type: number
-          - name: price
-            label: Prix par jour (€)
-            type: number
-            required: true
-      - name: longStayDiscount
-        label: Réduction longue garde
-        type: object
-        fields:
-          - name: percent
-            label: Réduction (%)
-            type: number
-          - name: minDays
-            label: À partir de plus de … jours
-            type: number
-      - name: dayCare
-        label: Crèche de jour
-        type: object
-        fields:
-          - name: from
-            label: À partir de (€ / jour)
-            type: number
-          - name: subscriptionFrom
-            label: Avec abonnement annuel, à partir de (€ / jour)
-            type: number
+          - name: text_fr
+            label: Texte original (français, sans rien changer)
+            type: text
+          - name: text_en
+            label: Traduction anglaise
+            type: text
+          - name: text_tr
+            label: Traduction turque
+            type: text
 
 settings:
   commit:

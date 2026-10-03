@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 import Br from './Br.astro';
 import { getPhoto, type Slot } from '../config/photos';
-import { boarding } from '../config/prices';
+import { highlights } from '../config/prices';
 import { fill, getLanguage, type Lang } from '../i18n';
 
 interface Props {
@@ -10,9 +10,15 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = getLanguage(lang).dict;
-const order = ['familyCare', 'training', 'urgentCare', 'transport'] as const satisfies readonly Slot[];
-// "From" price comes from src/config/prices.ts (smallest size).
-const fromPrice = fill(t.pricing.price, { n: Math.min(...boarding.map((b) => b.price)) });
+const order = ['familyCare', 'training', 'visits', 'urgentCare'] as const satisfies readonly Slot[];
+// Amounts in the hover texts come from src/data/prices.json.
+const values = {
+  min: highlights.boardingMin ?? '',
+  max: highlights.boardingMax ?? '',
+  from: highlights.trainingFrom ?? '',
+  dog: highlights.dogFrom ?? '',
+  cat: highlights.catFrom ?? '',
+};
 ---
 <section class="wrap services" id="services" aria-labelledby="services-title">
   <div class="head">
@@ -41,7 +47,7 @@ const fromPrice = fill(t.pricing.price, { n: Math.min(...boarding.map((b) => b.p
                 decoding="async"
               />
               <div class="overlay">
-                <p>{fill(item.detail, { price: fromPrice })}</p>
+                <p>{fill(item.detail, values)}</p>
                 <a href="#contact">{t.services.more}</a>
               </div>
             </div>

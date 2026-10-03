@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { whatsappUrl } from '../config/site';
+import { emergency, tx } from '../config/prices';
 import { getLanguage, type Lang } from '../i18n';
 interface Props {
   lang: Lang;
@@ -13,8 +14,8 @@ const t = d.urgent;
     <div class="copy">
       <p class="eyebrow">{t.eyebrow}</p>
       <h2 id="urgent-title">{t.heading}</h2>
-      <p class="body">{t.body}</p>
-      <p class="detail">{t.detail}</p>
+      {tx(emergency, 'badge', Astro.props.lang) && <p class="badge">{tx(emergency, 'badge', Astro.props.lang)}</p>}
+      <p class="body">{tx(emergency, 'text', Astro.props.lang)}</p>
     </div>
     <a class="pill pill--light" href={whatsappUrl(d.contact.whatsappMessage)} target="_blank" rel="noopener">
       <Icon name="whatsapp" size={20} />{t.cta}<span class="visually-hidden"> {d.ui.newTab}</span>
@@ -47,15 +48,22 @@ const t = d.urgent;
     line-height: 1.2;
     letter-spacing: -0.03em;
   }
-  .body,
-  .detail {
+  .badge {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(232, 243, 237, 0.14);
+    color: #e9f5ea;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .body {
     max-width: 760px;
     color: #d6e7dc;
     font-size: 15px;
     line-height: 1.6;
-  }
-  .detail {
-    margin-top: 8px;
   }
   .pill {
     flex-shrink: 0;
@@ -80,13 +88,10 @@ const t = d.urgent;
       font-size: 26px;
       line-height: 34px;
     }
-    .body,
-    .detail {
+    .body {
+      margin-bottom: 24px;
       font-size: 13px;
       line-height: 20px;
-    }
-    .detail {
-      margin-bottom: 24px;
     }
     .pill {
       min-width: 0;

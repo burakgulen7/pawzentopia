@@ -35,13 +35,23 @@ Cliquez sur l’article dans la liste pour le modifier. Pour le supprimer : menu
 
 ## 6. Tarifs
 
-**Tarifs** → modifiez les montants → **Save**. Les prix se mettent à jour dans les 4 langues.
+**Tarifs** : 4 groupes (Éducation · Pension & crèche · Dog/cat sitting · Cas d’urgence). Pour une fourchette
+(ex. 50–60 €), mettez le petit montant dans **Prix (€)** et le grand dans **Prix maximum** ; pour un prix unique,
+laissez **Prix maximum** vide. **Unité** ajoute « / jour » ou « / passage ». Chaque texte existe en français,
+anglais et turc. Ne touchez pas aux champs **Code interne**. Puis **Save** : les prix se mettent à jour dans les
+3 langues et dans les cartes « services ».
+
+## 6b. Avis Google
+
+**Avis Google** : mettez à jour la **note** et le **nombre d’avis**, collez le lien Google « Demander des avis »
+dans le champ prévu (bouton « Laisser un avis »), et pour chaque avis affiché copiez le **texte original sans
+rien changer**, avec ses traductions anglaise et turque. Puis **Save**.
 
 ## 7. Photos du site
 
 **Photos du site** : supprimez l’ancienne photo, téléversez la nouvelle, puis renommez-la
 (**…** → **Rename**) avec **exactement le même nom** que l’ancienne (par ex. `urgence.jpg`) :
-`hero`, `garde-familiale`, `education`, `urgence`, `transport`, `approche`, `social-1` … `social-4`.
+`hero`, `garde-familiale`, `education`, `visites`, `urgence`, `approche`, `social-1` … `social-4`.
 
 ## 8. Rien n’a changé ?
 

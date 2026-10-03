@@ -6,13 +6,11 @@
  */
 import fr, { type Dictionary } from './fr';
 import en from './en';
-import ru from './ru';
 import tr from './tr';
 
 export const languages = [
   { code: 'fr', label: 'Français', dict: fr },
   { code: 'en', label: 'English', dict: en },
-  { code: 'ru', label: 'Русский', dict: ru },
   { code: 'tr', label: 'Türkçe', dict: tr },
 ] as const satisfies readonly { code: string; label: string; dict: Dictionary }[];
 

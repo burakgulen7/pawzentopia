@@ -13,7 +13,7 @@ aynı adrese gelen **6 haneli kodu** girin.
 1. https://app.pagescms.org adresini açın.
 2. **Email** kutusuna `pawzentopia@gmail.com` yazın → gönderin.
 3. E-postanıza gelen **6 haneli kodu** girin.
-4. `pawzentopia` sitesini seçin. Soldaki menüde **Articles du blog**, **Tarifs** ve **Photos** bölümlerini görürsünüz.
+4. `pawzentopia` sitesini seçin. Soldaki menüde **Articles du blog**, **Tarifs**, **Avis Google** ve fotoğraf bölümlerini görürsünüz.
 
 Şifre yoktur; her girişte yeni bir kod gelir. Kodu kimseyle paylaşmayın.
 
@@ -23,7 +23,7 @@ aynı adrese gelen **6 haneli kodu** girin.
 2. Alanları doldurun:
    - **Titre** — başlık.
    - **Date** — yazının tarihi.
-   - **Langue** — yazıyı hangi dilde yazdıysanız o dil (Français, English, Русский, Türkçe).
+   - **Langue** — yazıyı hangi dilde yazdıysanız o dil (Français, English, Türkçe).
    - **Photo de couverture** — kapak fotoğrafı (aşağıya bakın).
    - **Description de la photo** — fotoğrafı anlatan kısa bir cümle.
    - **Résumé** — listede başlığın altında görünen 1–2 cümle.
@@ -53,9 +53,27 @@ Yayından kaldırmak için **Brouillon** kutusunu tekrar işaretleyip kaydedin.
 
 ## 6. Fiyatları değiştirme
 
-Soldan **Tarifs** → rakamı değiştirin → **Save**. Yeni fiyatlar 4 dilde birden, fiyat tablosunda ve
-hizmet kartlarında ("… €'dan başlayan") otomatik güncellenir. Ağırlık kutularından biri boşsa site
-"… kg'a kadar" veya "… kg üzeri" yazar.
+Soldan **Tarifs** bölümünü açın. Fiyatlar 4 gruba ayrılmıştır: **1. Éducation**, **2. Pension & crèche**,
+**3. Dog sitting & cat sitting**, **4. Cas d’urgence**.
+
+- Bir satırın fiyatını değiştirmek için **Prix (€)** kutusundaki rakamı değiştirin. Fiyat bir aralıksa
+  (ör. 50–60 €) küçük rakam **Prix (€)**, büyük rakam **Prix maximum** kutusuna yazılır; tek fiyatsa
+  **Prix maximum** boş kalır.
+- **Unité**: fiyatın yanında "/ jour" veya "/ passage" yazıp yazmayacağını seçer.
+- Her metnin üç kutusu vardır: **français**, **anglais**, **turc**. Bir metni değiştirirseniz üç dilde de güncelleyin.
+- **Code interne** kutularına dokunmayın.
+- **Save** → 2–3 dakika sonra fiyatlar 3 dilde birden, fiyat bölümünde ve hizmet kartlarının açıklamalarında
+  ("… €'dan başlayan") güncellenir.
+
+## 6b. Google yorumlarını güncelleme
+
+Soldan **Avis Google**:
+- **Note** ve **Nombre d’avis**: Google'daki puanınız ve yorum sayınız. Yeni yorum geldikçe sayıyı güncelleyin.
+- **Lien « Demander des avis »**: Google İşletme Profilinizdeki **"Yorum isteyin / Ask for reviews"** bağlantısını
+  buraya yapıştırın; sitedeki "Laisser un avis" düğmesi bu bağlantıyı açar.
+- **Avis affichés**: sitede görünen 3 yorum. Bir yorumu değiştirirken **Texte original** kutusuna Google'daki metni
+  **hiç değiştirmeden** yapıştırın; İngilizce ve Türkçe çevirileri ilgili kutulara yazın.
+- **Save**.
 
 ## 7. Sitedeki fotoğrafları değiştirme
 
@@ -64,7 +82,7 @@ Soldan **Photos du site** (medya) bölümünü açın. Fotoğrafların adı, sit
 | Dosya adı | Nerede |
 | --- | --- |
 | `hero` | En üstteki büyük fotoğraf |
-| `garde-familiale`, `education`, `urgence`, `transport` | 4 hizmet kartı |
+| `garde-familiale`, `education`, `visites`, `urgence` | 4 hizmet kartı (soldan sağa) |
 | `approche` | "Notre approche" bölümü |
 | `social-1` … `social-4` | Instagram & TikTok bölümü |
 

@@ -2,13 +2,15 @@
 
 Sitedeki bütün fotoğraflar tek bir klasörde durur: **`src/photos/`**
 
+> En kolay yol: Pages CMS'te **Photos du site** bölümü (bkz. `BLOG_REHBERI.md`, 7. adım). Aşağıdaki yöntem GitHub sitesi üzerindendir.
+
 | Dosya adı | Sitede nerede görünür |
 | --- | --- |
 | `hero` | En üstteki büyük fotoğraf (Marianna ve iki köpek) |
-| `garde-familiale` | Hizmet kartı 1 — Aile ortamında bakım |
+| `garde-familiale` | Hizmet kartı 1 — Pansiyon ve kreş |
 | `education` | Hizmet kartı 2 — Köpek eğitimi |
-| `urgence` | Hizmet kartı 3 — Acil bakım |
-| `transport` | Hizmet kartı 4 — 7/24 ulaşım |
+| `visites` | Hizmet kartı 3 — Evde ziyaret |
+| `urgence` | Hizmet kartı 4 — Acil durumlar |
 | `approche` | "Yaklaşımımız" bölümündeki yuvarlak köşeli fotoğraf |
 | `social-1` … `social-4` | "Bizi takip edin" (Instagram & TikTok) bölümündeki 4 fotoğraf, soldan sağa |
 

@@ -1,18 +1,15 @@
 ---
-import { boarding, dayCare, longStayDiscount, type BoardingRow } from '../config/prices';
+import { boarding, emergency, training, tx, visits, type PriceRow } from '../config/prices';
 import { fill, getLanguage, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
 }
-const t = getLanguage(Astro.props.lang).dict.pricing;
-const price = (n: number) => fill(t.price, { n });
-const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
-  if (min === undefined && max === undefined) return '';
-  if (min === undefined) return fill(t.weightUpTo, { max: max! });
-  if (max === undefined) return fill(t.weightOver, { min });
-  return fill(t.weightRange, { min, max });
-};
+const { lang } = Astro.props;
+const t = getLanguage(lang).dict.pricing;
+const amount = (r: PriceRow) =>
+  r.min === undefined ? '' : fill(t.price, { n: r.max !== undefined && r.max !== r.min ? `${r.min}–${r.max}` : r.min });
+const unit = (r: PriceRow) => (r.unit === 'day' ? t.perDay : r.unit === 'visit' ? t.perVisit : '');
 ---
 <section class="wrap pricing" id="tarifs" aria-labelledby="pricing-title">
   <div class="head">
@@ -22,41 +19,79 @@ const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
   </div>
 
   <div class="grid">
+    <!-- 1. Training -->
     <article class="price-card">
-      <h3>{t.boardingTitle}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">{t.columns.size}</th>
-            <th scope="col">{t.columns.weight}</th>
-            <th scope="col" class="num">{t.columns.price}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            boarding.map((row) => (
-              <tr>
-                <th scope="row"><span class="badge">{row.size}</span></th>
-                <td class="weight">{weight(row)}</td>
-                <td class="num amount">{price(row.price)}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <p class="discount">{fill(t.discount, { percent: longStayDiscount.percent, days: longStayDiscount.minDays })}</p>
+      <h3>{tx(training, 'title', lang)}</h3>
+      <ul class="rows">
+        {
+          training.rows.map((r) => (
+            <li>
+              <span class="label">{tx(r, 'label', lang)}</span>
+              <span class="price">
+                {amount(r)}
+                {unit(r) && <small>{unit(r)}</small>}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+      {tx(training, 'note', lang) && <p class="note">{tx(training, 'note', lang)}</p>}
     </article>
 
-    <article class="price-card daycare">
-      <h3>{t.dayCareTitle}</h3>
-      <p class="from">{fill(t.dayCareFrom, { price: price(dayCare.from) })}</p>
-      <p class="sub">{fill(t.dayCareSubscription, { price: price(dayCare.subscriptionFrom) })}</p>
+    <!-- 2. Boarding & day care -->
+    <article class="price-card">
+      <h3>{tx(boarding, 'title', lang)}</h3>
+      {tx(boarding, 'subtitle', lang) && <p class="subtitle">{tx(boarding, 'subtitle', lang)}</p>}
+      {tx(boarding, 'per', lang) && <p class="per">{tx(boarding, 'per', lang)}</p>}
+      <ul class="rows">
+        {
+          boarding.rows.map((r) => (
+            <li>
+              <span class="label">
+                {r.size && <span class="badge">{r.size}</span>}
+                {tx(r, 'label', lang)}
+              </span>
+              <span class="price">{amount(r)}</span>
+            </li>
+          ))
+        }
+      </ul>
+      {tx(boarding, 'offer', lang) && <p class="offer">{tx(boarding, 'offer', lang)}</p>}
+      {tx(boarding, 'note', lang) && <p class="note">{tx(boarding, 'note', lang)}</p>}
+    </article>
+
+    <!-- 3. Home visits -->
+    <article class="price-card">
+      <h3>{tx(visits, 'title', lang)}</h3>
+      {tx(visits, 'subtitle', lang) && <p class="subtitle">{tx(visits, 'subtitle', lang)}</p>}
+      <ul class="rows">
+        {
+          visits.rows.map((r) => (
+            <li class="has-detail">
+              <span class="label">{tx(r, 'label', lang)}</span>
+              <span class="price">
+                {amount(r)}
+                {unit(r) && <small>{unit(r)}</small>}
+              </span>
+              {tx(r, 'detail', lang) && <span class="detail">{tx(r, 'detail', lang)}</span>}
+            </li>
+          ))
+        }
+      </ul>
+      {tx(visits, 'footer', lang) && <p class="note">{tx(visits, 'footer', lang)}</p>}
+    </article>
+
+    <!-- 4. Emergencies (known clients only) -->
+    <article class="price-card emergency">
+      <h3>{tx(emergency, 'title', lang)}</h3>
+      {tx(emergency, 'badge', lang) && <p class="client-badge">{tx(emergency, 'badge', lang)}</p>}
+      <p class="text">{tx(emergency, 'text', lang)}</p>
+      {tx(emergency, 'price', lang) && <p class="quote">{tx(emergency, 'price', lang)}</p>}
     </article>
   </div>
 
-  <div class="extras">
-    <p>{t.extras}</p>
-    <a class="textlink" href="#contact">{t.cta} <span aria-hidden="true">↗</span></a>
+  <div class="cta">
+    <a class="pill" href="#contact">{t.cta}<span aria-hidden="true">↗</span></a>
   </div>
 </section>
 
@@ -77,23 +112,23 @@ const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
     line-height: 1.12;
   }
   .intro {
-    max-width: 720px;
+    max-width: 760px;
     color: var(--muted);
     font-size: 16px;
     line-height: 1.6;
   }
   .grid {
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
-    align-items: stretch;
+    align-items: start;
   }
   .price-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     background: #fff;
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
-    padding: 34px 36px 32px;
+    padding: 32px 34px 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .price-card:hover {
@@ -102,102 +137,131 @@ const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
     }
   }
   h3 {
-    font-size: 26px;
-    line-height: 1.2;
+    font-size: 24px;
+    line-height: 1.25;
     letter-spacing: -0.02em;
-    margin-bottom: 18px;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  .subtitle {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.55;
   }
-  thead th {
-    padding: 0 0 12px;
+  .per {
+    margin-top: 16px;
     color: var(--muted);
     font-size: 12px;
     font-weight: 700;
-    text-align: left;
-    border-bottom: 1px solid var(--line);
+    text-align: right;
   }
-  tbody th,
-  tbody td {
+  .rows {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rows li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 18px;
     padding: 13px 0;
     border-bottom: 1px solid #eef0e9;
-    text-align: left;
-    vertical-align: middle;
   }
-  tbody tr:last-child th,
-  tbody tr:last-child td {
+  .rows li:last-child {
     border-bottom: 0;
   }
-  .num {
-    text-align: right !important;
+  .rows li.has-detail {
+    flex-wrap: wrap;
+  }
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.45;
   }
   .badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    height: 32px;
-    padding: 0 10px;
+    flex-shrink: 0;
+    min-width: 40px;
+    height: 30px;
+    padding: 0 9px;
     border-radius: 999px;
     background: var(--mint-soft);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
   }
-  .weight {
-    color: var(--muted);
-    font-size: 15px;
-    padding-inline: 12px !important;
-  }
-  .amount {
+  .price {
+    flex-shrink: 0;
     font-family: var(--serif);
-    font-size: 26px;
+    font-size: 23px;
     letter-spacing: -0.02em;
     white-space: nowrap;
+    text-align: right;
   }
-  .discount {
-    margin-top: 16px;
-    color: #a9654a;
+  .price small {
+    margin-left: 4px;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .detail {
+    flex-basis: 100%;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .note {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .offer {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #f9efe9;
+    color: #9a5a40;
     font-size: 14px;
     font-weight: 700;
     line-height: 1.5;
   }
-  .daycare {
-    display: flex;
-    flex-direction: column;
+  .emergency {
+    background: var(--mint);
+    box-shadow: none;
   }
-  .from {
-    font-family: var(--serif);
-    font-size: 30px;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    margin-top: 8px;
+  .client-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
   }
-  .sub {
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.55;
-  }
-  .extras {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px 40px;
-    margin-top: 28px;
-    padding-left: 3px;
-  }
-  .extras p {
-    max-width: 820px;
-    color: var(--muted);
-    font-size: 14px;
+  .text {
+    margin-top: 14px;
+    color: #4d6259;
+    font-size: 15px;
     line-height: 1.6;
   }
-  .extras .textlink {
-    flex-shrink: 0;
+  .quote {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .cta {
+    margin-top: 30px;
   }
   @media (max-width: 1020px) {
     h2 {
@@ -205,10 +269,6 @@ const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
     }
     .grid {
       grid-template-columns: 1fr;
-    }
-    .extras {
-      flex-direction: column;
-      align-items: flex-start;
     }
   }
   @media (max-width: 800px) {
@@ -235,35 +295,27 @@ const weight = ({ minKg: min, maxKg: max }: BoardingRow) => {
       padding: 24px 18px 22px;
     }
     h3 {
-      font-size: 21px;
-      margin-bottom: 12px;
+      font-size: 20px;
     }
-    thead th {
-      font-size: 11px;
-    }
-    .badge {
-      min-width: 38px;
-      height: 30px;
-      font-size: 12px;
-    }
-    .weight {
-      font-size: 13px;
-      padding-inline: 8px !important;
-    }
-    .amount {
-      font-size: 22px;
-    }
-    .discount {
-      font-size: 13px;
-    }
-    .from {
-      font-size: 24px;
-    }
-    .sub {
+    .subtitle {
       font-size: 14px;
     }
-    .extras p {
+    .label {
+      gap: 10px;
+      font-size: 14px;
+    }
+    .badge {
+      min-width: 36px;
+      height: 28px;
+    }
+    .price {
+      font-size: 20px;
+    }
+    .offer {
       font-size: 13px;
+    }
+    .cta .pill {
+      width: 100%;
     }
   }
 </style>

@@ -17,7 +17,7 @@ export type Slot =
   | 'familyCare'
   | 'training'
   | 'urgentCare'
-  | 'transport'
+  | 'visits'
   | 'approach'
   | 'social1'
   | 'social2'
@@ -41,7 +41,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une gardienne souriante avec deux chiens dans un salon accueillant',
       en: 'A smiling carer with two dogs in a welcoming living room',
-      ru: 'Улыбающаяся няня с двумя собаками в уютной гостиной',
       tr: 'Sıcak bir oturma odasında iki köpekle gülümseyen bir bakıcı',
     },
   },
@@ -51,7 +50,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une femme souriante serre un chien contre elle à la maison',
       en: 'A smiling woman hugging a dog at home',
-      ru: 'Улыбающаяся женщина обнимает собаку дома',
       tr: 'Evde bir köpeğe sarılan gülümseyen bir kadın',
     },
   },
@@ -61,7 +59,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Séance d’éducation canine dans un jardin',
       en: 'A dog training session in a garden',
-      ru: 'Занятие по дрессировке собаки в саду',
       tr: 'Bahçede bir köpek eğitimi seansı',
     },
   },
@@ -71,18 +68,16 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une femme embrasse un chien sur la tête',
       en: 'A woman kissing a dog on the head',
-      ru: 'Женщина целует собаку в голову',
       tr: 'Bir köpeği başından öpen bir kadın',
     },
   },
-  transport: {
-    file: 'transport',
-    position: '50% 50%',
+  visits: {
+    file: 'visites',
+    position: '50% 25%',
     alt: {
-      fr: 'Un chien installé dans une caisse de transport en voiture',
-      en: 'A dog settled in a travel crate in a car',
-      ru: 'Собака в транспортной переноске в машине',
-      tr: 'Arabada taşıma kafesine yerleşmiş bir köpek',
+      fr: 'Une femme porte un petit chien blanc sur un chemin ensoleillé',
+      en: 'A woman carrying a small white dog on a sunny path',
+      tr: 'Güneşli bir yolda küçük beyaz bir köpeği kucağında taşıyan bir kadın',
     },
   },
   approach: {
@@ -91,7 +86,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une femme accroupie avec un chien sur un chemin en forêt',
       en: 'A woman crouching with a dog on a forest path',
-      ru: 'Женщина присела рядом с собакой на лесной тропинке',
       tr: 'Orman yolunda bir köpekle çömelmiş bir kadın',
     },
   },
@@ -101,7 +95,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une femme tient un chien dans ses bras',
       en: 'A woman holding a dog in her arms',
-      ru: 'Женщина держит собаку на руках',
       tr: 'Kucağında bir köpek tutan bir kadın',
     },
   },
@@ -111,7 +104,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une femme serre contre elle un petit chien blanc en pull rayé',
       en: 'A woman hugging a small white dog in a striped jumper',
-      ru: 'Женщина обнимает маленькую белую собаку в полосатом свитере',
       tr: 'Çizgili kazak giymiş küçük beyaz bir köpeğe sarılan bir kadın',
     },
   },
@@ -121,7 +113,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Une femme porte un petit chien blanc sur un chemin ensoleillé',
       en: 'A woman carrying a small white dog on a sunny path',
-      ru: 'Женщина несёт маленькую белую собаку по солнечной тропинке',
       tr: 'Güneşli bir yolda küçük beyaz bir köpeği kucağında taşıyan bir kadın',
     },
   },
@@ -131,7 +122,6 @@ export const photos: Record<Slot, PhotoConfig> = {
     alt: {
       fr: 'Selfie d’une femme souriante avec un chien dans la nature',
       en: 'A selfie of a smiling woman with a dog outdoors',
-      ru: 'Селфи улыбающейся женщины с собакой на природе',
       tr: 'Doğada bir köpekle gülümseyen bir kadının özçekimi',
     },
   },

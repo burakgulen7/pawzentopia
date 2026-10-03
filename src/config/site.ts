@@ -5,13 +5,13 @@
 export const contact = {
   ownerName: 'Marianna Mamoyan',
   /** Shown in French copy (national format). */
-  phoneLocal: '06 98 48 26 18',
+  phoneLocal: '06 98 38 26 18',
   /** Shown in the other languages (international format). */
-  phoneIntl: '+33 6 98 48 26 18',
+  phoneIntl: '+33 6 98 38 26 18',
   /** Used in tel: links. */
-  phoneE164: '+33698482618',
+  phoneE164: '+33698382618',
   /** WhatsApp number without "+" (wa.me format). */
-  whatsapp: '33698482618',
+  whatsapp: '33698382618',
   email: 'pawzentopia@gmail.com',
 };
 

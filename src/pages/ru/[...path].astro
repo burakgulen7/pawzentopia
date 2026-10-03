@@ -1,0 +1,32 @@
+---
+/**
+ * Russian was removed on 3 October 2026. The old /ru/ URLs were public for a few days, so each
+ * one gets a tiny noindex page that redirects to the French equivalent (GitHub Pages has no
+ * server-side redirects). These pages are not listed in the sitemap.
+ */
+import { url } from '../../i18n';
+
+export function getStaticPaths() {
+  return [
+    { params: { path: undefined }, props: { to: '' } },
+    { params: { path: 'blog' }, props: { to: 'blog/' } },
+    { params: { path: 'pravovaya-informatsiya' }, props: { to: 'mentions-legales/' } },
+  ];
+}
+
+const path = url(Astro.props.to);
+const target = new URL(path, Astro.site).href;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={target} />
+    <meta http-equiv="refresh" content={`0; url=${path}`} />
+    <title>PawZenTopia</title>
+  </head>
+  <body>
+    <p><a href={path}>PawZenTopia</a></p>
+  </body>
+</html>

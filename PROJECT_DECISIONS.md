@@ -5,7 +5,7 @@ These answers come from the business owner. They are binding and override the op
 ## Business facts (confirmed)
 
 - Owner / public name: **Marianna Mamoyan**
-- Phone: **+33 6 98 48 26 18** (`tel:+33698482618`), also WhatsApp (`https://wa.me/33698482618`, with a pre-filled message in the visitor's language)
+- Phone: **+33 6 98 38 26 18** (`tel:+33698382618`), also WhatsApp (`https://wa.me/33698382618`, with a pre-filled message in the visitor's language)
 - E-mail: **pawzentopia@gmail.com** (mailto link + destination of the contact form)
 - Instagram: **@pawzentopia** → `https://www.instagram.com/pawzentopia/`
 - TikTok: **@pawzentopia** → `https://www.tiktok.com/@pawzentopia`
@@ -93,3 +93,18 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
   `src/content/blog/images/`, prices moved to `src/data/prices.json`. Guides: `BLOG_REHBERI.md` (TR),
   `GUIDE_BLOG_FR.md` (FR). Interface strings added for the blog: "Lire l’article →" and "Tous les articles →"
   (and translations) — to be confirmed by the user.
+
+## Change request 03 (3 October 2026) — see `CHANGE_REQUEST_03.md`; it overrides anything above
+
+- **Phone corrected:** +33 6 98 38 26 18 (`tel:+33698382618`, `https://wa.me/33698382618`).
+- **Live domain:** https://pawzentopia.com (custom domain on GitHub Pages, set up by the user).
+- **Languages:** French (`/`), English (`/en/`), Turkish (`/tr/`). Russian removed; old `/ru/` URLs are noindex
+  pages redirecting to the French equivalents. "Languages spoken": French, English, Turkish.
+- **Service area:** Saint-Jean (31240) & Toulouse metro area (replaces "Toulouse, Saint-Jean and 20 km around").
+- **Prices:** new 4-group list (training; family boarding & day care with S ≤10 kg, M 10–20, L 20–30, XL >30 kg at
+  18/20/25/30 €; home dog/cat sitting; emergencies on quote for known clients only) in `src/data/prices.json`,
+  editable in Pages CMS ("Tarifs"). The old 24 h table, −5 % discount, day-care 15/12 € and extras line are gone.
+- **Services:** Pension familiale & crèche · Éducation canine · Visites à domicile · Cas d’urgence. Transport is not a
+  standalone service any more (only within emergencies for known clients). No "24/7" / "à toute heure" promises.
+- **Google reviews:** 5,0 ★ (13 avis) from `src/data/reviews.json` (Pages CMS "Avis Google"); hero badge + reviews
+  section; originals in French never altered; no AggregateRating/Review JSON-LD.

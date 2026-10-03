@@ -1,0 +1,277 @@
+---
+import Icon from './Icon.astro';
+import Stars from './Stars.astro';
+import { formatRating, reviews } from '../config/reviews';
+import { defaultLang, fill, getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = getLanguage(lang).dict;
+const t = d.reviews;
+const rating = formatRating(reviews.rating, lang);
+const translated = lang !== defaultLang;
+---
+<section class="reviews" id="avis" aria-labelledby="reviews-title">
+  <div class="wrap">
+    <div class="top">
+      <div class="head">
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h2 id="reviews-title">{t.heading}</h2>
+      </div>
+      <div class="score">
+        <p class="value">{rating}</p>
+        <div>
+          <Stars value={reviews.rating} size={22} />
+          <p class="out-of"><span class="visually-hidden">{fill(t.stars, { rating })} · </span>{fill(t.outOf, { count: reviews.count })}</p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="cards">
+      {
+        reviews.items.map((r, i) => (
+          <li class="card">
+            <span class="quote" aria-hidden="true">“</span>
+            <Stars value={r.stars} />
+            <span class="visually-hidden">{fill(t.stars, { rating: r.stars })}</span>
+            <div class="body" id={`review-${i}`} data-clamp>
+              {translated && r.text[lang] ? (
+                <>
+                  <p lang={lang}>{r.text[lang]}</p>
+                  <p class="tag">{t.translated}</p>
+                  <p class="original-label">{t.original}</p>
+                  <p class="original" lang="fr">{r.text.fr}</p>
+                </>
+              ) : (
+                <p lang="fr">{r.text.fr}</p>
+              )}
+            </div>
+            <button type="button" class="more" aria-expanded="false" aria-controls={`review-${i}`} hidden>
+              {t.readMore}
+            </button>
+            <p class="name">{r.name}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="buttons">
+      <a class="pill" href={reviews.profileUrl} target="_blank" rel="noopener">
+        <Icon name="google" size={20} />{t.seeAll}<span class="visually-hidden"> {d.ui.newTab}</span>
+      </a>
+      <a class="pill pill--outline" href={reviews.reviewUrl} target="_blank" rel="noopener">
+        {t.leave}<span class="visually-hidden"> {d.ui.newTab}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Clamp long reviews to ~6 lines; "Read more" (a real button, keyboard accessible) shows the full text.
+  document.querySelectorAll<HTMLElement>('[data-clamp]').forEach((body) => {
+    const button = body.parentElement?.querySelector<HTMLButtonElement>('.more');
+    if (!button) return;
+    body.classList.add('is-clamped');
+    if (body.scrollHeight <= body.clientHeight + 4) {
+      body.classList.remove('is-clamped');
+      return;
+    }
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      body.classList.remove('is-clamped');
+      button.setAttribute('aria-expanded', 'true');
+      button.hidden = true;
+      body.setAttribute('tabindex', '-1');
+      body.focus();
+    });
+  });
+</script>
+
+<style>
+  .reviews {
+    padding: 90px 0 96px;
+    background: var(--approach);
+  }
+  .top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px 48px;
+    flex-wrap: wrap;
+    margin-bottom: 42px;
+  }
+  .eyebrow {
+    padding-left: 3px;
+  }
+  h2 {
+    margin-top: 22px;
+    max-width: 760px;
+    font-size: 54px;
+    line-height: 1.12;
+  }
+  .score {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 26px;
+    border-radius: var(--radius-card);
+    background: #fff;
+    box-shadow: var(--shadow-card);
+  }
+  .value {
+    font-family: var(--serif);
+    font-size: 58px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .out-of {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 30px 28px 26px;
+    border-radius: var(--radius-card);
+    background: #fff;
+    box-shadow: var(--shadow-card);
+  }
+  .quote {
+    position: absolute;
+    top: 6px;
+    right: 22px;
+    color: var(--mint-soft);
+    font-family: var(--serif);
+    font-size: 92px;
+    line-height: 1;
+  }
+  .body {
+    position: relative;
+    color: #3d544b;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .body :global(p + p) {
+    margin-top: 8px;
+  }
+  /* ~6 lines of the main text */
+  .body:global(.is-clamped) {
+    max-height: calc(1.65em * 6);
+    overflow: hidden;
+  }
+  .body:global(.is-clamped)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2.4em;
+    background: linear-gradient(rgba(255, 255, 255, 0), #fff);
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--mint);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .original-label {
+    margin-top: 12px !important;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .original {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .more {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+  }
+  .more[hidden] {
+    display: none;
+  }
+  .name {
+    margin-top: auto;
+    padding-top: 6px;
+    font-family: var(--serif);
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+  @media (max-width: 1020px) {
+    h2 {
+      font-size: 46px;
+    }
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 800px) {
+    .reviews {
+      padding: 56px 0 64px;
+    }
+    .top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      margin-bottom: 26px;
+    }
+    h2 {
+      margin-top: 12px;
+      font-size: 34px;
+      line-height: 40px;
+    }
+    .score {
+      width: 100%;
+      padding: 16px 20px;
+    }
+    .value {
+      font-size: 48px;
+    }
+    .cards {
+      gap: 12px;
+    }
+    .card {
+      padding: 24px 20px 20px;
+    }
+    .buttons {
+      flex-direction: column;
+    }
+    .buttons .pill {
+      width: 100%;
+    }
+  }
+</style>

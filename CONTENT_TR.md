@@ -121,7 +121,7 @@ Pricing note: `Ek hizmetler; duruma, mesafeye ve köpeğinizin boyutuna göre te
 
 Area: `Toulouse, Saint-Jean ve 20 km çevresi`
 
-Buttons: `WhatsApp’tan yazın` · `Arayın: +33 6 98 48 26 18` · e-mail link `pawzentopia@gmail.com`
+Buttons: `WhatsApp’tan yazın` · `Arayın: +33 6 98 38 26 18` · e-mail link `pawzentopia@gmail.com`
 
 WhatsApp pre-filled message: `Merhaba, PawZenTopia web sitesi üzerinden ulaşıyorum.`
 
@@ -137,13 +137,13 @@ Social: `Bizi takip edin` — Instagram @pawzentopia · TikTok @pawzentopia
 
 Location: `Toulouse, Fransa`
 
-Languages: `Français · English · Русский · Türkçe`
+Languages: `Français · English · Türkçe`
 
 Links: phone, e-mail, Instagram, TikTok, `Yasal bilgiler`.
 
 ## Language switcher
 
-Accessible labels: `Français`, `English`, `Русский`, `Türkçe`.
+Accessible labels: `Français`, `English`, `Türkçe`.
 
 
 ## Eklemeler — değişiklik talebi 02
@@ -176,3 +176,61 @@ Note: `İlk kez mi ulaşıyorsunuz? Hızlı yanıt için WhatsApp’tan yazın. 
 ### Blog
 
 Nav / page title: `Blog` · Home block: `Son yazılar` · Empty state: `İlk yazılarımız çok yakında.` · Card link: `Yazıyı okuyun →` · All posts link: `Tüm yazılar →`
+
+
+## Güncelleme — değişiklik talebi 03 (yukarıdaki ilgili bölümlerin yerini alır)
+Languages of the site: French, English, Turkish (Russian removed).
+Service area: `Saint-Jean (31240) ve Toulouse metropol bölgesi`
+Languages spoken: `Fransızca, İngilizce ve Türkçe konuşuyoruz.`
+Nav (urgent panel): `Acil durumlar`
+
+### Service cards
+- **Pansiyon ve kreş** — `Bir yuvanın konforu ve alışkanlıklarına uygun bir ilgi.` — hover: `Pansiyon (gece) ya da kreş (gündüz), boyuta göre {min}–{max} €.` (amounts from `src/data/prices.json`)
+- **Köpek eğitimi** — `Dinlemeye ve güvene dayanan sabırlı bir rehberlik.` — hover: `Davranış değerlendirmesi, günlük seanslar ve 5 ya da 10 günlük paketler. Günlüğü {from} €’dan başlayan fiyatlarla.` (amounts from `src/data/prices.json`)
+- **Evde ziyaret** — `Köpek ya da kedi: evinizde 40–60 dakikalık ziyaretler.` — hover: `Ziyaret başına köpek bakımı {dog} €’dan, kedi bakımı {cat} €’dan başlayan fiyatlarla.` (amounts from `src/data/prices.json`)
+- **Acil durumlar** — `Yalnızca PawZenTopia’nın mevcut müşterileri için.` — hover: `Beklenmedik durum ya da hastaneye yatış: hızlı refakat, bakım veya ulaşım. Teklif üzerine.` (amounts from `src/data/prices.json`)
+
+### Pricing
+
+Eyebrow `Fiyatlar` · Heading `Hizmet hizmet net fiyatlar.` · Intro `Saint-Jean (31240) ve Toulouse metropol bölgesi — aile ortamında bakım, eğitim, pansiyon ve evde ziyaret.` · CTA `Teklif isteyin`
+
+**Eğitim, sosyalleşme ve rehabilitasyon**
+
+- `İlk davranış değerlendirmesi (zorunlu) · 1–1,5 saat` — 50–60 € 
+- `Günlük seans — takip ve klasik sosyalleşme` — 35 € / gün
+- `Günlük seans — karmaşık ihtiyaçlar / yoğun rehabilitasyon` — 45–50 € / gün
+- `5 günlük paket` — 160 € 
+- `10 günlük paket` — 300 € 
+- note: `Fiyatlar köpeğin boyutuna veya kilosuna göre değil, yalnızca davranışın karmaşıklığına göre belirlenir.`
+
+**Aile ortamında pansiyon (gecelik) ve kreş (eğitimsiz gündüz bakımı)**
+
+- subtitle: `Evde sıcak bir konaklama ya da eğitim içermeyen gündüz bakımı.`
+- per: `gün ya da gece başına`
+- S · `Küçük köpek · 10 kg’a kadar` — 18 € 
+- M · `Orta boy köpek · 10–20 kg` — 20 € 
+- L · `Büyük köpek · 20–30 kg` — 25 € 
+- XL · `Çok büyük köpek · 30 kg üzeri` — 30 € 
+- offer: `Uzun süre fırsatı: 10. ardışık günden itibaren gün/gece başına 3 € indirim.`
+- note: `Kediler pansiyona kabul edilmez, yalnızca evde ziyaret yapılır.`
+
+**Evde köpek ve kedi bakımı**
+
+- subtitle: `Dostlarınız için evinizde 40–60 dakikalık bireysel ziyaretler.`
+- `Köpek bakımı` — 15–20 € / ziyaret
+  - `Dahil: 40–60 dk yürüyüş, bakım, refakat, taze su. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir.`
+- `Kedi bakımı` — 12–15 € / ziyaret
+  - `Dahil: kum kabı, mama, sevgi/oyun, 40–60 dk refakat. Fiyat kedinin özel ihtiyaçlarına ve mesafeye göre belirlenir.`
+- footer: `Abonelikler ve düzenli paketler: talep üzerine / teklifle.`
+
+**Acil durumlar**
+
+- badge: `Yalnızca PawZenTopia’nın mevcut müşterileri için`
+- text: `Beklenmedik bir durumda ya da sahibinin hastaneye yatması halinde hızlı refakat, bakım veya ulaşım hizmeti planlanabilir.`
+- price: `Acil durum fiyatı: teklif üzerine`
+
+### Google reviews
+
+Eyebrow `Google yorumları` · Heading `Dostlarını bize emanet ediyorlar.` · Score `5 üzerinden · {count} yorum` · Hero badge `{rating} · {count} Google yorumu` · `Devamını oku` · `Tüm yorumları Google’da görün` · `Yorum yazın` · `Orijinal yorum (Fransızca)` · `Fransızcadan çevrilmiştir`
+
+Review texts: `src/data/reviews.json` (originals in French, never altered).
