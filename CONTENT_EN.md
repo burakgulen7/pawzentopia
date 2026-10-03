@@ -218,7 +218,7 @@ Eyebrow `Prices` · Heading `Clear prices, service by service.` · Intro `Saint-
 
 - subtitle: `Individual 40–60 minute home visits for your companions.`
 - `Dog sitting` — 15–20 € / visit
-  - `Includes: 40–60 min walk, care, company, fresh water. Price adjusted to the dog’s size and the distance.`
+  - `Includes: 40–60 min walk, care, company. Price adjusted to the dog’s size and the distance.`
 - `Cat sitting` — 12–15 € / visit
   - `Includes: litter, food, cuddles/play, 40–60 min of company. Price adjusted to the cat’s specific needs and the distance.`
 - footer: `Subscriptions & regular packages: on request / quote.`
@@ -234,3 +234,7 @@ Eyebrow `Prices` · Heading `Clear prices, service by service.` · Intro `Saint-
 Eyebrow `Google reviews` · Heading `They trust us with their companions.` · Score `out of 5 · {count} reviews` · Hero badge `{rating} · {count} Google reviews` · `Read more` · `See all reviews on Google` · `Leave a review` · `Original review in French` · `Translated from French`
 
 Review texts: `src/data/reviews.json` (originals in French, never altered).
+
+### Service pages (local SEO)
+
+Copy for the 4 service pages lives in `src/i18n/services/en.ts` (FR text approved by the user; EN/TR are translations).

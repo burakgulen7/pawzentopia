@@ -1,16 +1,12 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { contact, formspreeId, host, legal } from '../../config/site';
-import { defaultLang, fill, getLanguage, languages, pagePath, url, type Lang } from '../../i18n';
+import Base from '../layouts/Base.astro';
+import { contact, formspreeId, host, legal } from '../config/site';
+import { fill, getLanguage, pagePath, url, type Lang } from '../i18n';
 
-export function getStaticPaths() {
-  return languages.map((l) => ({
-    params: { lang: l.code === defaultLang ? undefined : l.code, legal: l.dict.legalPage.slug },
-    props: { lang: l.code },
-  }));
+interface Props {
+  lang: Lang;
 }
-
-const { lang } = Astro.props as { lang: Lang };
+const { lang } = Astro.props;
 const t = getLanguage(lang).dict;
 const p = t.legalPage;
 const phone = lang === 'fr' ? contact.phoneLocal : contact.phoneIntl;

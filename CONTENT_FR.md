@@ -230,7 +230,7 @@ Eyebrow `Tarifs` · Heading `Une grille claire, service par service.` · Intro `
 
 - subtitle: `Visites individuelles à domicile de 40 à 60 minutes pour vos compagnons.`
 - `Dog sitting (chien)` — 15–20 € / passage
-  - `Inclut : promenade de 40–60 min, soins, présence, fraîcheur. Tarif ajusté selon la taille du chien et la distance kilométrique.`
+  - `Inclut : promenade de 40–60 min, soins, présence. Tarif ajusté selon la taille du chien et la distance kilométrique.`
 - `Cat sitting (chat)` — 12–15 € / passage
   - `Inclut : litière, nourriture, câlins/jeux, présence de 40–60 min. Tarif ajusté selon les besoins spécifiques du chat et la distance kilométrique.`
 - footer: `Abonnements & forfaits réguliers : sur demande / devis.`
@@ -246,3 +246,7 @@ Eyebrow `Tarifs` · Heading `Une grille claire, service par service.` · Intro `
 Eyebrow `Avis Google` · Heading `Ils nous confient leurs compagnons.` · Score `sur 5 · {count} avis` · Hero badge `{rating} · {count} avis Google` · `Lire la suite` · `Voir tous les avis sur Google` · `Laisser un avis` · `Avis original en français` · `Traduit du français`
 
 Review texts: `src/data/reviews.json` (originals in French, never altered).
+
+### Service pages (local SEO)
+
+Copy for the 4 service pages lives in `src/i18n/services/fr.ts` (FR text approved by the user; EN/TR are translations).

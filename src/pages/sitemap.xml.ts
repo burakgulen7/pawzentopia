@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro';
-import { defaultLang, languages, pagePath, url, type PageKey } from '../i18n';
+import { defaultLang, languages, pagePath, serviceKeys, url, type PageKey } from '../i18n';
 import { getPosts, postPath } from '../lib/blog';
 
 export const GET: APIRoute = async ({ site }) => {
   const abs = (p: string) => new URL(url(p), site).href;
-  const pages: PageKey[] = ['home', 'blog', 'legal'];
+  const pages: PageKey[] = ['home', ...serviceKeys.map((k) => `service:${k}` as const), 'blog', 'legal'];
   const entries = pages.flatMap((page) =>
     languages.map((l) => {
       const alternates = languages

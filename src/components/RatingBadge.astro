@@ -1,0 +1,45 @@
+---
+/** Small Google rating badge (stars + "5,0 · 13 avis Google"), linking to the Google profile. */
+import Stars from './Stars.astro';
+import { formatRating, reviews } from '../config/reviews';
+import { fill, getLanguage, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = getLanguage(lang).dict;
+const rating = formatRating(reviews.rating, lang);
+---
+{
+  reviews.count > 0 && (
+    <a class="rating" href={reviews.profileUrl} target="_blank" rel="noopener">
+      <Stars value={reviews.rating} size={17} />
+      <span>{fill(t.reviews.badge, { rating, count: reviews.count })}</span>
+      <span class="visually-hidden"> {t.ui.newTab}</span>
+    </a>
+  )
+}
+
+<style>
+  .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 14px 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    font-weight: 700;
+    transition: background-color 0.18s ease;
+  }
+  .rating:hover {
+    background: #fff;
+  }
+  @media (max-width: 800px) {
+    .rating {
+      font-size: 12px;
+    }
+  }
+</style>

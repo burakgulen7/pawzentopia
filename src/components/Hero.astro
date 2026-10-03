@@ -1,9 +1,8 @@
 ---
 import { Picture } from 'astro:assets';
-import Stars from './Stars.astro';
+import RatingBadge from './RatingBadge.astro';
 import { getPhoto } from '../config/photos';
-import { formatRating, reviews } from '../config/reviews';
-import { fill, getLanguage, type Lang } from '../i18n';
+import { getLanguage, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -11,7 +10,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = getLanguage(lang).dict;
 const photo = getPhoto('hero');
-const rating = formatRating(reviews.rating, lang);
 ---
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-media" style={`--pos:${photo.position};--pos-m:${photo.positionMobile ?? photo.position}`}>
@@ -39,15 +37,7 @@ const rating = formatRating(reviews.rating, lang);
         <a class="pill" href="#services">{t.hero.primary}<span aria-hidden="true">↗</span></a>
         <a class="textlink" href="#approche">{t.hero.secondary}</a>
       </div>
-      {
-        reviews.count > 0 && (
-          <a class="rating" href={reviews.profileUrl} target="_blank" rel="noopener">
-            <Stars value={reviews.rating} size={17} />
-            <span>{fill(t.reviews.badge, { rating, count: reviews.count })}</span>
-            <span class="visually-hidden"> {t.ui.newTab}</span>
-          </a>
-        )
-      }
+      <div class="rating-wrap"><RatingBadge lang={lang} /></div>
     </div>
   </div>
 </section>
@@ -129,21 +119,8 @@ const rating = formatRating(reviews.rating, lang);
   .hero-actions .pill {
     padding-inline: 20px 24px;
   }
-  .rating {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 44px;
+  .rating-wrap {
     margin: 18px 0 0 4px;
-    padding: 6px 14px 6px 10px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    font-size: 13px;
-    font-weight: 700;
-    transition: background-color 0.18s ease;
-  }
-  .rating:hover {
-    background: #fff;
   }
 
   /* Wider screens: keep copy aligned with the content grid. */
@@ -205,9 +182,8 @@ const rating = formatRating(reviews.rating, lang);
     .hero-actions {
       margin-left: 0;
     }
-    .rating {
+    .rating-wrap {
       margin: 14px 0 0;
-      font-size: 12px;
     }
     .hero-media {
       order: 2;

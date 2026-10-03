@@ -1,18 +1,22 @@
 /**
  * Languages of the site. To add a language:
- *   1. copy fr.ts to e.g. es.ts and translate the texts,
+ *   1. copy fr.ts to e.g. es.ts and services/fr.ts to services/es.ts, translate the texts,
  *   2. add ONE entry to `languages` below.
  * The first entry is the default language, served at the site root ("/").
  */
 import fr, { type Dictionary } from './fr';
 import en from './en';
 import tr from './tr';
+import servicesFr from './services/fr';
+import servicesEn from './services/en';
+import servicesTr from './services/tr';
+import type { ServiceDictionary, ServiceKey } from './services/types';
 
 export const languages = [
-  { code: 'fr', label: 'Français', dict: fr },
-  { code: 'en', label: 'English', dict: en },
-  { code: 'tr', label: 'Türkçe', dict: tr },
-] as const satisfies readonly { code: string; label: string; dict: Dictionary }[];
+  { code: 'fr', label: 'Français', dict: fr, services: servicesFr },
+  { code: 'en', label: 'English', dict: en, services: servicesEn },
+  { code: 'tr', label: 'Türkçe', dict: tr, services: servicesTr },
+] as const satisfies readonly { code: string; label: string; dict: Dictionary; services: ServiceDictionary }[];
 
 export type Lang = (typeof languages)[number]['code'];
 export const defaultLang: Lang = languages[0].code;
@@ -36,10 +40,16 @@ export function url(path = '') {
 }
 
 /** Pages that exist in every language, used for the language switcher and hreflang. */
-export type PageKey = 'home' | 'legal' | 'blog';
+export const serviceKeys: ServiceKey[] = ['pension', 'creche', 'petSitting', 'education'];
+export type { ServiceKey };
+export type PageKey = 'home' | 'legal' | 'blog' | `service:${ServiceKey}`;
 export function pagePath(page: PageKey, code: Lang) {
   const dict = getLanguage(code).dict;
   if (page === 'legal') return `${langPrefix(code)}${dict.legalPage.slug}/`;
   if (page === 'blog') return `${langPrefix(code)}blog/`;
+  if (page.startsWith('service:')) {
+    const key = page.slice('service:'.length) as ServiceKey;
+    return `${langPrefix(code)}${getLanguage(code).services.pages[key].slug}/`;
+  }
   return langPrefix(code);
 }

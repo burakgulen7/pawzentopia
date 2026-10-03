@@ -1,0 +1,363 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from './Icon.astro';
+import PriceGroup from './PriceGroup.astro';
+import RatingBadge from './RatingBadge.astro';
+import { getPhoto } from '../config/photos';
+import { highlights, training, visits } from '../config/prices';
+import { whatsappUrl } from '../config/site';
+import { plainText, richText } from '../lib/services';
+import { getLanguage, pagePath, serviceKeys, url, type Lang, type ServiceKey } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  service: ServiceKey;
+}
+const { lang, service } = Astro.props;
+const l = getLanguage(lang);
+const t = l.dict;
+const ui = l.services.ui;
+const page = l.services.pages[service];
+const photo = getPhoto(page.photo);
+const abs = (p: string) => new URL(url(p), Astro.site).href;
+const homeUrl = abs(pagePath('home', lang));
+const pageUrl = abs(pagePath(`service:${service}`, lang));
+
+// Price range shown in the Service JSON-LD, from src/data/prices.json.
+const range: Record<ServiceKey, [number | undefined, number | undefined]> = {
+  pension: [highlights.boardingMin, highlights.boardingMax],
+  creche: [highlights.boardingMin, highlights.boardingMax],
+  petSitting: [Math.min(...visits.rows.map((r) => r.min ?? Infinity)), Math.max(...visits.rows.map((r) => r.max ?? r.min ?? 0))],
+  education: [Math.min(...training.rows.map((r) => r.min ?? Infinity)), Math.max(...training.rows.map((r) => r.max ?? r.min ?? 0))],
+};
+const [min, max] = range[service];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: page.name,
+    serviceType: page.serviceType,
+    description: plainText(page.description, lang),
+    url: pageUrl,
+    provider: { '@id': `${abs('')}#business` },
+    areaServed: ['Saint-Jean', 'Toulouse', 'Toulouse Métropole'],
+    ...(min !== undefined && Number.isFinite(min)
+      ? { offers: { '@type': 'Offer', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', minPrice: min, maxPrice: max, priceCurrency: 'EUR' } } }
+      : {}),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: ui.breadcrumbHome, item: homeUrl },
+      { '@type': 'ListItem', position: 2, name: page.name, item: pageUrl },
+    ],
+  },
+];
+---
+<Base lang={lang} page={`service:${service}`} fullTitle={page.title} description={plainText(page.description, lang)} image={photo.src} jsonLd={jsonLd}>
+  <div class="service">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={url(pagePath('home', lang))}>{ui.breadcrumbHome}</a></li>
+          <li aria-current="page">{page.name}</li>
+        </ol>
+      </nav>
+
+      <header class="top">
+        <div class="lead">
+          <h1>{page.h1}</h1>
+          {page.intro.map((p) => <p class="intro" set:html={richText(p, lang)} />)}
+          <div class="actions">
+            <a class="pill" href={whatsappUrl(t.contact.whatsappMessage)} target="_blank" rel="noopener">
+              <Icon name="whatsapp" size={20} />{t.contact.whatsapp}<span class="visually-hidden"> {t.ui.newTab}</span>
+            </a>
+            <RatingBadge lang={lang} />
+          </div>
+        </div>
+        <div class="photo">
+          <Picture
+            src={photo.src}
+            alt={photo.alt[lang]}
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            quality={78}
+            widths={[360, 540, 720, 960]}
+            sizes="(max-width: 800px) 92vw, 520px"
+            style={`object-position:${photo.position}`}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </header>
+
+      <div class="content">
+        {
+          page.sections.map((s) => (
+            <section>
+              <h2>{s.h2}</h2>
+              {s.p?.map((p) => <p set:html={richText(p, lang)} />)}
+              {s.price && <div class="price"><PriceGroup lang={lang} group={s.price} /></div>}
+            </section>
+          ))
+        }
+
+        <section class="faq">
+          <h2>{ui.faq}</h2>
+          {
+            page.faq.map((f) => (
+              <details>
+                <summary>{f.q}</summary>
+                <p set:html={richText(f.a, lang)} />
+              </details>
+            ))
+          }
+        </section>
+
+        <aside class="cta">
+          <h2>{ui.ctaTitle}</h2>
+          <p>{ui.ctaText}</p>
+          <p class="note">{t.contact.note}</p>
+          <a class="pill" href={whatsappUrl(t.contact.whatsappMessage)} target="_blank" rel="noopener">
+            <Icon name="whatsapp" size={20} />{t.contact.whatsapp}<span class="visually-hidden"> {t.ui.newTab}</span>
+          </a>
+        </aside>
+      </div>
+
+      <nav class="others" aria-labelledby="others-title">
+        <h2 id="others-title">{ui.others}</h2>
+        <ul>
+          {
+            serviceKeys
+              .filter((k) => k !== service)
+              .map((k) => (
+                <li>
+                  <a href={url(pagePath(`service:${k}`, lang))}>
+                    <span>{l.services.pages[k].name}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .service {
+    padding: 28px 0 96px;
+  }
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .crumbs li + li::before {
+    content: '›';
+    margin-right: 10px;
+  }
+  .crumbs a {
+    display: inline-block;
+    padding: 10px 0;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 56px;
+    align-items: center;
+    margin-top: 18px;
+  }
+  h1 {
+    font-size: clamp(36px, 4.4vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+  }
+  .intro {
+    max-width: 620px;
+    color: #4d6259;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .intro + .intro {
+    margin-top: 12px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    margin-top: 28px;
+  }
+  .photo {
+    overflow: hidden;
+    border-radius: 60px 110px 110px 60px / 60px 110px 110px 60px;
+  }
+  .photo :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 4.4;
+    height: auto;
+    object-fit: cover;
+  }
+  .content {
+    max-width: 760px;
+    margin-top: 72px;
+  }
+  .content section + section {
+    margin-top: 44px;
+  }
+  .content h2 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .content p {
+    color: #4d6259;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .content p + p {
+    margin-top: 12px;
+  }
+  .content p :global(a) {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .price {
+    margin-top: 6px;
+  }
+  .faq details {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq summary {
+    position: relative;
+    padding: 18px 40px 18px 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.45;
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary::after {
+    content: '+';
+    position: absolute;
+    right: 6px;
+    top: 14px;
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    transition: transform 0.18s ease;
+  }
+  .faq details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq details p {
+    padding-bottom: 18px;
+    font-size: 16px;
+  }
+  .cta {
+    margin-top: 56px;
+    padding: 34px 32px;
+    border-radius: var(--radius-card);
+    background: var(--mint);
+  }
+  .cta h2 {
+    margin-bottom: 10px;
+  }
+  .cta .note {
+    margin: 10px 0 20px;
+    font-size: 14px;
+  }
+  .others {
+    margin-top: 72px;
+  }
+  .others h2 {
+    font-size: 30px;
+    margin-bottom: 18px;
+  }
+  .others ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .others a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 72px;
+    padding: 18px 22px;
+    border-radius: var(--radius-card);
+    background: #fff;
+    box-shadow: var(--shadow-card);
+    font-family: var(--serif);
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .others a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 40px rgba(41, 77, 61, 0.1);
+    }
+  }
+  @media (max-width: 900px) {
+    .top {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .photo {
+      order: -1;
+      border-radius: 70px;
+    }
+    .photo :global(img) {
+      aspect-ratio: 4 / 3;
+    }
+    .others ul {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 800px) {
+    .service {
+      padding: 12px 0 70px;
+    }
+    .intro,
+    .content p {
+      font-size: 16px;
+    }
+    .actions .pill {
+      width: 100%;
+    }
+    .content {
+      margin-top: 48px;
+    }
+    .content h2 {
+      font-size: 27px;
+    }
+    .cta {
+      padding: 26px 20px;
+    }
+    .cta .pill {
+      width: 100%;
+    }
+  }
+</style>

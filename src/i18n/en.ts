@@ -3,9 +3,9 @@ import type { Dictionary } from './fr';
 
 const en: Dictionary = {
   meta: {
-    title: 'PawZenTopia — Dog care & companionship · Toulouse',
+    title: 'PawZenTopia — Dog boarding & pet sitting in Saint-Jean (Toulouse)',
     description:
-      'A small, human-scale welcome, playtime and attentive care for your companion. Saint-Jean (31240) & Toulouse metro area.',
+      'Family dog boarding, dog day care, pet sitting and cat sitting at home, and dog training in Saint-Jean (31240) and the Toulouse metropolitan area.',
     ogLocale: 'en_GB',
   },
   ui: {
@@ -25,7 +25,7 @@ const en: Dictionary = {
     contact: 'Contact us',
   },
   hero: {
-    eyebrow: 'Dog care & companionship · Toulouse',
+    eyebrow: 'Dog boarding, pet sitting & training · Saint-Jean / Toulouse',
     headline: ['As happy as', 'at home.', 'Surrounded', 'by care.'],
     body: 'A small, human-scale welcome, playtime and attentive care for your companion.',
     primary: 'Discover our services',

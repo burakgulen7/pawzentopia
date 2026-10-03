@@ -218,7 +218,7 @@ Eyebrow `Fiyatlar` · Heading `Hizmet hizmet net fiyatlar.` · Intro `Saint-Jean
 
 - subtitle: `Dostlarınız için evinizde 40–60 dakikalık bireysel ziyaretler.`
 - `Köpek bakımı` — 15–20 € / ziyaret
-  - `Dahil: 40–60 dk yürüyüş, bakım, refakat, taze su. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir.`
+  - `Dahil: 40–60 dk yürüyüş, bakım, refakat. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir.`
 - `Kedi bakımı` — 12–15 € / ziyaret
   - `Dahil: kum kabı, mama, sevgi/oyun, 40–60 dk refakat. Fiyat kedinin özel ihtiyaçlarına ve mesafeye göre belirlenir.`
 - footer: `Abonelikler ve düzenli paketler: talep üzerine / teklifle.`
@@ -234,3 +234,7 @@ Eyebrow `Fiyatlar` · Heading `Hizmet hizmet net fiyatlar.` · Intro `Saint-Jean
 Eyebrow `Google yorumları` · Heading `Dostlarını bize emanet ediyorlar.` · Score `5 üzerinden · {count} yorum` · Hero badge `{rating} · {count} Google yorumu` · `Devamını oku` · `Tüm yorumları Google’da görün` · `Yorum yazın` · `Orijinal yorum (Fransızca)` · `Fransızcadan çevrilmiştir`
 
 Review texts: `src/data/reviews.json` (originals in French, never altered).
+
+### Service pages (local SEO)
+
+Copy for the 4 service pages lives in `src/i18n/services/tr.ts` (FR text approved by the user; EN/TR are translations).

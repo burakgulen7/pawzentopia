@@ -3,9 +3,9 @@ import type { Dictionary } from './fr';
 
 const tr: Dictionary = {
   meta: {
-    title: 'PawZenTopia — Köpek bakımı ve refakat · Toulouse',
+    title: 'PawZenTopia — Köpek pansiyonu ve evde bakım · Saint-Jean (Toulouse)',
     description:
-      'Samimi ve küçük ölçekli bir ortam, oyun dolu anlar ve dostunuz için özenli bir ilgi. Saint-Jean (31240) ve Toulouse metropol bölgesi.',
+      'Saint-Jean (31240) ve Toulouse metropol bölgesinde aile ortamında köpek pansiyonu, kreş, evde evcil hayvan ve kedi bakımı, köpek eğitimi.',
     ogLocale: 'tr_TR',
   },
   ui: {
@@ -25,7 +25,7 @@ const tr: Dictionary = {
     contact: 'Bize ulaşın',
   },
   hero: {
-    eyebrow: 'Köpek bakımı ve refakat · Toulouse',
+    eyebrow: 'Köpek pansiyonu, evde bakım ve eğitim · Saint-Jean / Toulouse',
     headline: ['Evindeki', 'kadar mutlu.', 'İlgiyle', 'sarmalanmış.'],
     body: 'Samimi ve küçük ölçekli bir ortam, oyun dolu anlar ve dostunuz için özenli bir ilgi.',
     primary: 'Hizmetlerimizi keşfedin',

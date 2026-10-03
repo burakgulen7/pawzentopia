@@ -5,9 +5,9 @@
  */
 const fr = {
   meta: {
-    title: 'PawZenTopia — Garde & accompagnement canin · Toulouse',
+    title: 'PawZenTopia — Pension canine & pet sitting à Saint-Jean (Toulouse)',
     description:
-      'Un accueil à taille humaine, des moments de jeu et une présence attentive pour votre compagnon. Saint-Jean (31240) & métropole toulousaine.',
+      'Pension canine familiale, crèche, pet sitting et garde de chat à domicile, éducation canine à Saint-Jean (31240) et dans la métropole toulousaine.',
     ogLocale: 'fr_FR',
   },
   ui: {
@@ -27,7 +27,7 @@ const fr = {
     contact: 'Nous contacter',
   },
   hero: {
-    eyebrow: 'Garde & accompagnement canin · Toulouse',
+    eyebrow: 'Pension canine, pet sitting & éducation · Saint-Jean / Toulouse',
     // Approved line breaks (desktop and mobile).
     headline: ['Heureux comme', 'à la maison.', 'Entouré', 'd’attention.'],
     body: 'Un accueil à taille humaine, des moments de jeu et une présence attentive pour votre compagnon.',

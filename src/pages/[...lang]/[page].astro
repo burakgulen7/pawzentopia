@@ -1,0 +1,22 @@
+---
+/** Single-segment pages in every language: the legal notice and the four service pages. */
+import LegalPage from '../../components/LegalPage.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import { defaultLang, languages, serviceKeys, type Lang, type ServiceKey } from '../../i18n';
+
+export function getStaticPaths() {
+  return languages.flatMap((l) => {
+    const lang = l.code === defaultLang ? undefined : l.code;
+    return [
+      { params: { lang, page: l.dict.legalPage.slug }, props: { lang: l.code, kind: 'legal' } },
+      ...serviceKeys.map((key) => ({
+        params: { lang, page: l.services.pages[key].slug },
+        props: { lang: l.code, kind: 'service', service: key },
+      })),
+    ];
+  });
+}
+
+const { lang, kind, service } = Astro.props as { lang: Lang; kind: 'legal' | 'service'; service?: ServiceKey };
+---
+{kind === 'legal' ? <LegalPage lang={lang} /> : <ServicePage lang={lang} service={service!} />}

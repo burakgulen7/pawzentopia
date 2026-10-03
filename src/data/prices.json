@@ -65,10 +65,34 @@
     "per_en": "per day or per night",
     "per_tr": "gün ya da gece başına",
     "rows": [
-      { "size": "S", "label_fr": "Petit chien · jusqu’à 10 kg", "label_en": "Small dog · up to 10 kg", "label_tr": "Küçük köpek · 10 kg’a kadar", "price": 18 },
-      { "size": "M", "label_fr": "Chien moyen · 10–20 kg", "label_en": "Medium dog · 10–20 kg", "label_tr": "Orta boy köpek · 10–20 kg", "price": 20 },
-      { "size": "L", "label_fr": "Grand chien · 20–30 kg", "label_en": "Large dog · 20–30 kg", "label_tr": "Büyük köpek · 20–30 kg", "price": 25 },
-      { "size": "XL", "label_fr": "Très grand chien · plus de 30 kg", "label_en": "Extra-large dog · over 30 kg", "label_tr": "Çok büyük köpek · 30 kg üzeri", "price": 30 }
+      {
+        "size": "S",
+        "label_fr": "Petit chien · jusqu’à 10 kg",
+        "label_en": "Small dog · up to 10 kg",
+        "label_tr": "Küçük köpek · 10 kg’a kadar",
+        "price": 18
+      },
+      {
+        "size": "M",
+        "label_fr": "Chien moyen · 10–20 kg",
+        "label_en": "Medium dog · 10–20 kg",
+        "label_tr": "Orta boy köpek · 10–20 kg",
+        "price": 20
+      },
+      {
+        "size": "L",
+        "label_fr": "Grand chien · 20–30 kg",
+        "label_en": "Large dog · 20–30 kg",
+        "label_tr": "Büyük köpek · 20–30 kg",
+        "price": 25
+      },
+      {
+        "size": "XL",
+        "label_fr": "Très grand chien · plus de 30 kg",
+        "label_en": "Extra-large dog · over 30 kg",
+        "label_tr": "Çok büyük köpek · 30 kg üzeri",
+        "price": 30
+      }
     ],
     "offer_fr": "Offre longue durée : −3 € par jour/nuit à partir du 10ᵉ jour consécutif.",
     "offer_en": "Long-stay offer: €3 off per day/night from the 10th consecutive day.",
@@ -93,9 +117,9 @@
         "min": 15,
         "max": 20,
         "unit": "visit",
-        "detail_fr": "Inclut : promenade de 40–60 min, soins, présence, fraîcheur. Tarif ajusté selon la taille du chien et la distance kilométrique.",
-        "detail_en": "Includes: 40–60 min walk, care, company, fresh water. Price adjusted to the dog’s size and the distance.",
-        "detail_tr": "Dahil: 40–60 dk yürüyüş, bakım, refakat, taze su. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir."
+        "detail_fr": "Inclut : promenade de 40–60 min, soins, présence. Tarif ajusté selon la taille du chien et la distance kilométrique.",
+        "detail_en": "Includes: 40–60 min walk, care, company. Price adjusted to the dog’s size and the distance.",
+        "detail_tr": "Dahil: 40–60 dk yürüyüş, bakım, refakat. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir."
       },
       {
         "key": "cat",

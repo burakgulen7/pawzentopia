@@ -108,3 +108,9 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
   standalone service any more (only within emergencies for known clients). No "24/7" / "à toute heure" promises.
 - **Google reviews:** 5,0 ★ (13 avis) from `src/data/reviews.json` (Pages CMS "Avis Google"); hero badge + reviews
   section; originals in French never altered; no AggregateRating/Review JSON-LD.
+- **Local SEO (CR-03 §7):** 4 service pages per language — FR `/pension-canine-toulouse/`, `/creche-canine-toulouse/`,
+  `/pet-sitting-toulouse/`, `/education-canine-toulouse/` (EN/TR localised slugs). Copy in `src/i18n/services/*.ts`,
+  prices filled from `src/data/prices.json`. Plain `LocalBusiness` JSON-LD on every page (locality Saint-Jean 31240,
+  no street address, no opening hours, no ratings), `Service` + `BreadcrumbList` on service pages.
+  Home title: "PawZenTopia — Pension canine & pet sitting à Saint-Jean (Toulouse)". Blog ideas: `BLOG_FIKIRLERI.md`.
+- Dog-sitting line: « fraîcheur » removed on purpose by Marianna (do not add back).

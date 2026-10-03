@@ -3,13 +3,14 @@ import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import logo from '../assets/brand/logo-full.png';
 import { contact, socials } from '../config/site';
-import { getLanguage, languages, pagePath, url, type Lang } from '../i18n';
+import { getLanguage, languages, pagePath, serviceKeys, url, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const t = getLanguage(lang).dict;
+const l = getLanguage(lang);
+const t = l.dict;
 const phone = lang === 'fr' ? contact.phoneLocal : contact.phoneIntl;
 const homeUrl = url(pagePath('home', lang));
 ---
@@ -23,6 +24,13 @@ const homeUrl = url(pagePath('home', lang));
         <p class="muted">{t.footer.location}</p>
       </div>
     </div>
+
+    <nav class="services" aria-label={l.services.ui.servicesTitle}>
+      <p class="col-title">{l.services.ui.servicesTitle}</p>
+      <ul>
+        {serviceKeys.map((k) => <li><a href={url(pagePath(`service:${k}`, lang))}>{l.services.pages[k].name}</a></li>)}
+      </ul>
+    </nav>
 
     <div class="links">
       <a href={`tel:${contact.phoneE164}`}><Icon name="phone" size={18} />{phone}</a>
@@ -69,7 +77,7 @@ const homeUrl = url(pagePath('home', lang));
   }
   .inner {
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
     gap: 32px;
     align-items: center;
   }
@@ -92,6 +100,25 @@ const homeUrl = url(pagePath('home', lang));
   .muted {
     color: var(--muted);
     line-height: 1.6;
+  }
+  .col-title {
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .services ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .services a {
+    display: inline-block;
+    padding: 8px 0;
+    color: var(--muted);
+  }
+  .services a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   .links {
     display: flex;

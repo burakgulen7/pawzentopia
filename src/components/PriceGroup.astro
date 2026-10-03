@@ -1,0 +1,338 @@
+---
+/** One block of the price list (rendered from src/data/prices.json). Used on the home page and service pages. */
+import { boarding, emergency, training, tx, visits, type PriceRow } from '../config/prices';
+import { fill, getLanguage, type Lang } from '../i18n';
+import type { PriceGroupKey } from '../i18n/services/types';
+
+interface Props {
+  lang: Lang;
+  group: PriceGroupKey;
+  /** Optional "Learn more" links shown at the bottom of the card. */
+  links?: { href: string; label: string }[];
+}
+const { lang, group, links = [] } = Astro.props;
+const t = getLanguage(lang).dict.pricing;
+const amount = (r: PriceRow) =>
+  r.min === undefined ? '' : fill(t.price, { n: r.max !== undefined && r.max !== r.min ? `${r.min}–${r.max}` : r.min });
+const unit = (r: PriceRow) => (r.unit === 'day' ? t.perDay : r.unit === 'visit' ? t.perVisit : '');
+---
+{group === 'training' && (
+<article class="price-card">
+  <h3>{tx(training, 'title', lang)}</h3>
+  <ul class="rows">
+    {
+      training.rows.map((r) => (
+        <li>
+          <span class="label">{tx(r, 'label', lang)}</span>
+          <span class="price">
+            {amount(r)}
+            {unit(r) && <small>{unit(r)}</small>}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+  {tx(training, 'note', lang) && <p class="note">{tx(training, 'note', lang)}</p>}
+  {links.length > 0 && (
+    <p class="links">{links.map((l) => <a href={l.href}>{l.label}</a>)}</p>
+  )}
+</article>
+)}
+{group === 'boarding' && (
+<article class="price-card">
+  <h3>{tx(boarding, 'title', lang)}</h3>
+  {tx(boarding, 'subtitle', lang) && <p class="subtitle">{tx(boarding, 'subtitle', lang)}</p>}
+  {tx(boarding, 'per', lang) && <p class="per">{tx(boarding, 'per', lang)}</p>}
+  <ul class="rows">
+    {
+      boarding.rows.map((r) => (
+        <li>
+          <span class="label">
+            {r.size && <span class="badge">{r.size}</span>}
+            {tx(r, 'label', lang)}
+          </span>
+          <span class="price">{amount(r)}</span>
+        </li>
+      ))
+    }
+  </ul>
+  {tx(boarding, 'offer', lang) && <p class="offer">{tx(boarding, 'offer', lang)}</p>}
+  {tx(boarding, 'note', lang) && <p class="note">{tx(boarding, 'note', lang)}</p>}
+  {links.length > 0 && (
+    <p class="links">{links.map((l) => <a href={l.href}>{l.label}</a>)}</p>
+  )}
+</article>
+)}
+{group === 'visits' && (
+<article class="price-card">
+  <h3>{tx(visits, 'title', lang)}</h3>
+  {tx(visits, 'subtitle', lang) && <p class="subtitle">{tx(visits, 'subtitle', lang)}</p>}
+  <ul class="rows">
+    {
+      visits.rows.map((r) => (
+        <li class="has-detail">
+          <span class="label">{tx(r, 'label', lang)}</span>
+          <span class="price">
+            {amount(r)}
+            {unit(r) && <small>{unit(r)}</small>}
+          </span>
+          {tx(r, 'detail', lang) && <span class="detail">{tx(r, 'detail', lang)}</span>}
+        </li>
+      ))
+    }
+  </ul>
+  {tx(visits, 'footer', lang) && <p class="note">{tx(visits, 'footer', lang)}</p>}
+  {links.length > 0 && (
+    <p class="links">{links.map((l) => <a href={l.href}>{l.label}</a>)}</p>
+  )}
+</article>
+)}
+{group === 'emergency' && (
+<article class="price-card emergency">
+  <h3>{tx(emergency, 'title', lang)}</h3>
+  {tx(emergency, 'badge', lang) && <p class="client-badge">{tx(emergency, 'badge', lang)}</p>}
+  <p class="text">{tx(emergency, 'text', lang)}</p>
+  {tx(emergency, 'price', lang) && <p class="quote">{tx(emergency, 'price', lang)}</p>}
+  {links.length > 0 && (
+    <p class="links">{links.map((l) => <a href={l.href}>{l.label}</a>)}</p>
+  )}
+</article>
+)}
+
+<style>
+  .pricing {
+    padding-top: 30px;
+    padding-bottom: 96px;
+  }
+  .head {
+    margin-bottom: 42px;
+  }
+  .eyebrow {
+    padding-left: 3px;
+  }
+  h2 {
+    margin: 22px 0 22px;
+    font-size: 54px;
+    line-height: 1.12;
+  }
+  .intro {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+  }
+  .price-card {
+    background: #fff;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 32px 34px 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 40px rgba(41, 77, 61, 0.1);
+    }
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .per {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+  }
+  .rows {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rows li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid #eef0e9;
+  }
+  .rows li:last-child {
+    border-bottom: 0;
+  }
+  .rows li.has-detail {
+    flex-wrap: wrap;
+  }
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 40px;
+    height: 30px;
+    padding: 0 9px;
+    border-radius: 999px;
+    background: var(--mint-soft);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .price {
+    flex-shrink: 0;
+    font-family: var(--serif);
+    font-size: 23px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .price small {
+    margin-left: 4px;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .detail {
+    flex-basis: 100%;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .note {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .offer {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #f9efe9;
+    color: #9a5a40;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .emergency {
+    background: var(--mint);
+    box-shadow: none;
+  }
+  .client-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .text {
+    margin-top: 14px;
+    color: #4d6259;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .quote {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .cta {
+    margin-top: 30px;
+  }
+  @media (max-width: 1020px) {
+    h2 {
+      font-size: 46px;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 800px) {
+    .pricing {
+      padding-top: 40px;
+      padding-bottom: 64px;
+    }
+    .head {
+      margin-bottom: 28px;
+    }
+    h2 {
+      margin: 12px 0 14px;
+      font-size: 36px;
+      line-height: 42px;
+    }
+    .intro {
+      font-size: 14px;
+      line-height: 21px;
+    }
+    .grid {
+      gap: 14px;
+    }
+    .price-card {
+      padding: 24px 18px 22px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    .subtitle {
+      font-size: 14px;
+    }
+    .label {
+      gap: 10px;
+      font-size: 14px;
+    }
+    .badge {
+      min-width: 36px;
+      height: 28px;
+    }
+    .price {
+      font-size: 20px;
+    }
+    .offer {
+      font-size: 13px;
+    }
+    .cta .pill {
+      width: 100%;
+    }
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    margin-top: 16px;
+  }
+  .links a {
+    display: inline-block;
+    padding: 10px 0 3px;
+    border-bottom: 1px solid currentColor;
+    font-weight: 700;
+    font-size: 14px;
+  }
+</style>

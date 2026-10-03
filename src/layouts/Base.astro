@@ -8,6 +8,9 @@ import Intro from '../components/Intro.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import { getPhoto } from '../config/photos';
 import { contact, socials } from '../config/site';
+import { reviews } from '../config/reviews';
+import { emergency, highlights, training, tx, visits } from '../config/prices';
+import logoFull from '../assets/brand/logo-full.png';
 import { defaultLang, getLanguage, languages, pagePath, url, type Lang, type PageKey } from '../i18n';
 import serifFont from '../assets/fonts/dejavu-serif.woff2?url';
 import sansFont from '../assets/fonts/dejavu-sans.woff2?url';
@@ -25,6 +28,10 @@ interface Props {
   alternates?: boolean;
   image?: ImageMetadata;
   ogType?: 'website' | 'article';
+  /** Complete <title> (used as is, without the " — PawZenTopia" suffix). */
+  fullTitle?: string;
+  /** Extra JSON-LD objects for this page (the LocalBusiness block is always added). */
+  jsonLd?: object[];
 }
 const {
   lang,
@@ -36,28 +43,59 @@ const {
   alternates = true,
   image,
   ogType = 'website',
+  fullTitle,
+  jsonLd: extraJsonLd = [],
 } = Astro.props;
 const t = getLanguage(lang).dict;
-const pageTitle = title ? `${title} — PawZenTopia` : t.meta.title;
+const pageTitle = fullTitle ?? (title ? `${title} — PawZenTopia` : t.meta.title);
 const pageDescription = description ?? t.meta.description;
 const abs = (path: string) => new URL(url(path), Astro.site).href;
 const canonical = abs(path ?? pagePath(page, lang));
 const og = await getImage({ src: image ?? getPhoto('hero').src, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
 const ogImage = new URL(og.src, Astro.site).href;
 
+// Plain LocalBusiness on every page (no AggregateRating/Review: self-published reviews are not eligible).
+const logo = await getImage({ src: logoFull, width: 512, format: 'png' });
+const offerItem = (name: string, min?: number, max?: number) => ({
+  '@type': 'Offer',
+  itemOffered: { '@type': 'Service', name },
+  ...(min !== undefined ? { priceSpecification: { '@type': 'PriceSpecification', minPrice: min, maxPrice: max ?? min, priceCurrency: 'EUR' } } : {}),
+});
+const rowsMin = (rows: { min?: number }[]) => Math.min(...rows.map((r) => r.min ?? Infinity));
+const rowsMax = (rows: { min?: number; max?: number }[]) => Math.max(...rows.map((r) => r.max ?? r.min ?? 0));
+const sp = getLanguage(lang).services.pages;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
+  '@id': `${abs('')}#business`,
   name: 'PawZenTopia',
   description: t.meta.description,
   url: abs(pagePath('home', lang)),
   image: ogImage,
+  logo: new URL(logo.src, Astro.site).href,
   telephone: contact.phoneE164,
   email: contact.email,
-  areaServed: 'Saint-Jean (31240), Toulouse',
+  priceRange: '€',
+  address: { '@type': 'PostalAddress', addressLocality: 'Saint-Jean', postalCode: '31240', addressCountry: 'FR' },
+  areaServed: [
+    { '@type': 'City', name: 'Saint-Jean' },
+    { '@type': 'City', name: 'Toulouse' },
+    { '@type': 'AdministrativeArea', name: 'Toulouse Métropole' },
+  ],
   knowsLanguage: languages.map((l) => l.code),
-  sameAs: socials.map((s) => s.url),
+  sameAs: [...socials.map((s) => s.url), reviews.profileUrl].filter(Boolean),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'PawZenTopia',
+    itemListElement: [
+      offerItem(`${sp.pension.name} / ${sp.creche.name}`, highlights.boardingMin, highlights.boardingMax),
+      offerItem(sp.education.name, rowsMin(training.rows), rowsMax(training.rows)),
+      offerItem(sp.petSitting.name, rowsMin(visits.rows), rowsMax(visits.rows)),
+      offerItem(tx(emergency, 'title', lang)),
+    ],
+  },
 };
+
 ---
 <!doctype html>
 <html lang={lang}>
@@ -88,7 +126,7 @@ const jsonLd = {
     <meta property="og:locale" content={t.meta.ogLocale} />
     {languages.filter((l) => l.code !== lang).map((l) => <meta property="og:locale:alternate" content={l.dict.meta.ogLocale} />)}
     <meta name="twitter:card" content="summary_large_image" />
-    {page === 'home' && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {[jsonLd, ...extraJsonLd].map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
   <body>
     <Intro />

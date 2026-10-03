@@ -19,14 +19,15 @@ Dosyaları GitHub web sitesinde açıp kalem simgesine (✏️) basarak düzenle
 | Telefon, WhatsApp, e-posta, sosyal medya | `src/config/site.ts` |
 | İletişim formunu açmak (Formspree kimliği) | `src/config/site.ts` → `formspreeId` |
 | Yasal bilgiler (SIRET, adres, statü) | `src/config/site.ts` → `legal` |
-| Metinler | `src/i18n/fr.ts`, `en.ts`, `ru.ts`, `tr.ts` |
+| Metinler | `src/i18n/fr.ts`, `en.ts`, `tr.ts` |
+| Hizmet sayfalarının metinleri | `src/i18n/services/fr.ts`, `en.ts`, `tr.ts` |
 | Blog yazıları | Pages CMS (https://app.pagescms.org) — bkz. [BLOG_REHBERI.md](BLOG_REHBERI.md) |
 
 Metinlerde tırnak işaretlerinin (`'...'`) arasındaki yazıyı değiştirin; tırnakları ve virgülleri silmeyin.
 `{price}`, `{email}` gibi süslü parantezli kelimeler otomatik doldurulur, olduğu gibi bırakın.
 Başlıklardaki `|` işareti yalnızca telefonda satır başı yapılacak yeri gösterir.
 
-**Yeni dil eklemek:** `src/i18n/fr.ts` dosyasını kopyalayıp (ör. `es.ts`) çevirin ve
+**Yeni dil eklemek:** `src/i18n/fr.ts` ve `src/i18n/services/fr.ts` dosyalarını kopyalayıp (ör. `es.ts`) çevirin ve
 `src/i18n/index.ts` içindeki `languages` listesine bir satır ekleyin.
 
 **Yeni sosyal ağ eklemek:** `src/config/site.ts` içindeki `socials` listesine bir satır ekleyin
