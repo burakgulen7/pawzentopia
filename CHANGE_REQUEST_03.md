@@ -1,4 +1,4 @@
-# Change request 03 — new price list, remove Russian, Google reviews, phone fix
+# Change request 03 — new price list, remove Russian, Google reviews, phone fix, local SEO
 
 Requested by the user on 3 October 2026. The live site is now **https://pawzentopia.com** (custom domain on GitHub Pages, set up by the user; `SITE_URL`/`BASE_PATH` already come from `actions/configure-pages`, do not hard-code them).
 
@@ -26,7 +26,7 @@ Remove the old pricing (24 h table with 18/20/25/35 €, −5 % discount, day-ca
 
 New size limits (dogs): **S up to 10 kg · M 10–20 kg · L 20–30 kg · XL over 30 kg**.
 
-The French text below is Marianna's own; keep its meaning and wording (only light typographic clean-up). EN and TR are translations for approval.
+The French text below is Marianna's own (she removed « fraîcheur » from the dog-sitting line on purpose — do not add it back); keep its meaning and wording (only light typographic clean-up). EN and TR are translations for approval.
 
 ### Section header
 
@@ -71,7 +71,7 @@ Unit words: `/ jour` · `/ day` · `/ gün`.
 | Title | `Dog sitting & cat sitting à domicile` | `Dog sitting & cat sitting at your home` | `Evde köpek ve kedi bakımı` |
 | Subtitle | `Visites individuelles à domicile de 40 à 60 minutes pour vos compagnons.` | `Individual 40–60 minute home visits for your companions.` | `Dostlarınız için evinizde 40–60 dakikalık bireysel ziyaretler.` |
 | Dog row | `Dog sitting (chien)` — 15–20 € / passage | `Dog sitting` — €15–20 / visit | `Köpek bakımı` — 15–20 € / ziyaret |
-| Dog includes | `Inclut : promenade de 40–60 min, soins, présence, fraîcheur. Tarif ajusté selon la taille du chien et la distance kilométrique.` | `Includes: 40–60 min walk, care, company, fresh water. Price adjusted to the dog’s size and the distance.` | `Dahil: 40–60 dk yürüyüş, bakım, refakat, taze su. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir.` |
+| Dog includes | `Inclut : promenade de 40–60 min, soins, présence. Tarif ajusté selon la taille du chien et la distance kilométrique.` | `Includes: 40–60 min walk, care, company. Price adjusted to the dog’s size and the distance.` | `Dahil: 40–60 dk yürüyüş, bakım, refakat. Fiyat köpeğin boyutuna ve mesafeye göre belirlenir.` |
 | Cat row | `Cat sitting (chat)` — 12–15 € / passage | `Cat sitting` — €12–15 / visit | `Kedi bakımı` — 12–15 € / ziyaret |
 | Cat includes | `Inclut : litière, nourriture, câlins/jeux, présence de 40–60 min. Tarif ajusté selon les besoins spécifiques du chat et la distance kilométrique.` | `Includes: litter, food, cuddles/play, 40–60 min of company. Price adjusted to the cat’s specific needs and the distance.` | `Dahil: kum kabı, mama, sevgi/oyun, 40–60 dk refakat. Fiyat kedinin özel ihtiyaçlarına ve mesafeye göre belirlenir.` |
 | Footer line | `Abonnements & forfaits réguliers : sur demande / devis.` | `Subscriptions & regular packages: on request / quote.` | `Abonelikler ve düzenli paketler: talep üzerine / teklifle.` |
@@ -145,9 +145,53 @@ Reviews (real, public on Google; use first name + last initial):
 - Update `BLOG_REHBERI.md`, `GUIDE_BLOG_FR.md` and `FOTO_DEGISTIRME.md` (new pricing editing steps, reviews editing steps, 3 languages, `visites` slot, no `transport` slot).
 - Validate `.pages.yml` with Pages CMS's own schema as in CR-02.
 
-## 7. Checks before asking for approval
+## 7. Local SEO — rank for Marianna's keywords
+
+Goal: appear in Google for these searches around Saint-Jean / Toulouse (French market first):
+`petsitting`, `pet sitting`, `garderie`, `pension canine`, `dogwalking` / `dog walking`, `catsitting` / `cat sitting`, `garde de chat`, `garde animalière`, `garde d’animaux`, `garde de chien`, `crèche canine`, `hôtel de chien` / `hôtel pour chiens`, each typically combined with `Toulouse`, `Saint-Jean` or "près de moi".
+
+Rules: write natural, useful copy for people; **no keyword stuffing, no hidden text, no doorway pages for towns we don't serve, no invented facts** (only facts from `PROJECT_DECISIONS.md` and this file). Be honest about cats: cats are **not boarded**, only home visits — "garde de chat" must always mean *à domicile*.
+
+### 7.1 Dedicated service pages (FR + EN + TR)
+
+One-page sites rank poorly for many different searches. Add 4 service pages, linked from the service cards ("En savoir plus →"), the nav (a "Services" dropdown or the existing "Nos services" anchor plus links in the footer) and the pricing groups. French slugs (EN/TR get localised slugs under `/en/` and `/tr/`):
+
+| FR slug | Main topic & target keywords (FR) | EN focus | TR focus |
+| --- | --- | --- | --- |
+| `/pension-canine-toulouse/` | Pension canine familiale & hôtel pour chiens — `pension canine`, `hôtel de chien`, `garde de chien`, `garde d’animaux` | dog boarding Toulouse, dog hotel | Toulouse köpek pansiyonu, köpek oteli |
+| `/creche-canine-toulouse/` | Crèche canine & garderie pour chiens (journée sans éducation) — `crèche canine`, `garderie`, `garde de chien` | dog day care Toulouse | Toulouse köpek kreşi |
+| `/pet-sitting-toulouse/` | Pet sitting à domicile : dog sitting, promenade (dog walking) & cat sitting / garde de chat à domicile — `petsitting`, `dogwalking`, `catsitting`, `garde de chat`, `garde animalière` | pet sitting, dog walking, cat sitting Toulouse | Toulouse evde evcil hayvan bakımı, köpek gezdirme, kedi bakımı |
+| `/education-canine-toulouse/` | Éducation, sociabilisation & réhabilitation canine | dog training & behaviour Toulouse | Toulouse köpek eğitimi |
+
+Each page:
+- Unique `<title>` (≤ 60 chars) and meta description (≤ 155 chars) containing the main keyword + "Toulouse" / "Saint-Jean"; one `<h1>` with the main keyword in natural wording (e.g. `Pension canine familiale à Saint-Jean, près de Toulouse`); logical `<h2>`s.
+- 300–500 words of genuine copy written from confirmed facts: what the service is, how it works (initial contact via WhatsApp, behavioural assessment for training, etc.), who it is for, service area (`Saint-Jean (31240) & métropole toulousaine`), the relevant price block **rendered from the prices data file**, 3–5 FAQ items answered **only** with confirmed facts (e.g. "Prenez-vous les chats en pension ?" → "Non, uniquement en visites à domicile."), the Google rating badge, one or two real photos, and the WhatsApp/contact CTA.
+- Use synonyms naturally across the page (e.g. pension canine / hôtel pour chiens / garde de chien) rather than repeating one phrase.
+- Breadcrumbs (Accueil › Service) and internal links to the other service pages.
+- Show the FR copy to the user for approval; EN/TR are translations.
+
+### 7.2 Home page and site-wide
+
+- Home `<title>`: `PawZenTopia — Pension canine & pet sitting à Saint-Jean (Toulouse)`; meta description mentioning pension canine, crèche, pet sitting / garde de chat à domicile, éducation, Saint-Jean & Toulouse. EN/TR equivalents.
+- Hero eyebrow can become `Pension canine, pet sitting & éducation · Saint-Jean / Toulouse` (EN/TR equivalents) — keep the approved headline.
+- Image `alt` texts describe the photo and, where natural, the service (no stuffing).
+- **Structured data (JSON-LD) on every page:** plain `LocalBusiness` (no misleading subtype such as `AnimalShelter` or `PetStore`) with `name`, `url` (`https://pawzentopia.com/`), `telephone` (`+33698382618`), `email`, `image`, `logo`, `areaServed` (Saint-Jean, Toulouse, Toulouse Métropole), `address` with `addressLocality` `Saint-Jean`, `postalCode` `31240`, `addressCountry` `FR` (**no street address** unless the user confirms it should be public), `sameAs` (Instagram, TikTok, Google Business Profile link), `priceRange` (`€`), `openingHours` only if confirmed (do not add), and `hasOfferCatalog` listing the 4 services with prices from the data file. **No `AggregateRating` / `Review`** (see §5). Add `Service` JSON-LD on each service page (`provider` → the LocalBusiness, `areaServed`, `serviceType`). Validate with Google's Rich Results Test / schema validator and report the result.
+- `sitemap.xml` includes the new pages in all 3 languages with `hreflang` alternates; `robots.txt` points to it.
+- Keep performance high (the site is already fast; check that new pages don't regress).
+
+### 7.3 Blog ideas for Marianna (do not publish, write a list only)
+
+Add a short Turkish list `BLOG_FIKIRLERI.md` with 8–10 article ideas in French that naturally target the keywords (e.g. "Pension canine ou pet sitting à domicile : que choisir ?", "Comment préparer son chien à sa première nuit en pension", "Garde de chat pendant les vacances à Toulouse : pourquoi la visite à domicile ?"), each with a one-line angle. Marianna writes them herself in the CMS.
+
+### 7.4 After deployment — tell the user (in Turkish), step by step
+
+1. **Google Search Console:** add a *Domain* property for `pawzentopia.com`, verify it with the TXT record in Marianna's Cloudflare DNS (Cloudflare can do it automatically via "Verify with Cloudflare" if offered), then submit `https://pawzentopia.com/sitemap.xml` and request indexing of the home and service pages.
+2. **Google Business Profile (biggest lever for local searches):** add the website; set the primary category to the closest match (e.g. *Pension pour chiens* or *Service de garde d’animaux*) and add secondary categories that exist in Google's list (e.g. *Service de promenade de chiens*, *Dresseur de chiens*, *Garde d’animaux de compagnie*); fill the **Services** list with the same service names as the site; write a description using the keywords naturally; add real photos regularly; keep asking happy clients for reviews.
+3. Set expectations honestly: rankings take weeks to months, Toulouse is competitive, and nothing guarantees a position; reviews, the Business Profile and regular blog posts matter most.
+
+## 8. Checks before asking for approval
 
 - Build, type check, no console errors; zero matches for the old phone number and for Russian strings; `/ru/` redirects work.
-- Screenshots: FR desktop full page, TR mobile full page, EN pricing section (desktop + mobile 390), the reviews section (desktop + mobile), a hovered service card.
+- Screenshots: one service page (FR desktop + TR mobile), FR desktop full page, TR mobile full page, EN pricing section (desktop + mobile 390), the reviews section (desktop + mobile), a hovered service card.
 - No horizontal scroll at 320 px; price rows readable; review "Read more" works by keyboard.
 - Tell the user (in Turkish) what Marianna should also update on her **Google Business Profile**: add the website `https://pawzentopia.com` (the profile currently shows "Add website"), and copy the "Ask for reviews" link into the CMS field.
