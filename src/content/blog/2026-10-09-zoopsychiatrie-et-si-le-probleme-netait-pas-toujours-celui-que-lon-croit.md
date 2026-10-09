@@ -8,15 +8,11 @@ coverAlt: "Deux chiens qui jouent "
 summary: Et si comprendre son chien, c’était aussi apprendre à écouter ce qu’il
   ne peut pas nous dire ? La zoopsychiatrie nous aide à mieux comprendre ces
   êtres qui occupent une place si profonde dans nos vies.
-draft: true
+draft: false
 ---
 **Zoopsychiatrie : et si le problème n’était pas toujours celui que l’on croit ?**
 
-
-
 Il y a une phrase que les professionnels du chien entendent régulièrement :
-
-
 
 **« Je ne comprends plus mon chien. »**
 
