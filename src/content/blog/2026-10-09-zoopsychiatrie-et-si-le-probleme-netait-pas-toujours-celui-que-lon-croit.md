@@ -3,7 +3,7 @@ title: "Zoopsychiatrie : et si le problème n’était pas toujours celui que l�
   croit ?"
 date: 2026-10-09
 lang: fr
-cover: ./images/40bf039b-fbdd-43b1-9025-382be83b1a0f-1.jpeg
+cover: images/40bf039b-fbdd-43b1-9025-382be83b1a0f-1.jpeg
 coverAlt: "Deux chiens qui jouent "
 summary: Et si comprendre son chien, c’était aussi apprendre à écouter ce qu’il
   ne peut pas nous dire ? La zoopsychiatrie nous aide à mieux comprendre ces
@@ -367,3 +367,5 @@ Et finalement, c’est peut-être ça, la première forme de prise en charge.
 Pas corriger. Pas punir. Pas interpréter trop vite.
 
 **Chercher à comprendre.**
+
+**Si vous sentez que quelque chose ne va pas, parlons-en ensemble : prenez rendez-vous pour offrir à votre compagnon l’écoute et l’accompagnement qu’il mérite.**
