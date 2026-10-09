@@ -3,6 +3,8 @@ title: "Zoopsychiatrie : et si le problème n’était pas toujours celui que l�
   croit ?"
 date: 2026-10-09
 lang: fr
+cover: ./images/40bf039b-fbdd-43b1-9025-382be83b1a0f-1.jpeg
+coverAlt: "Deux chiens qui jouent "
 summary: Et si comprendre son chien, c’était aussi apprendre à écouter ce qu’il
   ne peut pas nous dire ? La zoopsychiatrie nous aide à mieux comprendre ces
   êtres qui occupent une place si profonde dans nos vies.
