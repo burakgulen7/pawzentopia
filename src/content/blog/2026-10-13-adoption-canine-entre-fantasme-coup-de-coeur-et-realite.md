@@ -2,12 +2,14 @@
 title: "Adoption canine : entre fantasme, coup de cœur et réalité."
 date: 2026-10-13
 lang: fr
-cover: ./images/copyfa68ced9-1d39-428d-858b-5140047b4489-1.jpeg
+cover: images/copyfa68ced9-1d39-428d-858b-5140047b4489-1.jpeg
 coverAlt: "Les chiot dans un enclos, présentés dans un salon de chiot "
 summary: Choisir son compagnon pour la vie, ça se prépare… même si l’on ne peut
   pas tout prévoir !
 draft: false
 ---
+# Adoption canine : entre fantasme, coup de cœur et réalité.
+
 On n’adopte pas tous un chien pour les mêmes raisons.
 
 Certains veulent sauver un animal et lui offrir une meilleure vie. D’autres rêvent depuis des années d’une race bien précise. Certains cherchent un compagnon de randonnée, d’autres un chien de travail. Et puis il y a ceux qui veulent un chien qui en impose, qui a du style, qui attire les regards. Oui, ça existe aussi.
@@ -16,9 +18,9 @@ Aucune de ces motivations ne fait automatiquement de vous un mauvais futur maît
 
 Et surtout, mettons les choses au clair : acheter un chiot dans un salon, adopter un chien en refuge et acheter auprès d’un éleveur responsable, ce n’est pas la même chose. Ni dans les démarches, ni dans les garanties, ni dans les conséquences de votre choix.
 
-En refuge, vous donnez une chance à un animal qui cherche un foyer. Chez un éleveur responsable, vous pouvez obtenir des informations sur les parents, les conditions d’élevage et les besoins de la race. Dans un salon de chiots, en revanche, vous risquez de prendre une décision sous le coup de l’émotion, avec peu de temps pour vérifier le véritable pedigree du loulou choisis (les parents- surtout la mère, les maladies héréditaires possibles, les antécédents de la lignée, etc.)
+En refuge, vous donnez une chance à un animal qui cherche un foyer. Chez un éleveur responsable, vous pouvez obtenir des informations sur les parents, les conditions d’élevage et les besoins de la race. Dans un salon de chiots, en revanche, vous risquez de prendre une décision sous le coup de l’émotion, avec peu de temps pour vérifier le véritable pedigree du loulou choisi (les parents, surtout la mère, les maladies héréditaires possibles, les antécédents de la lignée, etc.).
 
-Un week-end vous vous rendez dans un salon de chiots, juste par curiosité pour voire pleins de bouilles mignons ou pour accompagner un amis et peut-être la tatie Josiane. Et vous rompez sur lui ; Il est là, derrière les enclos. Petit, mignon, avec des yeux capables de faire avouer un crime à un innocent. Vous craquez. Vous voulez le sauver de cette endroit bruil
+Un week-end, vous passez dans un salon de chiots, juste par curiosité, pour voir plein de bouilles mignonnes ou pour accompagner un ami, et peut-être la tatie Josiane. Et là, vous flashez sur lui. Il est derrière les enclos. Petit, mignon, avec des yeux capables de faire avouer un crime à un innocent. Vous craquez. Vous voulez le sortir de cet endroit bruyant.
 
 Je comprends totalement. Mais voilà le piège : en achetant un chiot sur un coup de tête dans certains circuits de vente, vous risquez de financer le système qui l’a mis là.
 
@@ -46,11 +48,11 @@ Un chiot qui grandit dans un milieu pauvre en stimulations, sans découvertes ad
 
 Pour être plus claire, pour ceux qui veulent voir plus en profondeur, voici une synthèse scientifique publiée par Franklin D. McMillan en 2017 dans le Journal of Veterinary Behavior. Elle rapporte davantage de problèmes comportementaux chez les chiens issus de certains élevages commerciaux, notamment des peurs et des difficultés relationnelles.
 
-++[Lire l’étude de McMillan (2017)](https://doi.org/10.1016/j.jveb.2017.01.001)++⁠
+[Lire l’étude de McMillan (2017)](https://doi.org/10.1016/j.jveb.2017.01.001)
 
 Une revue publiée en 2022 dans la revue Animals, portant sur 29 études relatives à la socialisation canine, souligne également l’importance des expériences précoces, tout en rappelant que nos connaissances ont encore leurs limites.
 
-++[Lire la revue scientifique de 2022 sur la socialisation canine](https://pmc.ncbi.nlm.nih.gov/articles/PMC9655304/)++⁠
+[Lire la revue scientifique de 2022 sur la socialisation canine](https://pmc.ncbi.nlm.nih.gov/articles/PMC9655304/)
 
 Maintenant, imaginez ce chiot qui débarque face aux voitures, aux ascenseurs, aux enfants et aux bruits de la ville. Pour vous, c’est une journée normale. Pour lui, c’est la fin du monde version « LOST ».
 
@@ -88,9 +90,9 @@ Je vous conseille de vous faire accompagner, idéalement avant l’adoption, par
 
 Pour découvrir des structures engagées, vous pouvez notamment jeter un œil à :
 
-- ++[Les Tatas Association](https://instagram.com/lestatas_association?dlrf=NXBnZDdkZGh4cTg3)++⁠ — l’un de mes protégés coups de cœur, Django, a été adopté chez eux.
-- ++[Association Animo 31](https://www.associationanimo31.fr/)++⁠ — pour découvrir leurs actions de protection animale.
-- ++[Les 4 Pattounes](https://les4pattounes.org/les4pattorg/ils-parlent-de-nous/)++⁠ — pour découvrir leurs actions liées à la lutte contre la maltraitance animale et au sauvetage des animaux. Vous pourrez vous renseigner sur les moyens de les soutenir ou même devenir l’une des familles d’accueil dont ils ont besoin.
+- [Les Tatas Association](https://instagram.com/lestatas_association) — l’un de mes protégés coups de cœur, Django, a été adopté chez eux.
+- [Association Animo 31](https://www.associationanimo31.fr/) — pour découvrir leurs actions de protection animale.
+- [Les 4 Pattounes](https://les4pattounes.org/les4pattorg/ils-parlent-de-nous/) — pour découvrir leurs actions liées à la lutte contre la maltraitance animale et au sauvetage des animaux. Vous pourrez vous renseigner sur les moyens de les soutenir ou même devenir l’une des familles d’accueil dont ils ont besoin.
 
 **Avant de craquer, posez-vous les bonnes questions.**
 
