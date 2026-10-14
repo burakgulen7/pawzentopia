@@ -3,7 +3,7 @@ title: "Adoption canine : entre fantasme, coup de cœur et réalité."
 date: 2026-10-13
 lang: fr
 cover: images/copyfa68ced9-1d39-428d-858b-5140047b4489-1.jpeg
-coverAlt: "Les chiot dans un enclos, présentés dans un salon de chiot "
+coverAlt: Les chiot dans un enclos
 summary: Choisir son compagnon pour la vie, ça se prépare… même si l’on ne peut
   pas tout prévoir !
 draft: false
