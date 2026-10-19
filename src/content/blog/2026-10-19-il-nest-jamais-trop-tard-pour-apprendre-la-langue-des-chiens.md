@@ -2,7 +2,7 @@
 title: Il n’est jamais trop tard pour apprendre la langue des chiens…
 date: 2026-10-19
 lang: fr
-cover: ./images/copyab643588-46d2-470f-8981-d2b7ad160d80.jpeg
+cover: images/copyab643588-46d2-470f-8981-d2b7ad160d80.jpeg
 coverAlt: Le chien qui sourit dans les bras de sa maîtresse.
 summary: >-
   Après des études universitaires en linguistique et des années passées à
@@ -13,8 +13,6 @@ summary: >-
   voir nos compagnons à quatre pattes.
 draft: false
 ---
-
-
 Votre chien a réduit un fauteuil en lambeaux pendant que vous étiez au travail. Vous rentrez, vous découvrez les dégâts, et il est là, la tête basse, avec son air de coupable idéal. Verdict : il l’a fait exprès, pour se venger.
 
 Eh bien, non. Et c’est justement pour comprendre ce qui se passe réellement dans leur tête que j’ai changé de vie.
