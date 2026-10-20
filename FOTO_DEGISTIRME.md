@@ -44,3 +44,13 @@ Sitedeki bütün fotoğraflar tek bir klasörde durur: **`src/photos/`**
   açıklaması var (`alt`). Fotoğrafın içeriği değişirse bu cümleleri de güncelleyin.
 - Onaylı ilk fotoğrafların orijinalleri `assets/photos/` klasöründe arşiv olarak saklanır;
   sitede kullanılmazlar, silmeyin.
+
+## Video (pansiyon sayfası)
+
+"Pension canine" sayfasının üstünde, bilgisayarda fotoğrafın yerine kısa ve sessiz bir video döner
+(telefonda ve "hareketi azalt" ayarında yine `garde-familiale` fotoğrafı görünür).
+
+- Video dosyaları: `public/videos/pension-maison.webm` ve `public/videos/pension-maison.mp4` (ikisi de aynı video).
+- Orijinal video arşivde: `assets/videos/pension-original-marianna.MOV`.
+- Videoyu değiştirmek kod bilgisi gerektiren bir işlem (kırpma ve sıkıştırma); yeni videoyu
+  `src/photos` klasörüne yükleyip Claude'dan hazırlamasını isteyin.

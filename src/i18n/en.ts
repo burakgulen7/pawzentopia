@@ -15,6 +15,8 @@ const en: Dictionary = {
     home: 'PawZenTopia home',
     menu: 'Menu',
     closeMenu: 'Close menu',
+    pauseVideo: 'Pause the video',
+    playVideo: 'Play the video',
   },
   nav: {
     services: 'Our services',

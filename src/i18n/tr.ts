@@ -15,6 +15,8 @@ const tr: Dictionary = {
     home: 'PawZenTopia ana sayfa',
     menu: 'Menü',
     closeMenu: 'Menüyü kapat',
+    pauseVideo: 'Videoyu duraklat',
+    playVideo: 'Videoyu oynat',
   },
   nav: {
     services: 'Hizmetlerimiz',

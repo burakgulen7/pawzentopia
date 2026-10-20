@@ -124,3 +124,11 @@ Base prices in euros, **per dog, per day**, according to the dog's size (no mult
   from the site itself.
 - The card and the main button open Google Maps directions to the Business Profile pin
   (`43.6583093,1.508352`); a text link opens the Google Business Profile. Both in `src/config/site.ts` → `location`.
+
+## Video (20 October 2026)
+
+- Marianna's 25 s portrait phone video is not suitable for the hero (portrait, constant camera movement, dark
+  tones, Marianna not visible); the hero keeps the photo.
+- A 5 s muted loop of the steadiest moments (four dogs at rest) replaces the photo at the top of the
+  "Pension canine" page on screens wider than 800 px without reduced motion; the photo stays as fallback and on
+  phones. WebM + MP4 in `public/videos/`, original archived in `assets/videos/`. Pause button (WCAG 2.2.2).

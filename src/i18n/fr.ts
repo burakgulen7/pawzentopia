@@ -17,6 +17,8 @@ const fr = {
     home: 'Accueil PawZenTopia',
     menu: 'Menu',
     closeMenu: 'Fermer le menu',
+    pauseVideo: 'Mettre la vidéo en pause',
+    playVideo: 'Lire la vidéo',
   },
   nav: {
     services: 'Nos services',

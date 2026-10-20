@@ -6,6 +6,7 @@ import Icon from './Icon.astro';
 import PriceGroup from './PriceGroup.astro';
 import RatingBadge from './RatingBadge.astro';
 import { getPhoto } from '../config/photos';
+import { serviceVideos } from '../config/videos';
 import { highlights, training, visits } from '../config/prices';
 import { whatsappUrl } from '../config/site';
 import { plainText, richText } from '../lib/services';
@@ -21,6 +22,7 @@ const t = l.dict;
 const ui = l.services.ui;
 const page = l.services.pages[service];
 const photo = getPhoto(page.photo);
+const video = serviceVideos[service];
 const abs = (p: string) => new URL(url(p), Astro.site).href;
 const homeUrl = abs(pagePath('home', lang));
 const pageUrl = abs(pagePath(`service:${service}`, lang));
@@ -91,6 +93,27 @@ const jsonLd = [
             loading="eager"
             fetchpriority="high"
           />
+          {
+            video && (
+              <>
+                <video
+                  class="loop"
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-hidden="true"
+                  data-loop-video
+                  data-mp4={url(`videos/${video.name}.mp4`)}
+                  data-webm={url(`videos/${video.name}.webm`)}
+                  style={`object-position:${video.position}`}
+                />
+                <button type="button" class="video-toggle" data-video-toggle hidden aria-pressed="false" data-pause={t.ui.pauseVideo} data-play={t.ui.playVideo} aria-label={t.ui.pauseVideo}>
+                  <span class="i-pause" aria-hidden="true">❚❚</span><span class="i-play" aria-hidden="true">▶</span>
+                </button>
+              </>
+            )
+          }
         </div>
       </header>
 
@@ -150,6 +173,39 @@ const jsonLd = [
   </div>
 </Base>
 
+<script>
+  // Loop video over the photo: only on larger screens without "reduce motion", loaded lazily.
+  // The photo underneath stays visible on phones, with reduced motion and until the video can play.
+  const ok = window.matchMedia('(min-width: 801px) and (prefers-reduced-motion: no-preference)').matches;
+  document.querySelectorAll<HTMLVideoElement>('[data-loop-video]').forEach((video) => {
+    const src = video.canPlayType('video/webm; codecs="vp9"') ? video.dataset.webm : video.canPlayType('video/mp4') ? video.dataset.mp4 : '';
+    if (!ok || !src) return;
+    const toggle = video.parentElement?.querySelector<HTMLButtonElement>('[data-video-toggle]');
+    video.src = src;
+    video.addEventListener(
+      'canplay',
+      () => {
+        video.play().then(
+          () => {
+            video.classList.add('is-playing');
+            if (toggle) toggle.hidden = false;
+          },
+          () => {},
+        );
+      },
+      { once: true },
+    );
+    video.load();
+    toggle?.addEventListener('click', () => {
+      const pause = !video.paused;
+      if (pause) video.pause();
+      else void video.play();
+      toggle.setAttribute('aria-pressed', String(pause));
+      toggle.setAttribute('aria-label', (pause ? toggle.dataset.play : toggle.dataset.pause) ?? '');
+    });
+  });
+</script>
+
 <style>
   .service {
     padding: 28px 0 96px;
@@ -206,6 +262,47 @@ const jsonLd = [
   .photo {
     overflow: hidden;
     border-radius: 60px 110px 110px 60px / 60px 110px 110px 60px;
+  }
+  .photo {
+    position: relative;
+  }
+  .loop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .loop:global(.is-playing) {
+    opacity: 1;
+  }
+  .video-toggle {
+    position: absolute;
+    right: 26px;
+    bottom: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(37, 68, 60, 0.78);
+    color: var(--cream);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .video-toggle[hidden] {
+    display: none;
+  }
+  .video-toggle .i-play,
+  .video-toggle[aria-pressed='true'] .i-pause {
+    display: none;
+  }
+  .video-toggle[aria-pressed='true'] .i-play {
+    display: inline;
   }
   .photo :global(img) {
     width: 100%;
